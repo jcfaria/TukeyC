@@ -16,7 +16,7 @@ make.TukeyC.test <-
     vece <- outer(X=m.tmp, Y=m.tmp,     # (v)ariance (e)stimation of (c)ontrast (e)stimation
                   function(X, Y) MSE * (1/as.numeric(names(X)) + (1/as.numeric(names(Y)))))
 
-    qTukey <- qtukey(1 - sig.level, nrow(m.inf), dfr)
+    qTukey <- qtukey(p=sig.level, nmeans=nrow(m.inf), df=dfr, lower.tail=FALSE)
 
     if (!bal) {
       msd <- qTukey * sqrt(1/2 * vece)  # minimum significative difference
@@ -33,15 +33,23 @@ make.TukeyC.test <-
     res  <- cbind(format(round(m, round), nsmall=2), res)
     colnames(res) <- c('Means', paste('G', 1:(ncol(res) - 1), sep=''))
 
-    diag(difm) <- 0
     if (bal) r <- r[1]
+
+    # The below estimates the probability of observed difference betweeen means be significative
+    # Matrix of the difference of means above diagonal and respective p-values of the Tukey test
+    # below diagonal 
+    difm[lower.tri(difm)] <- ptukey(q=difm[lower.tri(difm)] / sqrt(1/2 * vece[lower.tri(vece)]),
+                                    nmeans=nrow(m.inf),
+                                    df=dfr,
+                                    lower.tail=FALSE)
+    diag(difm) <- 0  # To be sure!
 
     out <- list(Table       = mt,
                 Means       = m.inf,
                 Result      = as.data.frame(res),
                 Sig.level   = sig.level,
-                Differences = round(difm, 2),
-                MSD         = round(msd, 2),
+                Diff_Prob   = round(difm, 3),
+                MSD         = round(msd, 3),
                 Replicates  = r)
     return(out)
   }

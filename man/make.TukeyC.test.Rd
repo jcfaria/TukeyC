@@ -32,7 +32,7 @@
 
 \value{
   A list with 7 slots (\code{Table}, \code{Means}, \code{Result},
-  \code{Sig.Level}, \code{Differences}, \code{MSD} (The Minimum Significative
+  \code{Sig.Level}, \code{Diff_Prob}, \code{MSD} (The Minimum Significative
   Difference) and \code{Replicates}) containing the most important results
   of the test performed.}
 

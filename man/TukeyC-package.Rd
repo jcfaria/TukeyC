@@ -42,14 +42,6 @@
   conventional aproach of Tukey test with a set of flexible funtions and
   S3 methods.}
 
-\details{
-  \tabular{ll}{
-  Package: \tab TukeyC\cr
-  Type: \tab Package\cr
-  Version: \tab 1.0-2\cr
-  Date: \tab 2011-04-10\cr
-  License: \tab GPL (>= 2)\cr}}
-
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}

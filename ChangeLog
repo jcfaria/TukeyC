@@ -1,3 +1,8 @@
+2012-05-25  vs. 1.0-4 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
+  * The slot 'Differences' of the returned list was renamed to 'Diff_Prob".
+    The upper tri of the matrix stores the differences between means and
+    the lower tri the probability of this value be significative
+
 2012-04-02  vs. 1.0-3 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
   * Restrict to testers
 

@@ -1,19 +1,18 @@
 \name{summary}
 \alias{summary.TukeyC}
-\alias{summary.TukeyC.nest}
 
 \title{
   Summary Method for TukeyC and TukeyC.nest Objects}
 
 \description{
-  Returns (and prints) a summary list for \code{TukeyC} and \code{TukeyC.nest} objects.}
+  Returns (and prints) a summary list for \code{TukeyC} objects.}
 
 \usage{
-  \method{summary}{TukeyC}(object, \dots)
-  \method{summary}{TukeyC.nest}(object, \dots)}
+  \method{summary}{TukeyC}(object, complete=TRUE, \dots)}
 
 \arguments{
-  \item{object}{A given object of the class \code{TukeyC} or \code{TukeyC.nest}.}
+  \item{object}{A given object of the class \code{TukeyC}.}
+  \item{complete}{A logical value indicating if the summary is complete (mean difference and p-value) or only the groups.}
   \item{\dots}{Potential further arguments (require by generic).}}
 
 \author{
