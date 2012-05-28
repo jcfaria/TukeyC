@@ -8,7 +8,7 @@
   related to Latin Squares Design (LSD).}
 
 \usage{
-  LSD}
+  data(LSD)}
 
 \details{
   A simulated data to model a Latin Squares Design (LSD) with  5

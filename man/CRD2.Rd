@@ -8,7 +8,7 @@
   related to Completely Randomized Design (CRD).}
 
 \usage{
-  CRD2}
+  data(CRD2)}
 
 \details{
   A simulated data to model a Completely Randomized Design (CRD) of 45 

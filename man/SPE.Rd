@@ -8,7 +8,7 @@
   related to Split-plot Experiment (SPE).}
 
 \usage{
-  SPE}
+  data(SPE)}
 
 \details{
   A simulated data to model a Split-plot Experiment (SPE) with 3 plots, each

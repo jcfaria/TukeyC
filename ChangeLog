@@ -1,3 +1,6 @@
+2012-05-27  vs. 1.0-5 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
+  * Overall improvements were made in the demos, examples and documetantion
+
 2012-05-25  vs. 1.0-4 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
   * The slot 'Differences' of the returned list was renamed to 'Diff_Prob".
     The upper tri of the matrix stores the differences between means and

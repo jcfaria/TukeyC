@@ -8,7 +8,7 @@
   related to Split-split-plot Experiment (SSPE).}
 
 \usage{
-  SSPE}
+  data(SSPE)}
 
 \details{
   A simulated data to model a Split-split-plot Experiment (SSPE) with 3 plots,

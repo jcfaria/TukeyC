@@ -3,7 +3,11 @@
 ##
 
 TukeyC.aovlist <-
-  function(x, which, error, sig.level=.05, round=2, ...)
+  function(x,
+           which,
+           error,
+           sig.level=.05,
+           round=2, ...)
   {
     mt <- model.tables(x, "means")               # summary tables for model fits
     if(is.null(mt$n))

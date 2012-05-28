@@ -13,9 +13,24 @@
   single experiments.}
 
 \usage{
-  \method{TukeyC}{default}(x, y=NULL, model, which, error, sig.level=.05, round=2, \dots)
-  \method{TukeyC}{aov}(x, which=NULL, sig.level=.05, round=2, \dots)
-  \method{TukeyC}{aovlist}(x, which, error, sig.level=.05, round=2, \dots)}
+  \method{TukeyC}{default}(x,
+       y=NULL, 
+       model,
+       which,
+       error,
+       sig.level=.05,
+       round=2, \dots)
+
+  \method{TukeyC}{aov}(x,
+       which=NULL,
+       sig.level=.05,
+       round=2, \dots)
+
+  \method{TukeyC}{aovlist}(x,
+       which,
+       error,
+       sig.level=.05, 
+       round=2, \dots)}
 
 \arguments{
   \item{x}{A design matrix, \code{data.frame} or an \code{aov} object.}
@@ -28,7 +43,7 @@
   \item{error}{The error to be considered.}
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
-  \item{round}{...}
+  \item{round}{Integer indicating the number of decimal places.}
   \item{\dots}{Potential further arguments (require by generic).} }
 
 \details{
@@ -67,21 +82,32 @@
   data(CRD2)
   
   ## From: design matrix (dm) and response variable (y)
-  tk1 <- with(CRD2, TukeyC(x=dm, y=y, model='y ~ x',
-                           which='x', sig.level=0.005, id.trim=5))
+  tk1 <- with(CRD2,
+              TukeyC(x=dm,
+                     y=y,
+                     model='y ~ x',
+                     which='x',
+                     id.trim=5))
   summary(tk1)
   
   ## From: data.frame (dfm)
-  tk2 <- with(CRD2, TukeyC(x=dfm, model='y ~ x',
-                           which='x', id.trim=5))
+  tk2 <- with(CRD2,
+              TukeyC(x=dfm,
+              model='y ~ x',
+              which='x',
+              id.trim=5))
   summary(tk2)
   
   ## From: aov
-  av <- with(CRD2, aov(y ~ x , data = dfm))
+  av <- with(CRD2,
+             aov(y ~ x,
+             data=dfm))
   summary(av)
   
-  tk3 <- with(CRD2, TukeyC(x=av,
-                           which='x', id.trim=5))
+  tk3 <- with(CRD2,
+              TukeyC(x=av,
+                     which='x',
+                     id.trim=5))
   summary(tk3)
 
   ##
@@ -95,13 +121,18 @@
   data(RCBD)
   
   ## Design matrix (dm) and response variable (y)
-  tk1 <- with(RCBD, TukeyC(x=dm, y=y, model='y ~ blk + tra',
-                           which = 'tra'))
+  tk1 <- with(RCBD,
+              TukeyC(x=dm,
+                     y=y,
+                     model='y ~ blk + tra',
+                     which='tra'))
   summary(tk1)
   
   ## From: data.frame (dfm), which='tra'
-  tk2 <- with(RCBD, TukeyC(x=dfm, model='y ~ blk + tra',
-                           which='tra'))
+  tk2 <- with(RCBD,
+              TukeyC(x=dfm,
+                     model='y ~ blk + tra',
+                     which='tra'))
   summary(tk2)
   
   ##
@@ -115,17 +146,24 @@
   data(LSD)
   
   ## From: design matrix (dm) and response variable (y)
-  tk1 <- with(LSD, TukeyC(x=dm, y=y, model='y ~ rows + cols + tra',
-                          which='tra'))
+  tk1 <- with(LSD,
+              TukeyC(x=dm,
+                     y=y,
+                     model='y ~ rows + cols + tra',
+                     which='tra'))
   summary(tk1)
   
   ## From: data.frame
-  tk2 <- with(LSD, TukeyC(x=dfm, model='y ~ rows + cols + tra',
-                          which='tra'))
+  tk2 <- with(LSD,
+              TukeyC(x=dfm,
+                     model='y ~ rows + cols + tra',
+                     which='tra'))
   summary(tk2)
   
   ## From: aov
-  av <- with(LSD, aov(y ~ rows + cols + tra, data=dfm))
+  av <- with(LSD,
+             aov(y ~ rows + cols + tra,
+             data=dfm))
   summary(av)
   
   tk3 <- TukeyC(av,
@@ -143,13 +181,20 @@
   data(FE)
   ## From: design matrix (dm) and response variable (y)
   ## Main factor: N
-  tk1 <- with(FE, TukeyC(x=dm, y=y, model='y ~ blk + N*P*K', 
-                         which='N'))
+  tk1 <- with(FE,
+              TukeyC(x=dm,
+                     y=y,
+                     model='y ~ blk + N*P*K', 
+                     which='N'))
   summary(tk1)
 
   ## Nested: p1/N
-  ntk1 <- with(FE, TukeyC.nest(x=dm, y=y, model='y ~ blk + N*P*K',
-                               which='N:P', fl2=1))
+  ntk1 <- with(FE,
+               TukeyC.nest(x=dm,
+                           y=y,
+                           model='y ~ blk + N*P*K',
+                           which='N:P',
+                           fl2=1))
   summary(ntk1)
 }
 

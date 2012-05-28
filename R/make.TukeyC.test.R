@@ -3,8 +3,15 @@
 ##
 
 make.TukeyC.test <-
-  function(r=r, MSE=MSE, m.inf=m.inf, ord=ord, sig.level=sig.level, dfr=dfr,
-           bal=bal, mt=mt, round=round)
+  function(r=r,
+           MSE=MSE,
+           m.inf=m.inf,
+           ord=ord,
+           sig.level=sig.level,
+           dfr=dfr,
+           bal=bal,
+           mt=mt,
+           round=round)
   {
     if (length(r) < nrow(m.inf))        # expand n to the correct length if necessary
       r <- rep.int(r, nrow(m.inf))

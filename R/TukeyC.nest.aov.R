@@ -3,7 +3,12 @@
 ##
 
 TukeyC.nest.aov <-
-  function (x, which, fl2, fl3=0, sig.level=.05, round=2, ...)
+  function (x,
+            which, 
+            fl2, 
+            fl3=0,
+            sig.level=.05,
+            round=2, ...)
   {
     mt <- model.tables(x, "means")              # summary tables for model fits
     if(is.null(mt$n))
@@ -13,7 +18,7 @@ TukeyC.nest.aov <-
     bal  <- ifelse(length(r) == 1, TRUE, FALSE) # is (or not) balanced 
     MSE  <- sum(resid(x)^2) / x$df.residual
     tab  <- tabs[[which]]                       # tab = means
-    if (fl3 == 0) {                              # bifactorial
+    if (fl3 == 0) {                             # bifactorial
       m      <- as.vector(tab[, fl2])
       which1 <- names(dimnames(tab))[1]
       which2 <- names(dimnames(tab))[2]  

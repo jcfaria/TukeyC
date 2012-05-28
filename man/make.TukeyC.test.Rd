@@ -9,8 +9,15 @@
   and schemes.}
 
 \usage{
-  make.TukeyC.test(r=r, MSE=MSE, m.inf=m.inf, ord=ord, sig.level=sig.level, dfr=dfr,
-    bal=bal, mt=mt, round=round)}
+  make.TukeyC.test(r=r,
+                   MSE=MSE,
+                   m.inf=m.inf,
+                   ord=ord,
+                   sig.level=sig.level,
+                   dfr=dfr,
+                   bal=bal,
+                   mt=mt,
+                   round=round)}
 
 \arguments{
   \item{r}{A vector of the number of repicates of each level of the factor
@@ -25,7 +32,7 @@
   \item{bal}{A vector of length 1 giving the information wheter the experiment
     is or not balanced.}
   \item{mt}{The model table.}
-  \item{round}{A vector of length 1 to round the final result.}}
+  \item{round}{Integer indicating the number of decimal places.}}
 
 \details{
   ...}

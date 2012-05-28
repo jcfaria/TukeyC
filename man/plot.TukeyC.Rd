@@ -8,10 +8,23 @@
   S3 method to plot \code{TukeyC} and \code{TukeyC.nest} objects.}
 
 \usage{
-  \method{plot}{TukeyC}(x, result=TRUE, replicates=TRUE,
-  pch=19, col=NULL, xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL,
-  id.lab=NULL, id.las=1, rl=TRUE, rl.lty=3, rl.col='gray',
-  mm=TRUE, mm.lty=1, title='', \dots)}
+  \method{plot}{TukeyC}(x,
+     result=TRUE,
+     replicates=TRUE,
+     pch=19,
+     col=NULL,
+     xlab=NULL,
+     ylab=NULL,
+     xlim=NULL,
+     ylim=NULL,
+     id.lab=NULL,
+     id.las=1,
+     rl=TRUE,
+     rl.lty=3,
+     rl.col='gray',
+     mm=TRUE,
+     mm.lty=1,
+     title='', \dots)}
 
 \arguments{
   \item{x}{A \code{TukeyC} object.}
@@ -58,26 +71,38 @@
   data(CRD2)
 
   ## From: vectors x and y
-  tk1 <- with(CRD2, TukeyC(x=x, y=y, model='y ~ x',
-                           which='x'))
+  tk1 <- with(CRD2,
+              TukeyC(x=x,
+                     y=y,
+                     model='y ~ x',
+                     which='x'))
   plot(tk1, id.las=2, rl=FALSE)
 
   ## From: design matrix (dm) and response variable (y)
-  tk2 <- with(CRD2, TukeyC(x=dm, y=y, model='y ~ x',
-                           which='x', sig.level=0.005))
+  tk2 <- with(CRD2,
+              TukeyC(x=dm,
+                     y=y,
+                     model='y ~ x',
+                     which='x',
+                     sig.level=0.005))
   plot(tk2, mm.lty=3, id.las=2, rl=FALSE)
 
   ## From: data.frame (dfm)
-  tk3 <- with(CRD2, TukeyC(x=dfm, model='y ~ x',
-                           which='x'))
+  tk3 <- with(CRD2,
+              TukeyC(x=dfm,
+                     model='y ~ x',
+                     which='x'))
   plot(tk3, id.las=2, rl=FALSE)
 
   ## From: aov
-  av <- with(CRD2, aov(y ~ x , data = dfm))
+  av <- with(CRD2,
+             aov(y ~ x,
+             data=dfm))
   summary(av)
 
-  tk4 <- with(CRD2, TukeyC(x=av,
-                           which='x'))
+  tk4 <- with(CRD2,
+              TukeyC(x=av,
+                     which='x'))
   plot(tk4, rl=FALSE, id.las=2)
 }
 

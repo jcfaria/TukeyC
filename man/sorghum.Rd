@@ -35,9 +35,11 @@ Brazil, page 167.}
 \examples{
   library(TukeyC)
   data(sorghum) 
-  av <- aov(y ~ r/bl + x, data=sorghum$dfm)
+  av <- aov(y ~ r/bl + x,
+            data=sorghum$dfm)
   tk <- TukeyC(av,
-               which= 'x', sig.level=0.05) 
+               which='x',
+               sig.level=0.05) 
   summary(tk)
   plot(tk)
 }  

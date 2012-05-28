@@ -8,7 +8,7 @@
   related to Factorial Experiment (FE).}
 
 \usage{
-  FE}
+  data(FE)}
 
 \details{
   A simulated data to model a Factorial Experiment (FE) with 3 factors, 

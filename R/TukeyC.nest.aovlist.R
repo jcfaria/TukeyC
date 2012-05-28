@@ -3,7 +3,13 @@
 ##
 
 TukeyC.nest.aovlist <-
-  function(x, which, error, fl2, fl3=0, sig.level=.05, round=2, ...)
+  function(x,
+           which,
+           error,
+           fl2,
+           fl3=0,
+           sig.level=.05,
+           round=2, ...)
   {
     mt   <- model.tables(x, "means")            # summary tables for model fits
     if(is.null(mt$n))
@@ -14,7 +20,7 @@ TukeyC.nest.aovlist <-
     MSE  <- sum(resid(x[[error]])^2) / x[[error]][[8]]
     tab  <- tabs[[which]]                       # tab=means
     ta   <- model.frame.aovlist(x) 
-    if (fl3 == 0) {                              # split-plot
+    if (fl3 == 0) {                             # split-plot
       m      <- as.vector(tab[, fl2])
       which1 <- names(dimnames(tab))[1]
       which2 <- names(dimnames(tab))[2]
@@ -31,7 +37,7 @@ TukeyC.nest.aovlist <-
       f2 <- paste(which2, fl2, sep='_')
       fl <- tolower(paste(f2, f1, sep='/'))
       rownames(m.inf) <- fl}   
-    else {                                       #split-split-plot
+    else {                                      #split-split-plot
       m  <- as.vector(tab[, fl2, fl3]) 
       which1 <- names(dimnames(tab))[1]
       which2 <- names(dimnames(tab))[2]  

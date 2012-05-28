@@ -14,9 +14,30 @@
   factorial, split-plot and split-split-plot experiments.}
 
 \usage{
-  \method{TukeyC.nest}{default}(x, y=NULL, model, which, error, fl2, fl3=0, sig.level=.05, round=2, \dots)
-  \method{TukeyC.nest}{aov}(x, which, fl2, fl3=0, sig.level=.05, round=2, \dots)
-  \method{TukeyC.nest}{aovlist}(x, which, error, fl2, fl3=0, sig.level=.05, round=2, \dots)}
+  \method{TukeyC.nest}{default}(x,
+            y=NULL,
+            model,
+            which,
+            error,
+            fl2,
+            fl3=0,
+            sig.level=.05,
+            round=2, \dots)
+
+  \method{TukeyC.nest}{aov}(x,
+            which,
+            fl2,
+            fl3=0,
+            sig.level=.05,
+            round=2, \dots)
+
+  \method{TukeyC.nest}{aovlist}(x,
+            which,
+            error,
+            fl2,
+            fl3=0,
+            sig.level=.05,
+            round=2, \dots)}
 
 \arguments{
   \item{x}{A design matrix, \code{data.frame} or an \code{aov} object.}
@@ -31,7 +52,7 @@
   \item{error}{The error to be considered, only in case of split-plots experiments.}
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
-  \item{round}{...}
+  \item{round}{Integer indicating the number of decimal places.}
   \item{\dots}{Potential further arguments (require by generic).}}
 
 \details{
@@ -76,36 +97,61 @@
   data(SSPE)
   ## From: design matrix (dm) and response variable (y)
   ## Main factor: P
-  tk1 <- with(SSPE, TukeyC(dm, y, model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                           which='P', error='blk:P'))
+  tk1 <- with(SSPE,
+              TukeyC(dm,
+                     y,
+                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     which='P',
+                     error='blk:P'))
   summary(tk1)
   
   # Main factor: SP
-  tk2 <- with(SSPE, TukeyC(dm, y, model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                           which='SP', error='blk:P:SP', sig.level=0.025))
+  tk2 <- with(SSPE,
+              TukeyC(dm,
+                     y,
+                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     which='SP',
+                     error='blk:P:SP'))
   summary(tk2)
   
   # Main factor: SSP
-  tk3 <- with(SSPE, TukeyC(dm, y, model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                           which='SSP', error='Within', sig.level=0.1))
+  tk3 <- with(SSPE,
+              TukeyC(dm,
+                     y,
+                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     which='SSP',
+                     error='Within'))
   summary(tk3)
   
   ## Nested: p1/SP
-  tkn1 <- with(SSPE, TukeyC.nest(dm, y, model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                                 which='SP:P', error='blk:P:SP', fl2=1))
+  tkn1 <- with(SSPE,
+               TukeyC.nest(dm,
+                           y,
+                           model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                           which='SP:P',
+                           error='blk:P:SP',
+                           fl2=1))
   summary(tkn1)
 
   ## From: aovlist
-  av <- with(SSPE, aov(y ~  blk + SSP*SP*P + Error(blk/P/SP), data=dfm))
+  av <- with(SSPE,
+             aov(y ~  blk + SSP*SP*P + Error(blk/P/SP),
+             data=dfm))
   summary(av)   
 
   ## Nested: p/sp/SSP (at various levels of sp and p) 
   tkn2 <- TukeyC.nest(av,
-                      which='SSP:SP:P', error='Within', fl2=1, fl3=1)
+                      which='SSP:SP:P',
+                      error='Within',
+                      fl2=1,
+                      fl3=1)
   summary(tkn2)
 
   tkn3 <- TukeyC.nest(av,
-                      which='SSP:SP:P', error='Within', fl2=2, fl3=1)
+                      which='SSP:SP:P',
+                      error='Within',
+                      fl2=2,
+                      fl3=1)
   summary(tkn3)
 }
 

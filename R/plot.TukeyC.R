@@ -3,10 +3,23 @@
 ##
 
 plot.TukeyC <-
-  function(x, result=TRUE, replicates=TRUE, 
-           pch=19, col=NULL, xlab=NULL, ylab=NULL, xlim=NULL, ylim=NULL,
-           id.lab=NULL, id.las=1, rl=TRUE, rl.lty=3, rl.col='gray',
-           mm=TRUE, mm.lty=1, title='', ...)
+  function(x,
+           result=TRUE,
+           replicates=TRUE, 
+           pch=19,
+           col=NULL,
+           xlab=NULL,
+           ylab=NULL,
+           xlim=NULL,
+           ylim=NULL,
+           id.lab=NULL,
+           id.las=1,
+           rl=TRUE,
+           rl.lty=3,
+           rl.col='gray',
+           mm=TRUE,
+           mm.lty=1,
+           title='', ...)
 
   {
     fun <-      

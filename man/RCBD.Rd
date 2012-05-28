@@ -8,7 +8,7 @@
   related to Randomized Complete Block Design (RCBD).}
 
 \usage{
-  RCBD}
+  data(RCBD)}
 
 \details{
   A simulated data to model a Randomized Complete Block Design (RCBD) of 5 

@@ -3,7 +3,10 @@
 ##
 
 TukeyC.aov <-
-  function(x, which=NULL, sig.level=.05, round=2, ...)   
+  function(x,
+           which=NULL,
+           sig.level=.05,
+           round=2, ...)   
   {
     if(is.null(which))
       which <- names(x$model)[2]

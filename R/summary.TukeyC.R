@@ -3,11 +3,12 @@
 ##
 
 summary.TukeyC <- 
-  function(object, complete=TRUE, ...)
+  function(object,
+           complete=TRUE, ...)
   {
     if(!inherits(object, 'TukeyC'))
       stop("Use only with \"TukeyC\" objects!")
-    
+
     if(complete){
       cat('Goups of means at sig.level =', object$Sig.level, '\n')
       print(object$Result)

@@ -3,7 +3,15 @@
 ##
 
 TukeyC.nest.default <-
-  function(x, y=NULL, model, which, error, fl2, fl3=0, sig.level=.05, round=2, ...)
+  function(x,
+           y=NULL,
+           model,
+           which,
+           error,
+           fl2,
+           fl3=0,
+           sig.level=.05,
+           round=2, ...)
   { 
     if (is.data.frame(y))
       y <- as.matrix(y[, 1])  # manova is not contemplated
