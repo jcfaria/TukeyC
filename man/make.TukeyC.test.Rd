@@ -22,7 +22,7 @@
 \arguments{
   \item{r}{A vector of the number of repicates of each level of the factor
     being tested.}
-  \item{MSE}{A vector of length 1 giving the hean squared error.}
+  \item{MSE}{A vector of length 1 giving the mean squared error.}
   \item{m.inf}{A matrix of the levels of the factor being tested in
     decreasing order.}
   \item{ord}{A vector of ordered levels of the factor being tested.} 
@@ -34,9 +34,6 @@
   \item{mt}{The model table.}
   \item{round}{Integer indicating the number of decimal places.}}
 
-\details{
-  ...}
-
 \value{
   A list with 7 slots (\code{Table}, \code{Means}, \code{Result},
   \code{Sig.Level}, \code{Diff_Prob}, \code{MSD} (The Minimum Significative
@@ -44,13 +41,11 @@
   of the test performed.}
 
 \note{
-	This function is mainly for internal use in the TukeyC package.}
+  This function is mainly for internal use in the TukeyC package.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
-
-\seealso{
-  ...}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \keyword{package}

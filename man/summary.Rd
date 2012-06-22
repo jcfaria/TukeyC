@@ -13,15 +13,17 @@
 
 \arguments{
   \item{object}{A given object of the class \code{TukeyC}.}
-  \item{complete}{A logical value indicating if the summary is complete (mean difference and p-value) or only the groups.}
-  \item{\dots}{Potential further arguments (require by generic).}}
+  \item{complete}{A logical value indicating if the summary is complete (mean 
+  difference and p-value) or only the groups.}
+  \item{\dots}{Potential further arguments (required by generic).}}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \references{
-  Chambers, J. M. and Hastie, T. J. (1992) Statistical Models in S.
+  Chambers, J.M. and Hastie, T.J. (1992) \emph{Statistical Models in S}.
   Wadsworth & Brooks/Cole.}
 
 \seealso{\code{\link{TukeyC}}}

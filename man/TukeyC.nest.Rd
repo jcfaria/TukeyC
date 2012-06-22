@@ -53,7 +53,7 @@
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
   \item{round}{Integer indicating the number of decimal places.}
-  \item{\dots}{Potential further arguments (require by generic).}}
+  \item{\dots}{Potential further arguments (required by generic).}}
 
 \details{
   The function \code{TukeyC.nest} returns an object of class 
@@ -79,14 +79,20 @@
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \references{
-  Ramalho MAP, Ferreira DF, Oliveira AC 2000. \emph{Experimentacao em Genetica
+  Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
+
+  Ramalho M.A.P, Ferreira D.F, Oliveira A.C. (2000) \emph{Experimentacao em Genetica
   e Melhoramento de Plantas}. Editora UFLA.
 
-  Scott RJ, Knott M 1974. A cluster analysis method for grouping mans in the
-  analysis of variance. \emph{Biometrics}, \bold{30}, 507-512.}
+  Steel, Torry & Dickey. (1997) \emph{Principles and procedures of statistics a 
+  biometrical approach}. Third Edition.
+  
+  Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
+  Chapman & Hall.}
 
 \examples{
   ##

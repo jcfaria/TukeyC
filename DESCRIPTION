@@ -1,9 +1,9 @@
 Package: TukeyC
 Type: Package
 Title: Convencional Tukey Test 
-Version: 1.0-5
-Date: 2012-05-27
-Author: Jose Claudio Faria & Enio Jelihovschi
+Version: 1.0-6
+Date: 2012-06-22
+Author: Jose Claudio Faria, Enio Jelihovschi and Ivan Bezerra Allaman
 Maintainer: Jose Claudio Faria <joseclaudio.faria@gmail.com>
 Depends: R (>= 2.6.0), base
 Description: Perform the conventional Tukey test from aov and aov.list objects

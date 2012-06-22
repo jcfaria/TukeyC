@@ -16,8 +16,8 @@
     \emph{TRUE} or \emph{FALSE}, i.e, indicating whether or not equality
     between the levels of factor.}}
 
-\details{
-  ...}
+\details{ This function is an algorithm used to build up the groups of means, 
+allowing for overlapping.}
 
 \value{
   The object returned by this function is a character matrix and the
@@ -30,9 +30,7 @@
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
-
-\seealso{
-  ...}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \keyword{package}

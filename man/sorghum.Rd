@@ -26,8 +26,8 @@
   (The Brazilian Agricultural Research Corporation, Corn and Sorghum section).}
 
 \source{
-Ramalho, M.A.P. and Ferreira, D.F. and Oliveira, A.C. (2000).
-Experiment. em Gen. e Melhoramento de Plantas. Editora UFLA, Lavras, 
+Ramalho, M.A.P. and Ferreira, D.F. and Oliveira, A.C. (2000)
+\emph{Experiment. em Gen. e Melhoramento de Plantas}. Editora UFLA, Lavras, 
 Brazil, page 167.}
 
 \keyword{datasets}

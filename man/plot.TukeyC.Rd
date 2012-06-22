@@ -34,7 +34,7 @@
   \item{col}{A vector of colors for the means representation.}
   \item{xlab}{A label for the x axis.}
   \item{ylab}{A label for the y axis.}
-  \item{xlim}{The x limits of the plot}.
+  \item{xlim}{The x limits of the plot.}
   \item{ylim}{The y limits of the plot.}
   \item{id.lab}{Factor level names at x-axis.}
   \item{id.las}{Factor level names written either horizontally or vertically.}
@@ -50,14 +50,15 @@
   The \code{plot.TukeyC} function is a S3 method to plot \code{Tukey} and
   \code{TukeyC.nest} objetcs. It generates a serie of points (the means) and a 
   vertical line showing the minimum e maximum of the values corresponding to
-  each group mean. The groups are diferentiated by colors.}
+  each group mean.}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr}
+  Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \references{
-  Murrell, P. (2005) R Graphics. Chapman & Hall/CRC Press.}
+  Murrell, P. (2005) \emph{R Graphics}. Chapman & Hall/CRC Press.}
 
 \seealso{\code{\link{plot}}}
 
