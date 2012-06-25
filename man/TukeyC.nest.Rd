@@ -85,11 +85,11 @@
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F, Oliveira A.C. (2000) \emph{Experimentacao em Genetica
+  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentacao em Genetica
   e Melhoramento de Plantas}. Editora UFLA.
 
-  Steel, Torry & Dickey. (1997) \emph{Principles and procedures of statistics a 
-  biometrical approach}. Third Edition.
+  Steel, R.G., Torrie, J.H & Dickey D.A. (1997) \emph{Principles and procedures of statistics:
+  a biometrical approach}. Third Edition.
   
   Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
   Chapman & Hall.}

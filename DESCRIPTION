@@ -1,8 +1,8 @@
 Package: TukeyC
 Type: Package
 Title: Convencional Tukey Test 
-Version: 1.0-6
-Date: 2012-06-22
+Version: 1.0-7
+Date: 2012-06-24
 Author: Jose Claudio Faria, Enio Jelihovschi and Ivan Bezerra Allaman
 Maintainer: Jose Claudio Faria <joseclaudio.faria@gmail.com>
 Depends: R (>= 2.6.0), base

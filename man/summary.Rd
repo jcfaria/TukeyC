@@ -23,7 +23,7 @@
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
 
 \references{
-  Chambers, J.M. and Hastie, T.J. (1992) \emph{Statistical Models in S}.
+  Chambers, J.M. & Hastie, T.J. (1992) \emph{Statistical Models in S}.
   Wadsworth & Brooks/Cole.}
 
 \seealso{\code{\link{TukeyC}}}
