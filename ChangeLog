@@ -1,13 +1,13 @@
 2012-06-24  vs. 1.0-7 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
-  * Overall improvements were made in the documentantion.
+  * Overall improvements were made in the documentation.
 
 2012-06-22  vs. 1.0-6 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
   * Ivan Bezerra Allaman has began to work in the project as co-author.
-  * Overall improvements were made in the documentantion.
+  * Overall improvements were made in the documentation.
   * First version released on CRAN.
 
 2012-05-27  vs. 1.0-5 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
-  * Overall improvements were made in the demos, examples and documentantion
+  * Overall improvements were made in the demos, examples and documentation
 
 2012-05-25  vs. 1.0-4 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
   * The slot 'Differences' of the returned list was renamed to 'Diff_Prob".
