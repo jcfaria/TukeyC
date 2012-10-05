@@ -77,23 +77,29 @@
                      y=y,
                      model='y ~ x',
                      which='x'))
-  plot(tk1, id.las=2, rl=FALSE)
+  plot(tk1,
+       id.las=2,
+       rl=FALSE)
 
   ## From: design matrix (dm) and response variable (y)
   tk2 <- with(CRD2,
               TukeyC(x=dm,
                      y=y,
                      model='y ~ x',
-                     which='x',
-                     sig.level=0.005))
-  plot(tk2, mm.lty=3, id.las=2, rl=FALSE)
+                     which='x'))
+  plot(tk2,
+       mm.lty=3,
+       id.las=2,
+       rl=FALSE)
 
   ## From: data.frame (dfm)
   tk3 <- with(CRD2,
               TukeyC(x=dfm,
                      model='y ~ x',
                      which='x'))
-  plot(tk3, id.las=2, rl=FALSE)
+  plot(tk3,
+       id.las=2,
+       rl=FALSE)
 
   ## From: aov
   av <- with(CRD2,
@@ -104,7 +110,9 @@
   tk4 <- with(CRD2,
               TukeyC(x=av,
                      which='x'))
-  plot(tk4, rl=FALSE, id.las=2)
+  plot(tk4,
+       rl=FALSE,
+       id.las=2)
 }
 
 \keyword{package}

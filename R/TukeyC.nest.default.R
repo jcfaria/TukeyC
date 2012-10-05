@@ -8,8 +8,8 @@ TukeyC.nest.default <-
            model,
            which,
            error,
-           fl2,
-           fl3=0,
+           fl1,
+           fl2=0,
            sig.level=.05,
            round=2, ...)
   { 
@@ -25,10 +25,10 @@ TukeyC.nest.default <-
     dat <- x
   av <- eval(substitute(aov(fo, x), list(fo=formula(model))))
   if(class(av)[1] == 'aov')
-    res <- TukeyC.nest.aov(x=av, which=which, fl2=fl2, fl3=fl3,
+    res <- TukeyC.nest.aov(x=av, which=which, fl1=fl1, fl2=fl2,
                            sig.level=sig.level, round)
   else
-    res <- TukeyC.nest.aovlist(x=av, which=which, error=error, fl2=fl2,
-                               fl3=fl3, sig.level=sig.level, round)
+    res <- TukeyC.nest.aovlist(x=av, which=which, error=error, fl1=fl1,
+                               fl2=fl2, sig.level=sig.level, round)
   invisible(res)
   }

@@ -12,7 +12,7 @@ data(SSPE)
 tk1 <- with(SSPE,
             TukeyC(dm,
                    y,
-                   model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                   model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                    which='P',
                    error='blk:P'))
 summary(tk1)
@@ -22,7 +22,7 @@ plot(tk1)
 tk2 <- with(SSPE,
             TukeyC(dm,
                    y,
-                   model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                   model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                    which='SP',
                    error='blk:P:SP'))
 summary(tk2)
@@ -32,7 +32,7 @@ plot(tk2)
 tk3 <- with(SSPE, 
             TukeyC(dm,
                    y,
-                   model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                   model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                    which='SSP',
                    error='Within'))
 summary(tk3)
@@ -42,10 +42,10 @@ plot(tk3)
 tkn1 <- with(SSPE,
              TukeyC.nest(dm,
                          y,
-                         model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                         which='SP:P',
+                         model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
+                         which='P:SP',
                          error='blk:P:SP',
-                         fl2=1))
+                         fl1=1))
 summary(tkn1)
 
 
@@ -53,7 +53,7 @@ summary(tkn1)
 ## Main factor: P
 tk4 <- with(SSPE,
             TukeyC(dfm,
-                   model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                   model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                    which='P',
                    error='blk:P'))
 summary(tk4)
@@ -61,26 +61,26 @@ summary(tk4)
 ## Nested: p2/SP
 tkn2 <- with(SSPE,
              TukeyC.nest(dfm,
-                         model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                         which='SP:P',
+                         model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
+                         which='P:SP',
                          error='blk:P:SP',
-                         fl2=2))
+                         fl1=2))
 summary(tkn2)
 
 ## Nested: p2/SSP
 tkn3 <- with(SSPE,
              TukeyC.nest(dfm,
-                         model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                         which='SSP:P',
+                         model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
+                         which='P:SSP',
                          error='Within',
-                         fl2=2))
+                         fl1=2))
 summary(tkn3)
 plot(tkn3)
 
 
 ## From: aovlist
 av <- with(SSPE,
-           aov(y ~  blk + SSP*SP*P + Error(blk/P/SP),
+           aov(y ~  blk + P*SP*SSP + Error(blk/P/SP),
                data=dfm))
 summary(av)
 
@@ -98,44 +98,44 @@ summary(tk6)
 
 ## Nested: p1/SP
 tkn4 <- TukeyC.nest(av,
-                    which='SP:P',
+                    which='P:SP',
                     error='blk:P:SP',
-                    fl2=1)
+                    fl1=1)
 summary(tkn4)
 
 ## Nested: p2/SP
 tkn5 <- TukeyC.nest(av,
-                    which='SP:P',
+                    which='P:SP',
                     error='blk:P:SP', 
-                    fl2=2)
+                    fl1=2)
 summary(tkn5)
 
-## Nested: p/sp/SSP (at various levels of P and SP)
+## Nested: Pi/SPi/SSP (at various levels of P and SP)
 tkn6 <- TukeyC.nest(av,
-                    which='SSP:SP:P',
+                    which='P:SP:SSP',
                     error='Within',
-                    fl2=1,
-                    fl3=1)
+                    fl1=1,
+                    fl2=1)
 summary(tkn6)
 plot(tkn6)
 
 tkn7 <- TukeyC.nest(av,
-                    which='SSP:SP:P',
+                    which='P:SP:SSP',
                     error='Within',
-                    fl2=2,
-                    fl3=1)
+                    fl1=2,
+                    fl2=1)
 summary(tkn7)
 
 tkn8 <- TukeyC.nest(av,
-                    which='SSP:SP:P',
+                    which='P:SP:SSP',
                     error='Within',
-                    fl2=3,
-                    fl3=3)
+                    fl1=3,
+                    fl2=3)
 summary(tkn8)
 
 tkn9 <- TukeyC.nest(av,
-                    which='SSP:SP:P',
+                    which='P:SP:SSP',
                     error='Within',
-                    fl2=2,
-                    fl3=3)
+                    fl1=2,
+                    fl2=3)
 summary(tkn9)

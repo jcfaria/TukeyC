@@ -78,7 +78,9 @@
                      model='y ~ x',
                      which='x'))
   summary(tk1)
-  plot(tk1, id.las=2, rl=FALSE)
+  plot(tk1,
+       id.las=2,
+       rl=FALSE)
   
   ## From: design matrix (dm) and response variable (y) - unbalanced
   tk1u <- with(CRD2,
@@ -207,12 +209,13 @@
   plot(tk1)
 
   ## Nested: p1/N
+  ## Testing N inside of level one of P
   ntk1 <- with(FE,
                TukeyC.nest(x=dm,
                            y=y,
                            model='y ~ blk + N*P*K',
-                           which='N:P',
-                           fl2=1))
+                           which='P:N',
+                           fl1=1))
   summary(ntk1)
 
   ## Nested: k1/P
@@ -220,38 +223,39 @@
                TukeyC.nest(x=dm,
                            y=y,
                            model='y ~ blk + N*P*K',
-                           which='P:K',
-                           fl2=1))
+                           which='K:P',
+                           fl1=1))
   summary(ntk2)
 
-  ## Nested: k2/p2/N
+  ## Nested: k1/p1/N
+  ## Testing N inside of level one of K and level one of P
   ntk3 <- with(FE, 
                TukeyC.nest(x=dm,
                            y=y, 
                            model='y ~ blk + N*P*K',
-                           which='N:P:K',
-                           fl2=2,
-                           fl3=2))
+                           which='K:P:N',
+                           fl1=1,
+                           fl2=1))
   summary(ntk3)
 
-  ## Nested: k1/n1/P
+  ## Nested: k2/n2/P
   ntk4 <- with(FE, 
                TukeyC.nest(x=dm,
                            y=y,
-                           model='y ~ blk + P*N*K',
-                           which='P:N:K',
-                           fl2=1,
-                           fl3=1))
+                           model='y ~ blk + N*P*K',
+                           which='K:N:P',
+                           fl1=2,
+                           fl2=2))
   summary(ntk4)
 
   ## Nested: p1/n1/K
   ntk5 <- with(FE,
                TukeyC.nest(x=dm,
                            y=y,
-                           model='y ~ blk + K*N*P',
-                           which='K:N:P',
-                           fl2=1,
-                           fl3=1))
+                           model='y ~ blk + N*P*K',
+                           which='P:N:K',
+                           fl1=1,
+                           fl2=1))
   summary(ntk5)
 
   ##
@@ -269,7 +273,7 @@
   tk1 <- with(SPE,
               TukeyC(x=dm,
                      y=y,
-                     model='y ~ blk + SP*P + Error(blk/P)',
+                     model='y ~ blk + P*SP + Error(blk/P)',
                      which='P',
                      error='blk:P'))
   summary(tk1)
@@ -278,20 +282,20 @@
   tk2 <- with(SPE,
               TukeyC(x=dm,
                      y=y,
-                     model='y ~ blk + SP*P + Error(blk/P)',
+                     model='y ~ blk + P*SP + Error(blk/P)',
                      which='SP',
                      error='Within'))
   summary(tk2)
   plot(tk2)
   
-  ## Nested: sp/p=1
+  ## Nested: p=1/sp
   tkn1 <- with(SPE,
                TukeyC.nest(x=dm,
                            y=y,
-                           model='y ~ blk + SP*P + Error(blk/P)',
-                           which='SP:P',
+                           model='y ~ blk + P*SP + Error(blk/P)',
+                           which='P:SP',
                            error='Within',
-                           fl2=1 ))
+                           fl1=1 ))
   summary(tkn1)
 
   ##
@@ -306,7 +310,7 @@
   tk1 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='P',
                      error='blk:P'))
   summary(tk1)
@@ -315,7 +319,7 @@
   tk2 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SP',
                      error='blk:P:SP'))
   summary(tk2)
@@ -324,7 +328,7 @@
   tk3 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SSP',
                      error='Within'))
   summary(tk3)
@@ -334,32 +338,34 @@
   tkn1 <- with(SSPE,
                TukeyC.nest(dm,
                            y,
-                           model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                           which='SP:P',
+                           model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
+                           which='P:SP',
                            error='blk:P:SP',
-                           fl2=1))
+                           fl1=1))
   summary(tkn1)
 
   ## From: aovlist
   av <- with(SSPE,
-             aov(y ~  blk + SSP*SP*P + Error(blk/P/SP),
+             aov(y ~  blk + P*SP*SSP + Error(blk/P/SP),
              data=dfm))
   summary(av)   
 
-  ## Nested:sp/sp/SSP (at various levels of P and SP) 
+  ## Nested: p1/sp1/SSP
+  ## Testing SSP inside of level one of P and level one of SP
   tkn6 <- TukeyC.nest(av,
-                      which='SSP:SP:P',
+                      which='P:SP:SSP',
                       error='Within',
-                      fl2=1,
-                      fl3=1)
+                      fl1=1,
+                      fl2=1)
   summary(tkn6)
   plot(tkn6)
 
+  ## Nested: p2/sp1/SSP
   tkn7 <- TukeyC.nest(av,
-                      which='SSP:SP:P',
+                      which='P:SP:SSP',
                       error='Within',
-                      fl2=2,
-                      fl3=1)
+                      fl1=2,
+                      fl2=1)
   summary(tkn7)
   plot(tkn7)
 }

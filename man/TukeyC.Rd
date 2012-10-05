@@ -202,8 +202,8 @@
                TukeyC.nest(x=dm,
                            y=y,
                            model='y ~ blk + N*P*K',
-                           which='N:P',
-                           fl2=1))
+                           which='P:N',
+                           fl1=1))
   summary(ntk1)
 }
 

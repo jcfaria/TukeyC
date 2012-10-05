@@ -98,7 +98,9 @@ tk5 <- with(CRD2,
                    which='x', round=3))
 tk5
 summary(tk5)
-plot(tk5, id.las=2, rl=FALSE)
+plot(tk5,
+     id.las=2,
+     rl=FALSE)
 
 ## From: vectors x and y - unbalanced
 tk5u <- with(CRD2,
@@ -127,7 +129,9 @@ tk6u <- with(CRD2,
                     which='x'))
 tk6u
 summary(tk6u)
-plot(tk6u, id.las=2, rl=FALSE)
+plot(tk6u,
+     id.las=2,
+     rl=FALSE)
 
 ## From: data.frame (dfm) - balanced
 tk7 <- with(CRD2,
@@ -144,7 +148,9 @@ tk7u <- with(CRD2,
                     which='x'))
 tk7u
 summary(tk7u)
-plot(tk7u, id.las=2, rl=FALSE)
+plot(tk7u,
+     id.las=2,
+     rl=FALSE)
 
 ## From: aov - balanced
 av2 <- with(CRD2,
@@ -169,4 +175,6 @@ tk8u <- with(CRD2,
                     which='x'))
 tk8u
 summary(tk8u)
-plot(tk8u, id.las=2, rl=FALSE)
+plot(tk8u,
+     id.las=2,
+     rl=FALSE)

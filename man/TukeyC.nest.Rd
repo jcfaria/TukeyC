@@ -19,23 +19,23 @@
             model,
             which,
             error,
-            fl2,
-            fl3=0,
+            fl1,
+            fl2=0,
             sig.level=.05,
             round=2, \dots)
 
   \method{TukeyC.nest}{aov}(x,
             which,
-            fl2,
-            fl3=0,
+            fl1,
+            fl2=0,
             sig.level=.05,
             round=2, \dots)
 
   \method{TukeyC.nest}{aovlist}(x,
             which,
             error,
-            fl2,
-            fl3=0,
+            fl1,
+            fl2=0,
             sig.level=.05,
             round=2, \dots)}
 
@@ -47,8 +47,8 @@
     The name must be inside quoting marks.}
   \item{model}{If x is a \code{data.frame} object, the model to be used in the
     aov must be specified.}
+  \item{fl1}{A vector of length 1 giving the level of the first factor in nesting order tested.}
   \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.}
-  \item{fl3}{A vector of length 1 giving the level of the third factor in nesting order tested.}
   \item{error}{The error to be considered, only in case of split-plots experiments.}
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
@@ -74,8 +74,8 @@
   \item{r}{A vector of length 1 giving the number of replicates.}
   \item{which}{The name of the factor whose levels were tested.}
   \item{tab}{An array keeping the names of the factors and factor levels and also the mean value of the repetitions for every combination of factor levels.} 
-  \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.}
-  \item{fl3}{A vector of length 1 giving the level of the third factor in nesting order tested.}}
+  \item{fl1}{A vector of length 1 giving the level of the first factor in nesting order tested.}
+  \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.}}
 
 \author{
   Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
@@ -106,7 +106,7 @@
   tk1 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='P',
                      error='blk:P'))
   summary(tk1)
@@ -115,7 +115,7 @@
   tk2 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SP',
                      error='blk:P:SP'))
   summary(tk2)
@@ -124,7 +124,7 @@
   tk3 <- with(SSPE,
               TukeyC(dm,
                      y,
-                     model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
+                     model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SSP',
                      error='Within'))
   summary(tk3)
@@ -133,31 +133,33 @@
   tkn1 <- with(SSPE,
                TukeyC.nest(dm,
                            y,
-                           model='y ~ blk + SSP*SP*P + Error(blk/P/SP)',
-                           which='SP:P',
+                           model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
+                           which='P:SP',
                            error='blk:P:SP',
-                           fl2=1))
+                           fl1=1))
   summary(tkn1)
 
   ## From: aovlist
   av <- with(SSPE,
-             aov(y ~  blk + SSP*SP*P + Error(blk/P/SP),
+             aov(y ~  blk + P*SP*SSP + Error(blk/P/SP),
              data=dfm))
   summary(av)   
 
-  ## Nested: p/sp/SSP (at various levels of sp and p) 
+  ## Nested: p1/sp1/SSP
+  ## Testing SSP inside of level one of P and level one of SP
   tkn2 <- TukeyC.nest(av,
-                      which='SSP:SP:P',
+                      which='P:SP:SSP',
                       error='Within',
-                      fl2=1,
-                      fl3=1)
+                      fl1=1,
+                      fl2=1)
   summary(tkn2)
 
+  ## Nested: p2/sp1/SSP
   tkn3 <- TukeyC.nest(av,
-                      which='SSP:SP:P',
+                      which='P:SP:SSP',
                       error='Within',
-                      fl2=2,
-                      fl3=1)
+                      fl1=2,
+                      fl2=1)
   summary(tkn3)
 }
 

@@ -1,3 +1,8 @@
+2012-09-28 vs. 1.1-8 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
+  * Ivan Bezerra Allaman has began to work in the project as co-author
+  * The notation of FE, SPE and SSPE experiments was simplified
+  * Overall improvements in code, documentation and demos 
+
 2012-06-24  vs. 1.0-7 - Jose Claudio Faria  <joseclaudio.faria@gmail.com>
   * Overall improvements were made in the documentation.
 
