@@ -27,8 +27,8 @@ TukeyC.nest.aovlist <-
   #################                 SPLIT-PLOT                   #################
   if (fl2 == 0){
     #$$$$$$$$$$           MODELO SOMENTE COM DOIS FATORES            $$$$$$$$$$$$#
-    if(length(nfa[grep('[:punct:]',nfa)]) == 1 && #condição necessária para certificar-se que no modelo há somente uma interação!
-       which != nfa[grep('[:punct:]',nfa)]){
+    if(length(nfa[grep('[[:punct:]]',nfa)]) == 1 && #condição necessária para certificar-se que no modelo há somente uma interação!
+       which != nfa[grep('[[:punct:]]',nfa)]){
       whichn <- paste(nf2,nf1,sep=':')#necessário pois no modelo original estamos em uma ordem inversa!
       r      <- mt$n[names(mt$tables)][[whichn]] # groups and its number of replicates
        bal  <- ifelse(length(r) == 1, TRUE, FALSE) # is (or not) balanced 
@@ -53,8 +53,8 @@ TukeyC.nest.aovlist <-
                      m.inf[,2][ord],
                      m.inf[,3][ord]) 
       tab <- mt$tables[whichn][[whichn]] 
-    } else if(length(nfa[grep('[:punct:]',nfa)]) == 1 &&
-              which == nfa[grep('[:punct:]',nfa)]){
+    } else if(length(nfa[grep('[[:punct:]]',nfa)]) == 1 &&
+              which == nfa[grep('[[:punct:]]',nfa)]){
       r      <- mt$n[names(mt$tables)][[which]] # groups and its number of replicates
       bal  <- ifelse(length(r) == 1, TRUE, FALSE) # is (or not) balanced 
       m      <- as.vector(mt$tables[which][[which]][fl1,])#pegando as médias de interesse
@@ -80,10 +80,10 @@ TukeyC.nest.aovlist <-
       tab <- mt$tables[which][[which]]   
     } else
       #$$$$$$$$$$           MODELO COM TRES FATORES            $$$$$$$$$$$$#			
-      if(length(nfa[grep('[:punct:]',nfa)]) != 1 &&
-         which == nfa[grep('[:punct:]',nfa)][1] |
-         which == nfa[grep('[:punct:]',nfa)][2] |  
-         which == nfa[grep('[:punct:]',nfa)][3] ){
+      if(length(nfa[grep('[[:punct:]]',nfa)]) != 1 &&
+         which == nfa[grep('[[:punct:]]',nfa)][1] |
+         which == nfa[grep('[[:punct:]]',nfa)][2] |  
+         which == nfa[grep('[[:punct:]]',nfa)][3] ){
         r    <- mt$n[names(mt$tables)][[which]]  # groups and its number of replicates
         bal  <- ifelse(length(r) == 1, TRUE, FALSE) # is (or not) balanced
         m      <- as.vector(mt$tables[which][[which]][fl1,])
@@ -107,8 +107,8 @@ TukeyC.nest.aovlist <-
                        m.inf[,2][ord],
                        m.inf[,3][ord]) 
         tab <- mt$tables[which][[which]]  
-      } else if(length(nfa[grep('[:punct:]',nfa)]) != 1 &&
-                which != nfa[grep('[:punct:]',nfa)][1]){
+      } else if(length(nfa[grep('[[:punct:]]',nfa)]) != 1 &&
+                which != nfa[grep('[[:punct:]]',nfa)][1]){
         t1 <- unlist(strsplit(which,split=':'))[1] 
         t2 <- unlist(strsplit(which,split=':'))[2]
         whichn <- paste(t2,t1,sep=':')
@@ -337,4 +337,3 @@ TukeyC.nest.aovlist <-
     class(out) <- c('TukeyC.nest', 'TukeyC', 'list')
     invisible(out)   
 }
-  

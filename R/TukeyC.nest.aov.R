@@ -48,8 +48,8 @@ TukeyC.nest.aov <-
                        m.inf[,2][ord],
                        m.inf[,3][ord])
         tab <- mt$tables[whichn][[whichn]]  
-      } else if(length(nfa[grep('[:punct:]',nfa)]) == 1 &&
-                which == nfa[grep('[:punct:]',nfa)]){ 
+      } else if(length(nfa[grep('[[:punct:]]',nfa)]) == 1 &&
+                which == nfa[grep('[[:punct:]]',nfa)]){ 
         r      <- mt$n[names(mt$tables)][[which]] # groups and its number of replicates
         bal  <- ifelse(length(r) == 1, TRUE, FALSE) # is (or not) balanced          
         m      <- as.vector(mt$tables[which][[which]][fl1,])#pegando as médias de interesse
