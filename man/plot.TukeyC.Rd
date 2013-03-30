@@ -2,10 +2,12 @@
 \alias{plot.TukeyC}
 
 \title{
-  Plot TukeyC and TukeyC.nest Objects}
+  Plot TukeyC and TukeyC.nest Objects
+}
 
 \description{
-  S3 method to plot \code{TukeyC} and \code{TukeyC.nest} objects.}
+  S3 method to plot \code{TukeyC} and \code{TukeyC.nest} objects.
+}
 
 \usage{
   \method{plot}{TukeyC}(x,
@@ -24,7 +26,8 @@
      rl.col='gray',
      mm=TRUE,
      mm.lty=1,
-     title='', \dots)}
+     title='', \dots)
+}
 
 \arguments{
   \item{x}{A \code{TukeyC} object.}
@@ -32,35 +35,41 @@
   \item{replicates}{The number of replicates should be visible.}
   \item{pch}{A vector of plotting symbols or characters.}
   \item{col}{A vector of colors for the means representation.}
-  \item{xlab}{A label for the x axis.}
-  \item{ylab}{A label for the y axis.}
-  \item{xlim}{The x limits of the plot.}
-  \item{ylim}{The y limits of the plot.}
-  \item{id.lab}{Factor level names at x-axis.}
+  \item{xlab}{A label for the \samp{x} axis.}
+  \item{ylab}{A label for the \samp{y} axis.}
+  \item{xlim}{The \samp{x} limits of the plot.}
+  \item{ylim}{The \samp{y} limits of the plot.}
+  \item{id.lab}{Factor level names at \samp{x} axis.}
   \item{id.las}{Factor level names written either horizontally or vertically.}
-  \item{rl}{Horizontal line connecting the circle to the y-axis.}
-  \item{rl.lty}{Line type of rl.}
-  \item{rl.col}{Line color of rl.}
+  \item{rl}{Horizontal line connecting the circle to the \samp{y} axis.}
+  \item{rl.lty}{Line type of \samp{rl}.}
+  \item{rl.col}{Line color of \samp{rl}.}
   \item{mm}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value.}
   \item{mm.lty}{Line type of mm.}
   \item{title}{A title for the plot.}
-  \item{\dots}{Optional plotting parameters.}} 
+  \item{\dots}{Optional plotting parameters.}
+}
 
 \details{
-  The \code{plot.TukeyC} function is a S3 method to plot \code{Tukey} and
+  The \code{plot.TukeyC} function is a S3 method to plot \samp{Tukey} and
   \code{TukeyC.nest} objetcs. It generates a serie of points (the means) and a 
   vertical line showing the minimum e maximum of the values corresponding to
-  each group mean.}
+  each group mean.
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \references{
-  Murrell, P. (2005) \emph{R Graphics}. Chapman & Hall/CRC Press.}
+  Murrell, P. (2005) \emph{R Graphics}. Chapman & Hall/CRC Press.
+}
 
-\seealso{\code{\link{plot}}}
+\seealso{
+  \code{\link{plot}}
+}
 
 \examples{
   ##

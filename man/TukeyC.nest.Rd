@@ -5,13 +5,14 @@
 \alias{TukeyC.nest.aovlist}
 
 \title{
-  The TukeyC ... for Factorial, Split-plot and Split-SPlit
-    plot Experiments}
+  The TukeyC test for Factorial, Split-plot and Split-SPlit plot Experiments
+}
 
 \description{
   These are methods for objects of class \code{vector}, \code{matrix} or
   \code{data.frame} joined as default, \code{aov} and \code{aovlist} for
-  factorial, split-plot and split-split-plot experiments.}
+  factorial, split-plot and split-split-plot experiments.
+}
 
 \usage{
   \method{TukeyC.nest}{default}(x,
@@ -53,7 +54,8 @@
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
   \item{round}{Integer indicating the number of decimal places.}
-  \item{\dots}{Potential further arguments (required by generic).}}
+  \item{\dots}{Potential further arguments (required by generic).}
+}
 
 \details{
   The function \code{TukeyC.nest} returns an object of class 
@@ -61,7 +63,8 @@
   necessary variables for summary and plot.
   
   The generic functions \code{summary} and \code{plot} are used to obtain and
-  print a summary and a plot of the results.}
+  print a summary and a plot of the results.
+}
 
 \value{
   The function \code{TukeyC.nest} returns a list of the class \code{TukeyC.nest} with the slots:
@@ -75,24 +78,27 @@
   \item{which}{The name of the factor whose levels were tested.}
   \item{tab}{An array keeping the names of the factors and factor levels and also the mean value of the repetitions for every combination of factor levels.} 
   \item{fl1}{A vector of length 1 giving the level of the first factor in nesting order tested.}
-  \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.}}
+  \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.}
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentacao em Genetica
+  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentação em Genética
   e Melhoramento de Plantas}. Editora UFLA.
 
   Steel, R.G., Torrie, J.H & Dickey D.A. (1997) \emph{Principles and procedures of statistics:
   a biometrical approach}. Third Edition.
   
   Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
-  Chapman & Hall.}
+  Chapman & Hall.
+}
 
 \examples{
   ##

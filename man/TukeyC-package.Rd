@@ -3,23 +3,23 @@
 \docType{package}
 
 \title{
-  Conventional Tukey Test}
+  Conventional Tukey Test
+}
 
 \description{
   This package performs what is known as the Tukey HSD test in the conventional 
   way. It also uses an algorithm which divides the set of all means in groups 
   and assigns letters to the different groups, allowing for overlapping. This is 
   done for simple experimental designs and schemes. The most usual designs are:
-  Completely Randomized Design (CRD),
-  Randomized Complete Block Design (RCBD) and 
-  Latin Squares Design (LSD).
+  Completely Randomized Design (\samp{CRD}),
+  Randomized Complete Block Design (\samp{RCBD}) and 
+  Latin Squares Design (\samp{LSD}).
   The most usual schemes are:
-  Factorial Experiment (FE),
-  Split-Plot Experiment (SPE) and
-  Split-Split-Plot Experiment (SPE).
+  Factorial Experiment (\samp{FE}),
+  Split-Plot Experiment (\samp{SPE}) and
+  Split-Split-Plot Experiment (\samp{SPE}).
   
-  The package can be used for both balanced or
-  unbalanced (when possible), experiments.
+  The package can be used for both balanced or unbalanced (when possible), experiments.
 
   \R has some functions
   (\code{\link[stats]{TukeyHSD}} provided by \code{stats},
@@ -40,24 +40,27 @@
 
   So, the main aim of this package is make available in \R environment the
   conventional aproach of Tukey test with a set of flexible funtions and
-  S3 methods.}
+  S3 methods.
+}
   
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentacao em Genetica
+  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentação em Genética
   e Melhoramento de Plantas}. Editora UFLA.
 
   Steel, R.G., Torrie, J.H & Dickey D.A. (1997) \emph{Principles and procedures of statistics:
   a biometrical approach}. Third Edition.
   
   Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
-  Chapman & Hall.}
+  Chapman & Hall.
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \keyword{package}
 

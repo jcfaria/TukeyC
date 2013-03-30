@@ -5,12 +5,14 @@
 \alias{TukeyC.aovlist}
 
 \title{
-  The TukeyC Test for Single Experiments}
+  The TukeyC Test for Single Experiments
+}
 
 \description{
   These are methods for objects of class \code{vector}, \code{matrix} or
   \code{data.frame} joined as default, \code{aov} and \code{aovlist} for
-  single experiments.}
+  single experiments.
+}
 
 \usage{
   \method{TukeyC}{default}(x,
@@ -30,21 +32,23 @@
        which,
        error,
        sig.level=.05, 
-       round=2, \dots)}
+       round=2, \dots)
+}
 
 \arguments{
   \item{x}{A design matrix, \code{data.frame} or an \code{aov} object.}
   \item{y}{A vector of response variable. It is necessary to inform this
-    parameter only if \code{x} represent the design matrix.}
+    parameter only if \samp{x} represent the design matrix.}
   \item{which}{The name of the treatment to be used in the comparison.
     The name must be inside quoting marks.}
-  \item{model}{If x is a \code{data.frame} object, the model to be used in the
+  \item{model}{If \samp{x} is a \code{data.frame} object, the model to be used in the
     aov must be specified.}
   \item{error}{The error to be considered.}
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
   \item{round}{Integer indicating the number of decimal places.}
-  \item{\dots}{Potential further arguments (required by generic).} }
+  \item{\dots}{Potential further arguments (required by generic).}
+}
 
 \details{
   The function \code{TukeyC} returns an object of class \code{TukeyC} 
@@ -52,7 +56,8 @@
   necessary variables for summary and plot.
   
   The generic functions \code{summary} and \code{plot} are used to obtain and
-  print a summary and a plot of the results.}
+  print a summary and a plot of the results.
+}
 
 \value{
   The function \code{TukeyC} returns a list of the class \code{TukeyC} with the slots:
@@ -61,24 +66,27 @@
   \item{nms}{A vector of the labels of the factor levels.}
   \item{ord}{A vector which keeps the position of the means of the factor levels in decreasing order.}
   \item{m.inf}{A matrix which keeps the means, minimum and maximum of the factor levels in decreasing order.}
-  \item{sig.level}{A vector of length 1 giving the level of significance of the test.}}
+  \item{sig.level}{A vector of length 1 giving the level of significance of the test.}
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentacao em Genetica
+  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentação em Genética
   e Melhoramento de Plantas}. Editora UFLA.
 
   Steel, R.G., Torrie, J.H & Dickey D.A. (1997) \emph{Principles and procedures of statistics:
   a biometrical approach}. Third Edition.
   
   Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
-  Chapman & Hall.}
+  Chapman & Hall.
+}
 
 \examples{
   ##

@@ -2,31 +2,38 @@
 \alias{summary.TukeyC}
 
 \title{
-  Summary Method for TukeyC and TukeyC.nest Objects}
+  Summary Method for TukeyC and TukeyC.nest Objects
+}
 
 \description{
-  Returns (and prints) a summary list for \code{TukeyC} objects.}
+  Returns (and prints) a summary list for \code{TukeyC} objects.
+}
 
 \usage{
   \method{summary}{TukeyC}(object,
-        complete=TRUE, \dots)}
+        complete=TRUE, \dots)
+}
 
 \arguments{
   \item{object}{A given object of the class \code{TukeyC}.}
-  \item{complete}{A logical value indicating if the summary is complete (mean 
-  difference and p-value) or only the groups.}
-  \item{\dots}{Potential further arguments (required by generic).}}
+  \item{complete}{A logical value indicating if the summary is complete (mean difference and p-value) or only the groups.}
+  \item{\dots}{Potential further arguments (required by generic).}
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \references{
   Chambers, J.M. & Hastie, T.J. (1992) \emph{Statistical Models in S}.
-  Wadsworth & Brooks/Cole.}
+  Wadsworth & Brooks/Cole.
+}
 
-\seealso{\code{\link{TukeyC}}}
+\seealso{
+  \code{\link{TukeyC}}
+}
 
 \examples{
   ##

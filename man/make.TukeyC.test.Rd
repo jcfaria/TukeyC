@@ -2,11 +2,12 @@
 \alias{make.TukeyC.test}
 
 \title{
-  Make Tukey Test}
+  Make Tukey Test
+}
 
 \description{
-  This function implements the Tukey test for balanced or unbalanced designs
-  and schemes.}
+  This function implements the Tukey test for balanced or unbalanced designs and schemes.
+}
 
 \usage{
   make.TukeyC.test(r=r,
@@ -17,35 +18,40 @@
                    dfr=dfr,
                    bal=bal,
                    mt=mt,
-                   round=round)}
+                   round=round)
+}
 
 \arguments{
-  \item{r}{A vector of the number of repicates of each level of the factor
-    being tested.}
+  \item{r}{A vector of the number of repicates of each level of the factor being tested.}
   \item{MSE}{A vector of length 1 giving the mean squared error.}
-  \item{m.inf}{A matrix of the levels of the factor being tested in
-    decreasing order.}
+  \item{m.inf}{A \code{matrix} of the levels of the factor being tested in decreasing order.}
   \item{ord}{A vector of ordered levels of the factor being tested.} 
-  \item{sig.level}{A vector of length 1 giving the level of significance
-    of the test.} 
-  \item{dfr}{A vector of length 1 giving the degrees of freedom of MSE.}
-  \item{bal}{A vector of length 1 giving the information wheter the experiment
-    is or not balanced.}
+  \item{sig.level}{A vector of length 1 giving the level of significance of the test.} 
+  \item{dfr}{A vector of length 1 giving the degrees of freedom of \samp{MSE}.}
+  \item{bal}{A vector of length 1 giving the information wheter the experiment is or not balanced.}
   \item{mt}{The model table.}
-  \item{round}{Integer indicating the number of decimal places.}}
+  \item{round}{Integer indicating the number of decimal places.}
+}
 
 \value{
-  A list with 7 slots (\code{Table}, \code{Means}, \code{Result},
-  \code{Sig.Level}, \code{Diff_Prob}, \code{MSD} (The Minimum Significative
-  Difference) and \code{Replicates}) containing the most important results
-  of the test performed.}
+  A list with 7 slots containing the most important results of the test performed:
+  \item{Table}{Table of means of the factors}
+  \item{Means}{The means of the factors}
+  \item{Result}{The result of the Tukey test}
+  \item{Sig.Level}{The significance of the test}
+  \item{Diff_Prob}{A \code{matrix} with the observed means differences (\code{upper.tri}) and respective probalities (\code{lower.tri})}
+  \item{MSD}{The minimum significative difference}
+  \item{Replicates}{The replicate number for each factor}
+}
 
 \note{
-  This function is mainly for internal use in the TukeyC package.}
+  This function is mainly for internal use in the \pkg{TukeyC} package.
+}
 
 \author{
-  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})}
+  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
+}
 
 \keyword{package}

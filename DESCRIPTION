@@ -1,17 +1,15 @@
 Package: TukeyC
 Type: Package
 Title: Conventional Tukey Test
-Version: 1.1-1
-Date: 2012-11-15
-Author: Jose Claudio Faria <joseclaudio.faria@gmail.com>
+Version: 1.1-2
+Date: 2013-03-30
+Author: José Cláudio Faria <joseclaudio.faria@gmail.com>
         Enio G. Jelihovschi <eniojelihovs@gmail.com>
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
-Maintainer: Jose Claudio Faria <joseclaudio.faria@gmail.com>
+Maintainer: José Cláudio Faria <joseclaudio.faria@gmail.com>
 Depends: R (>= 2.6.0), base
 Description: Perform the conventional Tukey test from aov and aov.list
         objects
 License: GPL (>= 2)
+Encoding: latin1
 LazyLoad: yes
-Packaged: 2012-10-06 11:03:18 UTC; jcfaria
-Repository: CRAN
-Date/Publication: 2012-10-08 07:25:25
