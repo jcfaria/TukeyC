@@ -23,14 +23,16 @@
             fl1,
             fl2=0,
             sig.level=.05,
-            round=2, \dots)
+            round=2,
+            dispersion=c('mm', 's', 'se'), \dots)
 
   \method{TukeyC.nest}{aov}(x,
             which,
             fl1,
             fl2=0,
             sig.level=.05,
-            round=2, \dots)
+            round=2,
+            dispersion=c('mm', 's', 'se'), \dots)
 
   \method{TukeyC.nest}{aovlist}(x,
             which,
@@ -38,7 +40,9 @@
             fl1,
             fl2=0,
             sig.level=.05,
-            round=2, \dots)}
+            round=2,
+            dispersion=c('mm', 's', 'se'), \dots)
+}
 
 \arguments{
   \item{x}{A design matrix, \code{data.frame} or an \code{aov} object.}
@@ -54,6 +58,10 @@
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
   \item{round}{Integer indicating the number of decimal places.}
+  \item{dispersion}{The dispersion to be considered to the means. \cr
+    The possible vaues are: \samp{'mm'} = \samp{minimum and maximum},
+    \samp{'s'} = \samp{standart deviation},
+    \samp{'se'} = \samp{standart deviation of the mean}.}
   \item{\dots}{Potential further arguments (required by generic).}
 }
 
@@ -72,7 +80,7 @@
   \item{groups}{A vector of length equal the number of factor levels marking the groups generated.}
   \item{nms}{A vector of the labels of the factor levels.}
   \item{ord}{A vector which keeps the position of the means of the factor levels in decreasing order.}
-  \item{m.inf}{A matrix which keeps the means, minimum and maximum of the factor levels in decreasing order.}
+  \item{m.inf}{A matrix which keeps the means and dispersion of the factor levels in decreasing order.}
   \item{sig.level}{A vector of length 1 giving the level of significance of the test.}
   \item{r}{A vector of length 1 giving the number of replicates.}
   \item{which}{The name of the factor whose levels were tested.}
@@ -116,6 +124,7 @@
                      which='P',
                      error='blk:P'))
   summary(tk1)
+  plot(tk1)
   
   # Main factor: SP
   tk2 <- with(SSPE,
@@ -123,8 +132,10 @@
                      y,
                      model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SP',
-                     error='blk:P:SP'))
+                     error='blk:P:SP',
+                     dispersion='s'))
   summary(tk2)
+  plot(tk2)
   
   # Main factor: SSP
   tk3 <- with(SSPE,
@@ -132,8 +143,10 @@
                      y,
                      model='y ~ blk + P*SP*SSP + Error(blk/P/SP)',
                      which='SSP',
-                     error='Within'))
+                     error='Within',
+                     dispersion='se'))
   summary(tk3)
+  plot(tk3)
   
   ## Nested: p1/SP
   tkn1 <- with(SSPE,

@@ -4,7 +4,7 @@ writing code, etc).
 
 To download, check and build it do the following in a terminal emulator:
 
-git clone  git://github.comr/jcfaria/TukeyC.git
+git clone  git://github.com/jcfaria/TukeyC.git
   or
 git clone https://jcfaria@github.com/jcfaria/TukeyC.git
 

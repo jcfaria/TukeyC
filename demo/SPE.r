@@ -80,6 +80,7 @@ summary(tk4)
 tk5 <- TukeyC(av1,
               which='P',
               error='blk:P')
+
 summary(tk5)
 
 ## Nested: p1/SP

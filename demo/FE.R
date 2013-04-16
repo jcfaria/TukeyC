@@ -25,16 +25,20 @@ tk2 <- with(FE,
             TukeyC(x=dm,
                    y=y,
                    model='y ~ blk + N*P*K',
-                   which='P'))
+                   which='P',
+                   dispersion='s'))
 summary(tk2)
+plot(tk2)
 
 ## Main factor: K
 tk3 <- with(FE,
             TukeyC(x=dm,
                    y=y,
                    model='y ~ blk + N*P*K',
-                   which='K'))
+                   which='K',
+                   dispersion='se'))
 summary(tk3)
+plot(tk3)
 
 ## Nested: p1/N
 ## Testing N inside of level one of P

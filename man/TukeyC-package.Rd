@@ -90,15 +90,19 @@
                TukeyC(x=dm[-1,],
                       y=y[-1],
                       model='y ~ x',
-                      which='x'))
+                      which='x',
+                      dispersion='s'))
   summary(tk1u)
+  plot(tk1u)
   
   ## From: data.frame (dfm) - balanced
   tk2 <- with(CRD2,
               TukeyC(x=dfm,
                      model='y ~ x',
-                     which='x'))
+                     which='x',
+                     dispersion='se'))
   summary(tk2)
+  plot(tk2)
   
   ## From: data.frame (dfm) - balanced
   tk2u <- with(CRD2,

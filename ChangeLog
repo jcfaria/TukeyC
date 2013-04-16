@@ -1,5 +1,9 @@
-2013-03-30 vs. 1.1-2 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
-  * The documentation has been deeply improved.
+2013-04-16 vs. 1.2-3 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+  * The source code has been deeply improved.
+  * The documentation has been deeply updated.
+
+2013-04-11 vs. 1.1-2 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+  * New options related to the dispersion of the means.
 
 2012-12-10 vs. 1.1-1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * A small bug was fixed in the function TukeyC.nest.aovlist.R.
