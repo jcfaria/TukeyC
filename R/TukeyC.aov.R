@@ -32,37 +32,6 @@ TukeyC.aov <- function(x,
   ord  <- order(as.vector(tabs[[which]]),
                 decreasing=TRUE)
 
-  #    lv    <- nlevels(x$model[, which])
-  #    m.inf <- matrix(nrow=lv, ncol=3)
-  #    for(i in 1:lv) { 
-  #      v <- x$model[, 1][x$model[, which] == levels(x$model[, which])[i]]
-  #      m.inf[i, 1] <- mean(v)
-  #      m.inf[i, 2] <- min(v)
-  #      m.inf[i, 3] <- max(v)} 
-  #    m.inf <- cbind(m.inf[, 1][ord], m.inf[, 2][ord], m.inf[, 3][ord])   
-  #    dimnames(m.inf) <- list(nms[ord], c('mean', 'min', 'max'))
-
-  #  switch(match.arg(dispersion),
-  #         mm = {
-  #           m.inf <- aggregate(x$model[,1],
-  #                              by=list(x$model[[which]]),
-  #                              function(x) c(mean=mean(x),
-  #                                            m.min=min(x),
-  #                                            m.max=max(x)))[,2]
-  #         }, se = {
-  #           m.inf <- aggregate(x$model[,1],
-  #                              by=list(x$model[[which]]),
-  #                              function(x) c(mean=mean(x),
-  #                                            se.min=mean(x) - sd(x),
-  #                                            se.max=mean(x) + sd(x)))[,2]
-  #         }, sem= {
-  #           m.inf <- aggregate(x$model[,1],
-  #                              by=list(x$model[[which]]),
-  #                              function(x) c(mean=mean(x),
-  #                                            sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-  #                                            sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2]
-  #         })
-
   m.inf <- m.inf.1a(x,
                     which,
                     dispersion)

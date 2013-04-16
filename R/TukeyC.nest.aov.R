@@ -55,37 +55,6 @@ TukeyC.nest.aov <- function (x,
 
       which2 <- names(dimnames(mt$tables[whichn][[whichn]]))[1] # corresponde ao segundo fator do seu 'which'
 
-      #        m.inf  <- aggregate(x$model[,1],
-      #                            by=list(x$model[[which2]],
-      #                                    x$model[[which1]]),
-      #                            function(x) c(mean(x),
-      #                                          min(x),
-      #                                          max(x)))[,2:3]
-
-#      switch(match.arg(dispersion),
-#             mm = {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                m.min=min(x),
-#                                                m.max=max(x)))[,2:3]
-#             }, se = {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                se.min=mean(x) - sd(x),
-#                                                se.max=mean(x) + sd(x)))[,2:3]
-#             }, sem= {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:3]
-#             })
-
       m.inf <- m.inf.2a(x,
                         which1,
                         which2,
@@ -126,36 +95,6 @@ TukeyC.nest.aov <- function (x,
       which1 <- names(dimnames(mt$tables[which][[which]]))[1] # corresponde ao primeiro fator do seu 'which'
 
       which2 <- names(dimnames(mt$tables[which][[which]]))[2] # corresponde ao segundo fator do seu 'which'
-
-      #        m.inf  <- aggregate(x$model[,1],
-      #                            by=list(x$model[[which2]],
-      #                                    x$model[[which1]]),
-      #                            function(x) c(mean(x),
-      #                                          min(x),
-      #                                          max(x)))[,2:3]
-#      switch(match.arg(dispersion),
-#             mm = {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                m.min=min(x),
-#                                                m.max=max(x)))[,2:3]
-#             }, se = {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                se.min=mean(x) - sd(x),
-#                                                se.max=mean(x) + sd(x)))[,2:3]
-#             }, sem= {
-#               m.inf <- aggregate(x$model[,1],
-#                                  by=list(x$model[[which2]],
-#                                          group=x$model[[which1]]),      
-#                                  function(x) c(mean=mean(x),
-#                                                sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:3]
-#             })
 
       m.inf <- m.inf.2a(x,
                         which1,
@@ -203,36 +142,6 @@ TukeyC.nest.aov <- function (x,
         which1 <- names(dimnames(mt$tables[which][[which]]))[1] 
 
         which2 <- names(dimnames(mt$tables[which][[which]]))[2]
-
-        #          m.inf  <- aggregate(x$model[,1],
-        #                              by=list(x$model[[which2]],
-        #                                      x$model[[which1]]),
-        #                              function(x) c(mean(x),
-        #                                            min(x),
-        #                                            max(x)))[,2:3]
-#        switch(match.arg(dispersion),
-#               mm = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  m.min=min(x),
-#                                                  m.max=max(x)))[,2:3]
-#               }, se = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  se.min=mean(x) - sd(x),
-#                                                  se.max=mean(x) + sd(x)))[,2:3]
-#               }, sem= {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                  sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:3]
-#               })
 
         m.inf <- m.inf.2a(x,
                           which1,
@@ -284,36 +193,6 @@ TukeyC.nest.aov <- function (x,
 
         which2 <- names(dimnames(mt$tables[whichn][[whichn]]))[1]
 
-        #          m.inf  <- aggregate(x$model[,1],
-        #                              by=list(x$model[[which2]],
-        #                                      x$model[[which1]]),
-        #                              function(x) c(mean(x),
-        #                                            min(x),
-        #                                            max(x)))[,2:3]
-#        switch(match.arg(dispersion),
-#               mm = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  m.min=min(x),
-#                                                  m.max=max(x)))[,2:3]
-#               }, se = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  se.min=mean(x) - sd(x),
-#                                                  se.max=mean(x) + sd(x)))[,2:3]
-#               }, sem= {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which2]],
-#                                            group=x$model[[which1]]),      
-#                                    function(x) c(mean=mean(x),
-#                                                  sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                  sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:3]
-#               })
-
         m.inf <- m.inf.2a(x,
                           which1,
                           which2,
@@ -364,40 +243,6 @@ TukeyC.nest.aov <- function (x,
 
         which3 <- names(dimnames(mt$tables[which][[which]]))[3]
 
-        #        m.inf  <- aggregate(x$model[,1],
-        #                            by=list(x$model[[which3]],
-        #                                    x$model[[which2]],
-        #                                    x$model[[which1]]),
-        #                            function(x) c(mean(x),
-        #                                          min(x),
-        #                                          max(x)))[,2:4]
-#        switch(match.arg(dispersion),
-#               mm = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which3]],
-#                                            group=x$model[[which2]],
-#                                            group2=x$model[[which1]]),
-#                                    function(x) c(mean=mean(x),
-#                                                  m.min=min(x),
-#                                                  m.max=max(x)))[,2:4]
-#               }, se = {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which3]],
-#                                            group=x$model[[which2]],
-#                                            group2=x$model[[which1]]),
-#                                    function(x) c(mean=mean(x),
-#                                                  se.min=mean(x) - sd(x),
-#                                                  se.max=mean(x) + sd(x)))[,2:4]
-#               }, sem= {
-#                 m.inf <- aggregate(x$model[,1],
-#                                    by=list(x$model[[which3]],
-#                                            group=x$model[[which2]],
-#                                            group2=x$model[[which1]]),
-#                                    function(x) c(mean=mean(x),
-#                                                  sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                  sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#               })
-
         m.inf <- m.inf.3a(x,
                           which1=which3,
                           which2=which2,
@@ -444,39 +289,6 @@ TukeyC.nest.aov <- function (x,
 
           which3 <- names(dimnames(mt$tables[natri][[natri]]))[3]
 
-          #          m.inf  <- aggregate(x$model[,1],
-          #                              by=list(x$model[[which1]],
-          #                                      x$model[[which3]],
-          #                                      x$model[[which2]]),
-          #                              function(x) c(mean(x),
-          #                                            min(x),
-          #                                            max(x)))[,2:4]
-#          switch(match.arg(dispersion),
-#                 mm = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    m.min=min(x),
-#                                                    m.max=max(x)))[,2:4]
-#                 }, se = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    se.min=mean(x) - sd(x),
-#                                                    se.max=mean(x) + sd(x)))[,2:4]
-#                 }, sem= {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                    sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#                 })
           m.inf <- m.inf.3a(x,
                             which1=which1,
                             which2=which3,
@@ -519,39 +331,6 @@ TukeyC.nest.aov <- function (x,
 
           which3 <- names(dimnames(mt$tables[natri][[natri]]))[3]
 
-          #          m.inf  <- aggregate(x$model[,1],
-          #                              by=list(x$model[[which3]],
-          #                                      x$model[[which1]],
-          #                                      x$model[[which2]]),
-          #                              function(x) c(mean(x),
-          #                                            min(x),
-          #                                            max(x)))[,2:4]
-#          switch(match.arg(dispersion),
-#                 mm = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which3]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    m.min=min(x),
-#                                                    m.max=max(x)))[,2:4]
-#                 }, se = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which3]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    se.min=mean(x) - sd(x),
-#                                                    se.max=mean(x) + sd(x)))[,2:4]
-#                 }, sem= {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which3]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which2]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                    sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#                 })
           m.inf <- m.inf.3a(x,
                             which1=which3,
                             which2=which1,
@@ -596,39 +375,6 @@ TukeyC.nest.aov <- function (x,
 
           which3 <- names(dimnames(mt$tables[natri][[natri]]))[3]
 
-          #          m.inf  <- aggregate(x$model[,1],
-          #                              by=list(x$model[[which2]],
-          #                                      x$model[[which3]],
-          #                                      x$model[[which1]]),
-          #                              function(x) c(mean(x),
-          #                                            min(x),
-          #                                            max(x)))[,2:4]
-#          switch(match.arg(dispersion),
-#                 mm = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which1]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    m.min=min(x),
-#                                                    m.max=max(x)))[,2:4]
-#                 }, se = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which1]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    se.min=mean(x) - sd(x),
-#                                                    se.max=mean(x) + sd(x)))[,2:4]
-#                 }, sem= {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which3]],
-#                                              group2=x$model[[which1]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                    sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#                 })
           m.inf <- m.inf.3a(x,
                             which1=which2,
                             which2=which3,
@@ -673,39 +419,6 @@ TukeyC.nest.aov <- function (x,
 
           which3 <- names(dimnames(mt$tables[natri][[natri]]))[3]
 
-          #          m.inf  <- aggregate(x$model[,1],
-          #                              by=list(x$model[[which1]],
-          #                                      x$model[[which2]],
-          #                                      x$model[[which3]]),
-          #                              function(x) c(mean(x),
-          #                                            min(x),
-          #                                            max(x)))[,2:4]
-#          switch(match.arg(dispersion),
-#                 mm = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which2]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    m.min=min(x),
-#                                                    m.max=max(x)))[,2:4]
-#                 }, se = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which2]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    se.min=mean(x) - sd(x),
-#                                                    se.max=mean(x) + sd(x)))[,2:4]
-#                 }, sem= {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which1]],
-#                                              group=x$model[[which2]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                    sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#                 })
           m.inf <- m.inf.3a(x,
                             which1=which1,
                             which2=which2,
@@ -750,39 +463,6 @@ TukeyC.nest.aov <- function (x,
 
           which3 <- names(dimnames(mt$tables[natri][[natri]]))[3]
 
-          #          m.inf  <- aggregate(x$model[,1],
-          #                              by=list(x$model[[which2]],
-          #                                      x$model[[which1]],
-          #                                      x$model[[which3]]),
-          #                              function(x) c(mean(x),
-          #                                            min(x),
-          #                                            max(x)))[,2:4]
-#          switch(match.arg(dispersion),
-#                 mm = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    m.min=min(x),
-#                                                    m.max=max(x)))[,2:4]
-#                 }, se = {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    se.min=mean(x) - sd(x),
-#                                                    se.max=mean(x) + sd(x)))[,2:4]
-#                 }, sem= {
-#                   m.inf <- aggregate(x$model[,1],
-#                                      by=list(x$model[[which2]],
-#                                              group=x$model[[which1]],
-#                                              group2=x$model[[which3]]),
-#                                      function(x) c(mean=mean(x),
-#                                                    sem.min=mean(x) - (sd(x) / sqrt(length(x))),
-#                                                    sem.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
-#                 })
           m.inf <- m.inf.3a(x,
                             which1=which2,
                             which2=which1,
