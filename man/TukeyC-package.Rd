@@ -117,9 +117,8 @@
              data=dfm))
   summary(av)
   
-  tk3 <- with(CRD2,
-              TukeyC(x=av,
-                     which='x'))
+  tk3 <- TukeyC(x=av,
+                which='x')
   summary(tk3)
 
   ## From: aov - unbalanced
@@ -128,9 +127,8 @@
               data=dfm[-1,]))
   summary(avu)
   
-  tk3u <- with(CRD2,
-               TukeyC(x=avu,
-                      which='x'))
+  tk3u <- TukeyC(x=avu,
+                 which='x')
   summary(tk3u)
 
   ##
