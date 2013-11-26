@@ -7,7 +7,7 @@ testing unreleased versions, fixing bugs, writing code, etc.
 To download, check and build it do the following in a terminal emulator:
 > git clone  git://github.com/jcfaria/TukeyC.git
 
->  or
+> or
 
 > git clone https://jcfaria@github.com/jcfaria/TukeyC.git
 
