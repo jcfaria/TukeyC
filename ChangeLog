@@ -1,14 +1,22 @@
+2013-11-21 vs. 1.2-4 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+  * All calls to the old method model.frame.aovlist now call the generic
+    to meet the requirements of CRAN.
+  * Released to CRAN.  
+
 2013-04-16 vs. 1.2-3 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * The source code has been deeply improved.
   * The documentation has been deeply updated.
+  * Restrict to testers.
 
 2013-04-11 vs. 1.1-2 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * New options related to the dispersion of the means.
+  * Restrict to testers.
 
 2012-12-10 vs. 1.1-1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * A small bug was fixed in the function TukeyC.nest.aovlist.R.
     The lines that were with "[:punct:]" (wrongly) were changed to "[[:punct:]]" (correctly).
   * New data: SPET (Split-plot in time).
+  * Restrict to testers.
 
 2012-10-06 vs. 1.1-0 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * Ivan Bezerra Allaman has began to work in the project as co-author.

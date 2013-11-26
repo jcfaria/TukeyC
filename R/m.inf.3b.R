@@ -6,26 +6,26 @@ m.inf.3b <- function(x,
 {
   switch(match.arg(dispersion),
          mm = {
-           m.inf <- aggregate(model.frame.aovlist(x)[,1],
-                              by=list(model.frame.aovlist(x)[[which1]],
-                                      group=model.frame.aovlist(x)[[which2]],
-                                      group2=model.frame.aovlist(x)[[which3]]),
+           m.inf <- aggregate(model.frame(x)[,1],
+                              by=list(model.frame(x)[[which1]],
+                                      group=model.frame(x)[[which2]],
+                                      group2=model.frame(x)[[which3]]),
                               function(x) c(mean=mean(x),
                                             min=min(x),
                                             max=max(x)))[,2:4]
          }, s = {
-           m.inf <- aggregate(model.frame.aovlist(x)[,1],
-                              by=list(model.frame.aovlist(x)[[which1]],
-                                      group=model.frame.aovlist(x)[[which2]],
-                                      group2=model.frame.aovlist(x)[[which3]]),
+           m.inf <- aggregate(model.frame(x)[,1],
+                              by=list(model.frame(x)[[which1]],
+                                      group=model.frame(x)[[which2]],
+                                      group2=model.frame(x)[[which3]]),
                               function(x) c(mean=mean(x),
                                             'm - s'=mean(x) - sd(x),
                                             'm + s'=mean(x) + sd(x)))[,2:4]
          }, se= {
-           m.inf <- aggregate(model.frame.aovlist(x)[,1],
-                              by=list(model.frame.aovlist(x)[[which1]],
-                                      group=model.frame.aovlist(x)[[which2]],
-                                      group2=model.frame.aovlist(x)[[which3]]),
+           m.inf <- aggregate(model.frame(x)[,1],
+                              by=list(model.frame(x)[[which1]],
+                                      group=model.frame(x)[[which2]],
+                                      group2=model.frame(x)[[which3]]),
                               function(x) c(mean=mean(x),
                                             se.min=mean(x) - (sd(x) / sqrt(length(x))),
                                             se.max=mean(x) + (sd(x) / sqrt(length(x)))))[,2:4]
