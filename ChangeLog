@@ -1,3 +1,8 @@
+2014-08-16 vs. 1.2-5 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+  * A new function 'cv' was added. It allows to perform the coefficient 
+    of the experiment variation for lm, aov and aovlist objetcs.
+  * Small changes to meet the requirements of CRAN.
+
 2013-11-21 vs. 1.2-4 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * All calls to the old method model.frame.aovlist now call the generic
     to meet the requirements of CRAN.

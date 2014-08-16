@@ -1,8 +1,8 @@
 Package: TukeyC
 Type: Package
 Title: Conventional Tukey Test
-Version: 1.1-4
-Date: 2013-11-21
+Version: 1.1-5
+Date: 2014-08-16
 Author: José Cláudio Faria <joseclaudio.faria@gmail.com>
         Enio G. Jelihovschi <eniojelihovs@gmail.com>
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
