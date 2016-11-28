@@ -1,5 +1,19 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+export(TukeyC)
+export(cv)
 
-# Export all names
-exportPattern(".")
+import(
+ doBy,
+ utils,
+ stats,
+ graphics
+)
+
+# S3 methods
+S3method(TukeyC, formula)
+S3method(TukeyC, lm)
+S3method(TukeyC, aovlist)
+S3method(TukeyC, nest.lm)
+S3method(TukeyC, nest.aovlist)
+S3method(summary, TukeyC)
+S3method(print, TukeyC)
+S3method(plot, TukeyC)

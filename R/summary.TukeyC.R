@@ -11,19 +11,19 @@ summary.TukeyC <- function(object,
 
   if(complete){
     cat('Goups of means at sig.level =',
-        object$Sig.level,
+        object$out$Sig.level,
         '\n')
 
-    print(object$Result)
+    print(object$out$Result)
 
     cat('\nMatrix of the difference of means above diagonal and')
 
     cat('\nrespective p-values of the Tukey test below diagonal values\n')
 
-    print(object$Diff_Prob)
+    print(object$out$Diff_Prob)
 
   } else { 
-    res <- object$Result
+    res <- object$out$Result
 
     res
   }

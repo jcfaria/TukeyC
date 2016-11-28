@@ -3,22 +3,25 @@
 ##
 
 plot.TukeyC <- function(x,
-                        result=TRUE,
-                        replicates=TRUE, 
-                        pch=19,
-                        col=NULL,
-                        xlab=NULL,
-                        ylab=NULL,
-                        xlim=NULL,
-                        ylim=NULL,
-                        id.lab=NULL,
-                        id.las=1,
-                        rl=TRUE,
-                        rl.lty=3,
-                        rl.col='gray',
-                        mm=TRUE,
-                        mm.lty=1,
-                        title='', ...)
+                        result     = TRUE,
+                        replicates = TRUE, 
+                        pch        = 19,
+                        col        = NULL,
+                        xlab       = NULL,
+                        ylab       = NULL,
+                        xlim       = NULL,
+                        ylim       = NULL,
+                        id.lab     = NULL,
+                        id.las     = 1,
+                        rl         = TRUE,
+                        rl.lty     = 3,
+                        rl.col     = 'gray',
+                        dispersion = c('mm',
+                                       'sd',
+                                       'ci',
+                                       'none'),
+                        dispersion.lty = 1,
+                        title      = '', ...)
 {
   fun <- function(m) {
     a <- rep('\n', length(m))
@@ -34,14 +37,14 @@ plot.TukeyC <- function(x,
 
   if(is.null(ylab)) ylab <- 'Means'
 
-  means <- x$Means[, 1]
+  means <- x$info$Means[['means']]
 
   if(replicates)
-    r <- x$Replicates
+    r <- x$out$Replicates
 
   groups <- 1:length(means)
 
-  m.res <- t(x$Result[, 2:ncol(x$Result)])
+  m.res <- t(x$out$Result[, 2:ncol(x$out$Result)])
 
   if(dim(m.res)[1] != 1) {
     m.res <- apply(m.res, 2, fun)
@@ -53,7 +56,21 @@ plot.TukeyC <- function(x,
   else
     id.groups <- m.res 
 
-  minmax <- x$Means[, 2:3]
+  #minmax <- x$Means[, 2:3]
+  minmax1 <- x$info$mm[['min']]
+  minmax2 <- x$info$mm[['max']]
+  minmax <- data.frame(minmax1,
+                       minmax2)
+
+  sd1 <- x$info$sd[['linf_sd']]
+  sd2 <- x$info$sd[['lsup_sd']]
+  sdd <- data.frame(sd1,
+                    sd2)
+
+  ic1 <- x$info$ic[['linf_se']]
+  ic2 <- x$info$ic[['lsup_se']]
+  ic <- data.frame(ic1,
+                   ic2)
 
   if(is.null(col))
     col <- 'black'
@@ -70,17 +87,24 @@ plot.TukeyC <- function(x,
       ylim <- c(min(minmax[, 1]),
                 max(minmax[, 2]))
 
-  old.par <- par(mai=c(1, 1, 1.25, 1))
+  # By J.C.Faria
+  ngroups <- dim(x$out$Result)[2] - 1
+  if(ngroups > 3){
+    op <- par('mar')       # Original par('mar')
+    np <- op               # A copy
+    np[3] <- ngroups + 1   # Changing top to show all letters
+    par(mar=np)            # Setting new par('mar')
+  }
 
   plot(groups,
        means,
-       pch=pch,
-       col=col,
-       xlab=xlab,
-       ylab=ylab,
-       xlim=xlim,
-       ylim=ylim,
-       axes=FALSE, ...)
+       pch  = pch,
+       col  = col,
+       xlab = xlab,
+       ylab = ylab,
+       xlim = xlim,
+       ylim = ylim,
+       axes = FALSE, ...)
 
   if(rl == TRUE)       
     segments(rep(-0.5,
@@ -88,51 +112,79 @@ plot.TukeyC <- function(x,
              means,
              groups,
              means,
-             lty=rl.lty,
-             col=rl.col, ...) 
+             lty = rl.lty,
+             col = rl.col, ...) 
 
-  if(mm == TRUE)
-    segments(groups,
-             minmax[, 2],
-             groups,
-             minmax[, 1],
-             lty=mm.lty,
-             col=col, ...)
+  #   if(mm == TRUE)
+  #     segments(groups,
+  #              minmax[, 2],
+  #              groups,
+  #              minmax[, 1],
+  #              lty=mm.lty,
+  #              col=col, ...)
+  switch(match.arg(dispersion),
+         mm = {
+           segments(groups,
+                    minmax[,1],
+                    groups,
+                    minmax[,2],
+                    lty = dispersion.lty,
+                    col = col, ...)         
+         },
+         sd = {
+           segments(groups,
+                    sdd[,1],
+                    groups,
+                    sdd[,2],
+                    lty = dispersion.lty,
+                    col = col, ...)          
+         },
+         ci = {
+           segments(groups,
+                    ic[,1],
+                    groups,
+                    ic[,2],
+                    lty = dispersion.lty,
+                    col = col, ...)           
+         },
+         none = NULL)
 
   axis(2,
-       at=round(seq(ylim[1],
-                    ylim[2],
-                    length.out=5),
-                1))
+       at = round(seq(ylim[1],
+                      ylim[2],
+                      length.out = 5),
+                  1))
 
   if(is.null(id.lab))
-    id.lab <- rownames(x$Means)
+    id.lab <- names(x$out$Result[,1])
 
   axis(1,
-       at=1:length(means),
-       labels=id.lab,
-       las=id.las,
-       col.axis=FALSE, ...)    
+       at       = 1:length(means),
+       labels   = id.lab,
+       las      = id.las,
+       col.axis = FALSE, ...)    
 
   if(result) 
     axis(3,
-         at=1:length(means),
-         labels=id.groups, ...)
+         at     = 1:length(means),
+         labels = id.groups, ...)
 
   if(replicates)
-    text(x=1:length(means),
-         y=min(ylim),
-         labels=r,
-         pos=3, ...)
+    text(x      = 1:length(means),
+         y      = min(ylim),
+         labels = r,
+         pos    = 3, ...)
 
-  mtext(text=id.lab,
-        side=1,
-        line=1,
-        at=1:length(means),
-        las=id.las, ...)
+  mtext(text = id.lab,
+        side = 1,
+        line = 1,
+        at   = 1:length(means),
+        las  = id.las, ...)
 
   title(title, ...)
 
-  par(old.par)
+  # By J.C.Faria
+  if(ngroups > 3)
+    par(mar=op)  # Restoring the original par('mar')
 }
 

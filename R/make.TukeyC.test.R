@@ -1,88 +1,91 @@
 ##
 ## Function to perform Tukey test
 ##
-
-make.TukeyC.test <- function(r=r,
-                             MSE=MSE,
-                             m.inf=m.inf,
-                             ord=ord,
-                             sig.level=sig.level,
-                             dfr=dfr,
-                             bal=bal,
-                             mt=mt,
-                             round=round)
+make.TukeyC.test <- function(obj,
+                             MSE,
+                             sig.level,
+                             dfr,
+                             round,
+                             adjusted.pvalue)
 {
-  if (length(r) < nrow(m.inf))  # expand n to the correct length if necessary
-    r <- rep.int(r,
-                 nrow(m.inf))
 
-  r <- r[ord] 
+  #vari <- names(obj)[length(obj)]
+  #means <- obj[[vari]][,1]
+  means <- obj[['means']]
+  #names(means) <- obj[[vari]][,2] # necessary to vece object
+  names(means) <- obj[['reps']]
 
-  m.tmp <- m.inf[, 1]
+  vece <- outer(X = means,
+                Y = means,  # (v)ariance (e)stimation of (c)ontrast (e)stimation
+                function(X, Y) MSE * (1/as.numeric(names(X)) + 1/(as.numeric(names(Y)))))
 
-  names(m.tmp) <- r
+  qTukey <- qtukey(p = sig.level,
+                   nmeans = dim(obj)[1],
+                   df = dfr,
+                   lower.tail = FALSE)
 
-  vece <- outer(X=m.tmp,
-                Y=m.tmp,  # (v)ariance (e)stimation of (c)ontrast (e)stimation
-                function(X, Y) MSE * (1/as.numeric(names(X)) + (1/as.numeric(names(Y)))))
+  msd <- qTukey * sqrt(1/2 * vece)  # minimum significative difference
 
-  qTukey <- qtukey(p=sig.level,
-                   nmeans=nrow(m.inf),
-                   df=dfr,
-                   lower.tail=FALSE)
+  diag(msd) <- 0
 
-  if (!bal) {
-    msd <- qTukey * sqrt(1/2 * vece)  # minimum significative difference
+  dimnames(msd) <- list(row.names(obj),
+                        row.names(obj))
 
-    diag(msd) <- 0
+  names(means) <- row.names(obj) # necessary to difm object 
 
-    dimnames(msd) <- list(rownames(m.inf),
-                          rownames(m.inf))
-  }
-  else
-    msd <- qTukey * sqrt(1/2 * vece)[1,1]
-
-  m    <- m.inf[,1]
-
-  difm <- abs(outer(m,
-                    m,
+  difm <- abs(outer(means,
+                    means,
                     "-"))  # means difference
+
   dif  <- difm - msd
 
-  dif  <- ifelse(dif <= 0,
-                 FALSE,
-                 TRUE)
+  #   dif  <- ifelse(dif <= 0,
+  #                  FALSE,
+  #                  TRUE)
+  # 
 
-  res  <- make.TukeyC.groups(dif)
+  # The below estimates the probability of observed difference betweeen means be significative
+  # Matrix of the difference of means above diagonal and respective p-values of the Tukey test
+  # below diagonal 
+  pval_tukey <- ptukey(q = difm[lower.tri(difm)] / sqrt(1/2 * vece[lower.tri(vece)]),
+                       nmeans = dim(obj)[1],
+                       df = dfr,
+                       lower.tail = FALSE) 
 
-  res  <- cbind(format(round(m,
+  adjusted_pvalue <- p.adjust(pval_tukey,
+                              method = adjusted.pvalue)
+
+  new_dif <- difm
+  new_dif[lower.tri(new_dif)] <- adjusted_pvalue
+  new_dif1 <- t(new_dif)
+  new_dif1[lower.tri(new_dif1)] <- adjusted_pvalue
+  diag(new_dif1) <- 1
+
+  new_dif2 <- ifelse(new_dif1 >= sig.level,
+                     FALSE,
+                     TRUE)
+
+  out_groups  <- make.TukeyC.groups(new_dif2)
+
+  res  <- cbind(format(round(means,
                              round),
-                       nsmall=2),
-                res)
+                       nsmall = 2),
+                out_groups)
 
   colnames(res) <- c('Means',
                      paste('G',
                            1:(ncol(res) - 1),
                            sep=''))
 
-  if (bal) r <- r[1]
+  difm[lower.tri(difm)] <- adjusted_pvalue
 
-  # The below estimates the probability of observed difference betweeen means be significative
-  # Matrix of the difference of means above diagonal and respective p-values of the Tukey test
-  # below diagonal 
-  difm[lower.tri(difm)] <- ptukey(q=difm[lower.tri(difm)] / sqrt(1/2 * vece[lower.tri(vece)]),
-                                  nmeans=nrow(m.inf),
-                                  df=dfr,
-                                  lower.tail=FALSE)
   diag(difm) <- 0  # To be sure!
 
-  out <- list(Table      = mt,
-              Means      = m.inf,
-              Result     = as.data.frame(res),
+  out <- list(Result     = as.data.frame(res),
               Sig.level  = sig.level,
               Diff_Prob  = round(difm, 3),
               MSD        = round(msd, 3),
-              Replicates = r)
+              Replicates = obj[['reps']])
 
   return(out)
 }

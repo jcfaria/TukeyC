@@ -2,36 +2,27 @@
 ## Example: Latin Squares Design (LSD)
 ##
 
-## The parameters can be: design matrix and the response variable,
-## data.frame or aov
+## The parameters can be: vectors, design matrix and the response variable,
+## data.frame, aov or lm.
 
 library(TukeyC)
 data(LSD)
 
-## From: design matrix (dm) and response variable (y)
+## From: formula
+## Testing tra
 tk1 <- with(LSD,
-            TukeyC(x=dm,
-                   y=y,
-                   model='y ~ rows + cols + tra',
-                   which='tra'))
-summary(tk1)  # p-value E-A = .051
-plot(tk1)
-
-tk1 <- with(LSD,
-            TukeyC(x=dm,
-                   y=y,
-                   model='y ~ rows + cols + tra',
+            TukeyC(y ~ rows + cols + tra,
+                   dfm,
                    which='tra',
                    sig.level=.052))
 summary(tk1)
-plot(tk1)
 
-## From: data.frame
+## From: formula
+## Testing rows
 tk2 <- with(LSD,
-            TukeyC(x=dfm,
-                   model='y ~ rows + cols + tra',
-                   which='tra',
-                   sig.level=.052))
+            TukeyC(y ~ rows + cols + tra,
+                   dfm,
+                   which='rows'))
 summary(tk2)
 
 ## From: aov
@@ -40,7 +31,15 @@ av1 <- with(LSD,
                 data=dfm))
 summary(av1)
 
+## From: aov
+## Testing tra
 tk3 <- TukeyC(av1,
               which='tra',
               sig.level=.052)
 summary(tk3)
+
+## From: aov
+## Testing cols
+tk4 <- TukeyC(av1,
+              which='cols')
+summary(tk4)
