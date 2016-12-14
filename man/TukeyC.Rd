@@ -66,13 +66,13 @@ TukeyC(x,...)
 
 \details{
   The function \code{TukeyC} returns an object of class \code{TukeyC} 
-  respectivally containing the groups of means plus other
+   containing the groups of means plus other
   necessary variables for summary and plot.
 
   The generic functions \code{summary} and \code{plot} are used to obtain and
   print a summary and a plot of the results.
 
-  The error arguments is utilized when the user want to specific a error different of experimental error. At the split plot and split-split plot experiment, combination of error would be specified with "/" in the sequence of the \code{which} argument. For example, a object of \code{aovlist} class, a possible combination would be \code{error = 'Within/blk:plot'} at case block split plot experiment with \code{which = 'subplot:plot'} argument.
+  The error arguments may be used whenever the user want a specific error other than the experimental error. At the split plot and split-split plot experiment, combination of error may be specified with "/" in the sequence of the \code{which} argument. For example, a object of \code{aovlist} class, a possible combination would be \code{error = 'Within/blk:plot'} at case block split plot experiment with \code{which = 'subplot:plot'} argument.
 }
 
 \value{

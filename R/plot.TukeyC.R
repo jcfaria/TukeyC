@@ -16,10 +16,10 @@ plot.TukeyC <- function(x,
                         rl         = TRUE,
                         rl.lty     = 3,
                         rl.col     = 'gray',
-                        dispersion = c('mm',
+                        dispersion = c('none',
+                                       'mm',
                                        'sd',
-                                       'ci',
-                                       'none'),
+                                       'ci'),
                         dispersion.lty = 1,
                         title      = '', ...)
 {

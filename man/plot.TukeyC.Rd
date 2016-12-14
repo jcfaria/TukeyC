@@ -24,7 +24,7 @@
      rl             = TRUE,
      rl.lty         = 3,
      rl.col         = 'gray',
-     dispersion     = c('mm','sd','ci','none'),
+     dispersion     = c('none','mm','sd','ci'),
      dispersion.lty = 1,
      title          = '', \dots)
 }

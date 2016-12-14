@@ -1,6 +1,6 @@
 2016-11-21 vs. 1.2-6 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Added the adjusted.pvalue argument in the TukeyC function.
-  * Remove dispersion argument of the TukeyC function and added in the plot function.
+  * Removed dispersion argument of the TukeyC function and added in the plot function.
   * Added three news methods in the package: print.TukeyC, TukeyC.formula and TukeyC.lm.
   * Substitute the TukeyC.aov function by TukeyC.lm.
   * Substitute the m.inf.1a, m.inf.1b, m.inf.2a, m.inf.2b, m.inf.3a and m.inf.3b by m.infos.lm, m.infos.aovlist, m.infos.nest.lm and m.infos.nest.aovlist.
