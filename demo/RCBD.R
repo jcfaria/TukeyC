@@ -2,52 +2,43 @@
 ## Example: Randomized Complete Block Design (RCBD)
 ##
 
-## The parameters can be: design matrix and the response variable,
-## data.frame or aov
+## The parameters can be: vectors, design matrix and the response variable,
+## data.frame, aov or lm.
 
 library(TukeyC)
 data(RCBD)
 
-## Design matrix (dm) and response variable (y)
+## From: data.frame (dfm), which='tra'
 tk1 <- with(RCBD,
-            TukeyC(x=dm,
-                   y=y,
-                   model='y ~ blk + tra',
+            TukeyC(y ~ blk + tra,
+                   dfm,
                    which='tra'))
 summary(tk1)
 plot(tk1)
 
-## From: data.frame (dfm), which='tra'
+## From: formula, which='blk' implicit (due to be the first arg of the model)
 tk2 <- with(RCBD,
-            TukeyC(x=dfm,
-                   model='y ~ blk + tra',
-                   which='tra'))
+            TukeyC(y ~ blk + tra,
+                   dfm))
 summary(tk2)
+plot(tk2)
 
-## From: data.frame (dfm), which='blk'
-tk3 <- with(RCBD,
-            TukeyC(x=dfm,
-                   model='y ~ blk + tra',
-                   which='blk'))
-summary(tk3)
-plot(tk3)
 
-## From: aov
 av1 <- with(RCBD,
             aov(y ~ blk + tra,
                 data=dfm))
 summary(av1)
 
-## From: aov, which='blk' implicit
-tk4 <- TukeyC(x=av1)
-summary(tk4)
+## From: aov, which='blk' implicit (due to be the first arg of the model)
+tk3 <- TukeyC(av1)
+summary(tk3)
 
 ## From: aov, which='blk' explicit
-tk5 <- TukeyC(x=av1,
+tk4 <- TukeyC(x=av1,
               which='blk')
-summary(tk5)
+summary(tk4)
 
 ## From: aov, which='tra' explicit
-tk6 <- TukeyC(x=av1,
+tk5 <- TukeyC(x=av1,
               which='tra')
-summary(tk6)
+summary(tk5)

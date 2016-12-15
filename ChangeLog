@@ -1,11 +1,20 @@
+2016-11-21 vs. 1.2-6 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+  * Added the adjusted.pvalue argument in the TukeyC function.
+  * Removed dispersion argument of the TukeyC function and added in the plot function.
+  * Added three news methods in the package: print.TukeyC, TukeyC.formula and TukeyC.lm.
+  * Substitute the TukeyC.aov function by TukeyC.lm.
+  * Substitute the m.inf.1a, m.inf.1b, m.inf.2a, m.inf.2b, m.inf.3a and m.inf.3b by m.infos.lm, m.infos.aovlist, m.infos.nest.lm and m.infos.nest.aovlist.
+  * The TukeyC.nest.lm and TukeyC.nest.aovlist are internal.
+  * The TukeyC.nest functions were otimized.
+  * Added the dependency of the doBy package because the LSmeans function.
+  * Added the official url development of the package in description file.
+
 2014-08-16 vs. 1.2-5 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
-  * A new function 'cv' was added. It allows to perform the coefficient 
-    of the experiment variation for lm, aov and aovlist objetcs.
+  * A new function 'cv' was added. It allows to perform the coefficient of the experiment variation for lm, aov and aovlist objetcs.
   * Small changes to meet the requirements of CRAN.
 
 2013-11-21 vs. 1.2-4 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
-  * All calls to the old method model.frame.aovlist now call the generic
-    to meet the requirements of CRAN.
+  * All calls to the old method model.frame.aovlist now call the generic to meet the requirements of CRAN.
   * Released to CRAN.  
 
 2013-04-16 vs. 1.2-3 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
@@ -18,8 +27,7 @@
   * Restrict to testers.
 
 2012-12-10 vs. 1.1-1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
-  * A small bug was fixed in the function TukeyC.nest.aovlist.R.
-    The lines that were with "[:punct:]" (wrongly) were changed to "[[:punct:]]" (correctly).
+  * A small bug was fixed in the function TukeyC.nest.aovlist.R. The lines that were with "[:punct:]" (wrongly) were changed to "[[:punct:]]" (correctly).
   * New data: SPET (Split-plot in time).
   * Restrict to testers.
 
@@ -58,3 +66,4 @@
 
 2010-05-27  vs. 1.0-0 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * Restrict to testers.
+GVIM 168 43 0 27

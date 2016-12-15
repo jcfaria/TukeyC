@@ -10,23 +10,23 @@
 }
 
 \usage{
-  \method{plot}{TukeyC}(x,
-     result=TRUE,
-     replicates=TRUE,
-     pch=19,
-     col=NULL,
-     xlab=NULL,
-     ylab=NULL,
-     xlim=NULL,
-     ylim=NULL,
-     id.lab=NULL,
-     id.las=1,
-     rl=TRUE,
-     rl.lty=3,
-     rl.col='gray',
-     mm=TRUE,
-     mm.lty=1,
-     title='', \dots)
+\method{plot}{TukeyC}(x,
+     result         = TRUE,
+     replicates     = TRUE,
+     pch            = 19,
+     col            = NULL,
+     xlab           = NULL,
+     ylab           = NULL,
+     xlim           = NULL,
+     ylim           = NULL,
+     id.lab         = NULL,
+     id.las         = 1,
+     rl             = TRUE,
+     rl.lty         = 3,
+     rl.col         = 'gray',
+     dispersion     = c('none','mm','sd','ci'),
+     dispersion.lty = 1,
+     title          = '', \dots)
 }
 
 \arguments{
@@ -44,8 +44,8 @@
   \item{rl}{Horizontal line connecting the circle to the \samp{y} axis.}
   \item{rl.lty}{Line type of \samp{rl}.}
   \item{rl.col}{Line color of \samp{rl}.}
-  \item{mm}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value.}
-  \item{mm.lty}{Line type of mm.}
+  \item{dispersion}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value. Other options are: sd (standard deviation), ci (confidence interval) and none.}
+  \item{dispersion.lty}{Line type of dispersion.}
   \item{title}{A title for the plot.}
   \item{\dots}{Optional plotting parameters.}
 }
@@ -53,8 +53,8 @@
 \details{
   The \code{plot.TukeyC} function is a S3 method to plot \samp{Tukey} and
   \code{TukeyC.nest} objetcs. It generates a serie of points (the means) and a 
-  vertical line showing the minimum e maximum of the values corresponding to
-  each group mean.
+  vertical line showing the dispersion of the values corresponding to
+  each group mean. 
 }
 
 \author{
@@ -72,56 +72,55 @@
 }
 
 \examples{
-  ##
-  ## Examples: Completely Randomized Design (CRD)
-  ## More details: demo(package='TukeyC')
-  ##
+##
+## Examples: Completely Randomized Design (CRD)
+## More details: demo(package='TukeyC')
+##
 
-  library(TukeyC)
-  data(CRD2)
+library(TukeyC)
+data(CRD2)
 
-  ## From: vectors x and y
-  tk1 <- with(CRD2,
-              TukeyC(x=x,
-                     y=y,
-                     model='y ~ x',
-                     which='x'))
-  plot(tk1,
-       id.las=2,
-       rl=FALSE)
+## From: formula
+tk1 <- with(CRD2,
+            TukeyC(y ~ x,
+                   data=dfm,
+                   which='x'))
 
-  ## From: design matrix (dm) and response variable (y)
-  tk2 <- with(CRD2,
-              TukeyC(x=dm,
-                     y=y,
-                     model='y ~ x',
-                     which='x'))
-  plot(tk2,
-       mm.lty=3,
-       id.las=2,
-       rl=FALSE)
+old.par <- par(mar=c(6, 3, 6, 2))
+plot(tk1,
+     id.las=2)
 
-  ## From: data.frame (dfm)
-  tk3 <- with(CRD2,
-              TukeyC(x=dfm,
-                     model='y ~ x',
-                     which='x'))
-  plot(tk3,
-       id.las=2,
-       rl=FALSE)
+plot(tk1,
+     dispersion='sd',
+     mm.lty=3,
+     id.las=2,
+     rl=FALSE)
 
-  ## From: aov
-  av <- with(CRD2,
-             aov(y ~ x,
-             data=dfm))
-  summary(av)
+## From: aov
+av <- with(CRD2,
+           aov(y ~ x,
+               data=dfm))
+summary(av)
 
-  tk4 <- with(CRD2,
-              TukeyC(x=av,
-                     which='x'))
-  plot(tk4,
-       rl=FALSE,
-       id.las=2)
+tk2 <- TukeyC(x=av,
+              which='x')
+plot(tk2,
+     rl=FALSE,
+     id.las=2)
+
+# From: lm
+av_lm <- with(CRD2,
+           lm(y ~ x,
+              data=dfm))
+
+tk3 <- TukeyC(x=av_lm,
+              which='x')
+plot(tk3,
+     dispersion='ci',
+     id.las=2,
+     rl=FALSE)
+
+par(old.par)
 }
 
 \keyword{package}

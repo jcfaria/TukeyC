@@ -3,56 +3,206 @@
 ##
 
 TukeyC.aovlist <- function(x,
-                           which,
-                           error,
-                           sig.level=.05,
-                           round=2,
-                           dispersion=c('mm', 's', 'se'), ...)
+                           which           = NULL,
+                           fl1             = NULL, 
+                           fl2             = NULL, 
+                           error           = NULL,
+                           sig.level       = .05,
+                           round           = 2,
+                           adjusted.pvalue = 'none', ...)
 {
-  mt <- model.tables(x,
-                     "means")              # summary tables for model fits
-  if(is.null(mt$n))
-    stop("No factors in the fitted model!")
 
-  tabs <- mt$tables[-1][which]             # specified group means
+  # Interações com erro experimental
+  if(!is.null(fl1) & is.null(error)){
 
-  r    <- mt$n[names(tabs)][[which]]       # groups and its number of replicates
+    pos_error <- length(names(x))
+    SSE <- deviance(x[[pos_error]]) # experimental error
+    dfr <- df.residual(x[[pos_error]])# experimental error
+    MSE  <- SSE/dfr
 
-  bal  <- ifelse(length(r) == 1,
-                 TRUE,
-                 FALSE)                    # is (or not) balanced
+    class(x) <- c('nest.aovlist',class(x)) 
 
-  MSE  <- sum(resid(x[[error]])^2) / x[[error]][[8]]
+    res <- TukeyC(x               = x,
+                  which           = which,
+                  fl1             = fl1,
+                  fl2             = fl2,
+                  MSE             = MSE,
+                  dfr             = dfr,
+                  sig.level       = sig.level,
+                  round           = round,
+                  adjusted.pvalue = adjusted.pvalue,
+                  ...)
 
-  nms  <- names(tabs[[which]])
+    class(res) <- c('TukeyC',
+                    'list')
 
-  ord  <- order(as.vector(tabs[[which]]),
-                decreasing=TRUE)
+    return(res)                           
 
-  m.inf <- m.inf.1b(x,
-                    which,
-                    dispersion)
-  
-  rownames(m.inf) <- nms
+  }
 
-  m.inf <- m.inf[order(m.inf[,1],
-                       decreasing=TRUE),]
+  # Interações com outros erros
+  if(!is.null(fl1) & !is.null(error)){ 
 
-  dfr <- x[[error]][[8]]  # residual degrees of freedom
+    many_errors <- unlist(strsplit(error,
+                                   '\\/'))
 
-  out <- make.TukeyC.test(r=r,
-                          MSE=MSE,
-                          m.inf=m.inf,
-                          ord=ord,
-                          sig.level=sig.level,
-                          dfr=dfr,
-                          bal=bal,
-                          mt=mt,
-                          round)
+    n_errors <- length(many_errors)
 
-  class(out) <- c('TukeyC',
+    if(n_errors > 1){# combinação de erros!!!
+
+      aux_SSE <- NULL
+      aux_dfr <- NULL
+
+      for(i in 1:n_errors){
+
+        aux_SSE[i] <- deviance(x[[many_errors[i]]])
+        aux_dfr[i] <- df.residual(x[[many_errors[i]]]) 
+      }
+
+      aux_MSE <- aux_SSE/aux_dfr
+
+      factors <- unlist(strsplit(which,
+                                 '[[:punct:]]'))
+
+      aux_levels <- attr(x,'xlevel')
+
+      aux_levels1 <- lapply(aux_levels,
+                            length)
+
+      levelss <- unlist(aux_levels1[factors])
+
+      if(length(levelss) == 2){
+
+        cp <- c(levelss[1]-1,
+                1) 
+
+        MSE <- (cp%*%aux_MSE)/levelss[1]
+
+        numer <- (cp%*%aux_MSE)^2
+        denom <- (cp[1]*aux_MSE[1])^2/aux_dfr[1] + aux_MSE[2]^2/aux_dfr[2]
+        dfr <- numer/denom 
+
+      } else {
+
+        cp <- c(levelss[2]*(levelss[1]-1),
+                levelss[2]-1,
+                1) 
+
+        MSE <- (cp%*%aux_MSE)/prod(levelss[1:2])
+
+        numer <- (cp%*%aux_MSE)^2
+        denom <- (cp[1]*aux_MSE[1])^2/aux_dfr[1] + (cp[2]*aux_MSE[2])^2/aux_dfr[2] + aux_MSE[3]^2/aux_dfr[3]
+        dfr <- numer/denom       
+
+      } 
+    }else{# não há combinação de erros!!!   
+
+      SSE <- deviance(x[[error]]) # experimental error
+      dfr <- df.residual(x[[error]])# experimental error
+      MSE  <- SSE/dfr
+
+    }
+    class(x) <- c('nest.aovlist',class(x))  
+
+    res <- TukeyC(x               = x,
+                  which           = which,
+                  fl1             = fl1,
+                  fl2             = fl2,
+                  MSE             = MSE,
+                  dfr             = dfr,
+                  sig.level       = sig.level,
+                  round           = round,
+                  adjusted.pvalue = adjusted.pvalue,
+                  ...)
+
+    class(res) <- c('TukeyC',
+                    'list')
+
+    return(res)                            
+
+  }
+
+  # Aqui não há interesse em interações!!!
+  if(is.null(fl1) & !is.null(error)){ 
+
+    SSE <- deviance(x[[error]]) # experimental error
+    dfr <- df.residual(x[[error]])# experimental error
+    MSE  <- SSE/dfr
+
+  } else {# Erro experimental
+
+    pos_error <- length(names(x))
+    SSE <- deviance(x[[pos_error]]) # experimental error
+    dfr <- df.residual(x[[pos_error]])# experimental error
+    MSE  <- SSE/dfr
+
+  }
+
+  my <- as.character(attr(x,'terms')[[2]]) 
+
+  #m1 <- gsub('\\:','\\+', which)
+
+  #forminter <- as.formula(paste(my, '~', m1))
+  forminter <- as.formula(paste(my, 
+                                '~', 
+                                which)) 
+
+  dat <- model.frame(x)
+
+  aux_mt <- aggregate(forminter, 
+                      data = dat,
+                      function(x) c(means = mean(x),
+                                    r = length(x)))
+  # 
+  #   aux_r <- aggregate(forminter, 
+  #                       data = dat,
+  #                       function(x) r = length(x))
+  # 
+  #   reps <- aux_r[[my]]
+  # 
+  #   aux_mt <- LSmeans(x,
+  #                     effect = which)
+  # 
+  #   aux_mt1 <- aux_mt$coef[,1]
+  # 
+  #   aux_mt2 <- data.frame(means = aux_mt1,
+  #                         reps = reps)
+  # 
+  #   row.names(aux_mt2) <- aux_r[,1]
+  # 
+  #   mt <- aux_mt2[order(aux_mt2[,1],
+  #                       decreasing = TRUE),]
+  # 
+  aux_mt1 <- aux_mt[order(aux_mt[[my]][,1], 
+                          decreasing = TRUE),]
+
+  mt <- data.frame(which = aux_mt1[,1],
+                   means = aux_mt1[[my]][,1],
+                   reps = aux_mt1[[my]][,2])
+
+  row.names(mt) <- aux_mt1[,1]
+
+  out <- make.TukeyC.test(obj             = mt,
+                          MSE             = MSE,
+                          sig.level       = sig.level,
+                          dfr             = dfr,
+                          round           = round,
+                          adjusted.pvalue = adjusted.pvalue)
+
+  m.inf <- m.infos.aovlist(x         = x,
+                           my        = my,
+                           forminter = forminter,
+                           which     = which,
+                           sig.level = sig.level,
+                           aux_mt    = aux_mt,
+                           MSE       = MSE)
+
+  res <- list(out  = out,
+              info = m.inf)
+
+  class(res) <- c('TukeyC',
                   'list')
 
-  return(out)                    
+  return(res)                    
 }
 
