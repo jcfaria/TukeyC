@@ -11,17 +11,20 @@ m.infos.nest.lm <- function(x,
 
   aux_m.inf <- aggregate(forminter,
                          data = x$model,
-                         function(x) c(min=min(x),
-                                       max=max(x),
-                                       sd=sd(x)))
+                         function(x) c(min = min(x),
+                                       max = max(x),
+                                       sd  = sd(x),
+                                       se  = sd(x)/length(x)))
 
   aux_m.inf1 <- data.frame(aux_m.inf[names(aux_m.inf) != my],
                            means     = aux_mt$coef[,1],
                            aux_m.inf[[my]][,1:2],
                            'linf_sd' = aux_mt$coef[,1] - aux_m.inf[[my]][,3],
-                           'lsup_sd' = aux_mt$coef[,1] + aux_m.inf[[my]][,3],
-                           'linf_se' = aux_mt$coef[,1] - abs(qt(sig.level,aux_mt$coef[,3]))*aux_mt$coef[,2],
-                           'lsup_se' = aux_mt$coef[,1] + abs(qt(sig.level,aux_mt$coef[,3]))*aux_mt$coef[,2])
+                           'lsup_sd' = aux_mt$coef[,1] + aux_m.inf[[my]][,3], 
+                           'linf_se' = aux_mt$coef[,1] - abs(qt(sig.level,aux_mt$coef[,3]))*aux_m.inf[[my]][,4],
+                           'lsup_se' = aux_mt$coef[,1] + abs(qt(sig.level,aux_mt$coef[,3]))*aux_m.inf[[my]][,4], 
+                           'linf_sepool' = aux_mt$coef[,1] - abs(qt(sig.level,aux_mt$coef[,3]))*aux_mt$coef[,2],
+                           'lsup_sepool' = aux_mt$coef[,1] + abs(qt(sig.level,aux_mt$coef[,3]))*aux_mt$coef[,2])
 
   aux_m.inf2 <- aux_m.inf1[order(aux_m.inf1[['means']],
                                  decreasing = TRUE),]
@@ -45,7 +48,8 @@ m.infos.nest.lm <- function(x,
     m.inf <- list(Means = aux_m.inf21[,c(1:3)],
                   mm = aux_m.inf21[,c(1:2,4:5)],
                   sd = aux_m.inf21[,c(1:2,6:7)],
-                  ic = aux_m.inf21[,c(1:2,8:9)]) 
+                  ic = aux_m.inf21[,c(1:2,8:9)],
+                  icpool = aux_m.inf21[,c(1:2,10:11)]) 
 
   } else {
 
@@ -59,7 +63,8 @@ m.infos.nest.lm <- function(x,
     m.inf <- list(Means = aux_m.inf21[,c(1:4)],
                   mm = aux_m.inf21[,c(1:3,5:6)],
                   sd = aux_m.inf21[,c(1:3,7:8)],
-                  ic = aux_m.inf21[,c(1:3,9:10)]) 
+                  ic = aux_m.inf21[,c(1:3,9:10)],
+                  icpool = aux_m.inf21[,c(1:3,11:12)]) 
 
   }
 }
