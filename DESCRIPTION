@@ -1,8 +1,8 @@
 Package: TukeyC
 Type: Package
 Title: Conventional Tukey Test
-Version: 1.2-6
-Date: 2016-11-21
+Version: 1.2-7
+Date: 2017-02-14
 Author: José Cláudio Faria <joseclaudio.faria@gmail.com>
         Enio G. Jelihovschi <eniojelihovs@gmail.com>
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
@@ -14,4 +14,4 @@ URL: https://github.com/jcfaria/TukeyC
 Encoding: latin1
 LazyLoad: yes
 NeedsCompilation: no
-Packaged: 2016-11-23 00:59:54 UTC; ivan
+

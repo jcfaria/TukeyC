@@ -19,7 +19,8 @@ plot.TukeyC <- function(x,
                         dispersion = c('none',
                                        'mm',
                                        'sd',
-                                       'ci'),
+                                       'ci',
+                                       'cip'),
                         dispersion.lty = 1,
                         title      = '', ...)
 {
@@ -71,6 +72,11 @@ plot.TukeyC <- function(x,
   ic2 <- x$info$ic[['lsup_se']]
   ic <- data.frame(ic1,
                    ic2)
+
+  icp1 <- x$info$icpool[['linf_sepool']]
+  icp2 <- x$info$icpool[['lsup_sepool']]
+  icp <- data.frame(icp1,
+                    icp2) 
 
   if(is.null(col))
     col <- 'black'
@@ -146,6 +152,14 @@ plot.TukeyC <- function(x,
                     ic[,2],
                     lty = dispersion.lty,
                     col = col, ...)           
+         },
+         cip = {
+           segments(groups,
+                    icp[,1],
+                    groups,
+                    icp[,2],
+                    lty = dispersion.lty,
+                    col = col, ...)            
          },
          none = NULL)
 

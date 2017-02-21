@@ -24,7 +24,7 @@
      rl             = TRUE,
      rl.lty         = 3,
      rl.col         = 'gray',
-     dispersion     = c('none','mm','sd','ci'),
+     dispersion     = c('none','mm','sd','ci','cip'),
      dispersion.lty = 1,
      title          = '', \dots)
 }
@@ -44,7 +44,7 @@
   \item{rl}{Horizontal line connecting the circle to the \samp{y} axis.}
   \item{rl.lty}{Line type of \samp{rl}.}
   \item{rl.col}{Line color of \samp{rl}.}
-  \item{dispersion}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value. Other options are: sd (standard deviation), ci (confidence interval) and none.}
+  \item{dispersion}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value. Other options are: sd (standard deviation), ci (confidence interval), cip (pooled confidence interval) and none.}
   \item{dispersion.lty}{Line type of dispersion.}
   \item{title}{A title for the plot.}
   \item{\dots}{Optional plotting parameters.}
@@ -54,7 +54,7 @@
   The \code{plot.TukeyC} function is a S3 method to plot \samp{Tukey} and
   \code{TukeyC.nest} objetcs. It generates a serie of points (the means) and a 
   vertical line showing the dispersion of the values corresponding to
-  each group mean. 
+  each group mean. The ci options is calculed utilizing each treatment variance as estimating of population variance. The cip options is calculed utilizing the means square error (MSE) as estimating of population variance.
 }
 
 \author{
@@ -119,6 +119,12 @@ plot(tk3,
      dispersion='ci',
      id.las=2,
      rl=FALSE)
+
+plot(tk3,
+     dispersion='cip',
+     id.las=2,
+     rl=FALSE)
+
 
 par(old.par)
 }
