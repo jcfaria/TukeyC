@@ -1,4 +1,4 @@
-TukeyC.nest.lm <- function(x,
+TukeyC.nest.lmerMod <- function(x,
                            which, 
                            fl1, 
                            fl2,
@@ -8,27 +8,16 @@ TukeyC.nest.lm <- function(x,
                            round,
                            adjusted.pvalue, ...)
 {
+ 
   my <- as.character(formula(x)[[2]])
-  #my <- as.character(attr(x,'terms')[[2]]) 
   m1 <- gsub('\\:','\\+', which)
   m2 <- unlist(strsplit(which,
                         '[[:punct:]]'))  
 
   forminter <- as.formula(paste(my, '~', m1))
 
-  #   aux_mt1 <- aggregate(forminter, 
-  #                        data = x$model,
-  #                        function(x) c(means = mean(x),
-  #                                      r = length(x)))
-  # 
-  #   aux_mt2 <- aux_mt1[order(aux_mt1[[my]][,1], 
-  #                            decreasing = TRUE),]
-  # 
-  #   names(aux_mt2) <- gsub(my,'x',names(aux_mt2))
-  # 
-
   aux_r <- aggregate(forminter, 
-                     data = x$model,
+                     data = x@frame,
                      function(x) r = length(x))
   reps <- aux_r[[my]]
 
@@ -56,12 +45,10 @@ TukeyC.nest.lm <- function(x,
   if(is.null(fl2)){
     # Interesse apenas na interação dupla
 
-    f1 <- levels(x$model[,nf2]) # correspondem aos fatores que se quer comparar!
+    f1 <- levels(x@frame[[nf2]]) # correspondem aos fatores que se quer comparar!
 
-    f2 <- levels(x$model[,nf1])[fl1] # corresponde ao fator onde se está fazendo o desdobramento!
+    f2 <- levels(x@frame[[nf1]])[fl1] # corresponde ao fator onde se está fazendo o desdobramento!
 
-    #     mt <- subset(aux_mt2, 
-    #                  eval(parse(text = nf1)) == f2) # pegando as médias de interesse
     mt <- subset(aux_mt3, 
                  eval(parse(text = nf1)) == f2) # pegando as médias de interesse
 
@@ -71,11 +58,11 @@ TukeyC.nest.lm <- function(x,
   } # Interesse na interação tripla 
   else {
 
-    f1 <- levels(x$model[,nf3])
+    f1 <- levels(x@frame[[nf3]])
 
-    f2 <- levels(x$model[,nf2])[fl2] 
+    f2 <- levels(x@frame[[nf2]])[fl2] 
 
-    f3 <- levels(x$model[,nf1])[fl1]
+    f3 <- levels(x@frame[[nf1]])[fl1]
 
     mt <- subset(aux_mt3, 
                  eval(parse(text = nf1)) == f3 & eval(parse(text=nf2)) == f2) # pegando as médias de interesse
@@ -94,7 +81,7 @@ TukeyC.nest.lm <- function(x,
                           round           = round,
                           adjusted.pvalue = adjusted.pvalue)  
 
-  m.inf <- m.infos.nest.lm(x         = x,
+  m.inf <- m.infos.nest.lmerMod(x         = x,
                            my        = my,
                            forminter = forminter,
                            which     = which,
@@ -107,3 +94,6 @@ TukeyC.nest.lm <- function(x,
               info = m.inf)
 
 }    
+
+#setClass("nest.lmerMod", representation(resp="lmerResp"), contains="merMod")
+

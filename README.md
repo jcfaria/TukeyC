@@ -17,3 +17,9 @@ After to clone it, to check, build and install do the following:
 > R CMD build TukeyC
 
 > R CMD INSTALL TukeyC_X.X-X.tar.gz
+
+Or, you can install using devtools package as:
+
+> library(devtools)
+
+> install_github('jcfaria/TukeyC')

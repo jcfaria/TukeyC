@@ -154,17 +154,6 @@ TukeyC.lm <- function(x,
                                 '~', 
                                 which)) 
 
-  #   aux_mt <- aggregate(forminter, 
-  #                       data = x$model,
-  #                       function(x) c(means = mean(x),
-  #                                     r = length(x))) 
-  # 
-  #   mt <- aux_mt[order(aux_mt[[my]][,1], 
-  #                      decreasing = TRUE),] 
-  # 
-  #   row.names(mt) <- mt[,1]
-  # 
-
   aux_r <- aggregate(forminter, 
                      data = x$model,
                      function(x) r = length(x))
@@ -200,6 +189,10 @@ TukeyC.lm <- function(x,
 
   res <- list(out  = out,
               info = m.inf)
+
+  cl <- match.call() 
+
+  res$call  <- cl
 
   class(res) <- c('TukeyC',
                   'list')

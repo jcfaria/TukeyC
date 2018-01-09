@@ -2,8 +2,7 @@
 ## Example: Factorial Experiment (FE)
 ##
 
-## The parameters can be: vectors, design matrix and the response variable,
-## data.frame, aov or lm.
+## The parameters can be: formula, aov, lm or lmer.
 
 ## Note: Upper case for factors and lowercase for levels
 

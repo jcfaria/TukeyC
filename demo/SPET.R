@@ -2,8 +2,7 @@
 ## Example: Split-plot Experiment in time (SPET)
 ##
 
-## The parameters can be: vectors, design matrix and the response variable,
-## data.frame, aov or lm.
+## The parameters can be: formula, aov, lm or lmer.
 
 ## Note: The factors are in uppercase and its levels in lowercase!
 

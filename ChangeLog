@@ -1,5 +1,11 @@
-2017-02-14 vs. 1.2-7 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+2017-12-30 vs. 1.2-8 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+  * Bug fixed in TukeyC.nest.aovlist.
+  * Add new method in the package: TukeyC.lmerMod.
+  * Add field imports in description file with lme4.
+
+2017-09-13 vs. 1.2-7 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Added the ci (confidence interval) and cip (pooled confidence interval) in plot function.
+  * Added the match.call() function internally in the TukeyC.lm function to recuperate arguments.
  
 2016-11-21 vs. 1.2-6 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Added the adjusted.pvalue argument in the TukeyC function.

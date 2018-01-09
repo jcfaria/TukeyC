@@ -1,14 +1,15 @@
 Package: TukeyC
 Type: Package
 Title: Conventional Tukey Test
-Version: 1.2-7
-Date: 2017-02-14
+Version: 1.2-8
+Date: 2018-01-09
 Author: José Cláudio Faria <joseclaudio.faria@gmail.com>
         Enio G. Jelihovschi <eniojelihovs@gmail.com>
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
 Maintainer: José Cláudio Faria <joseclaudio.faria@gmail.com>
 Depends: R (>= 2.6.0), doBy
-Description: Perform the conventional Tukey test from formula, aov, aovlist and lm objects.
+Imports: lme4
+Description: Perform the conventional Tukey test from formula, aov, aovlist, lm and lmer objects.
 License: GPL (>= 2)
 URL: https://github.com/jcfaria/TukeyC
 Encoding: latin1
