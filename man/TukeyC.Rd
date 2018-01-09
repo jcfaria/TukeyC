@@ -4,13 +4,14 @@
 \alias{TukeyC.lm}
 \alias{TukeyC.formula}
 \alias{TukeyC.aovlist}
+\alias{TukeyC.lmerMod}
 
 \title{
   The TukeyC Test for Single Experiments
 }
 
 \description{
-  These are methods for objects of class \code{formula}, \code{lm}, \code{aov} and \code{aovlist} for single, factorial, split-plot and split-split-plot experiments.
+  These are methods for objects of class \code{formula}, \code{lm}, \code{aov}, \code{aovlist} and \code{lmerMod} for single, factorial, split-plot and split-split-plot experiments.
 }
 
 \usage{
@@ -47,10 +48,20 @@ TukeyC(x,...)
        adjusted.pvalue = 'none',
        \dots)
 
+\method{TukeyC}{lmerMod}(x,
+       which           = NULL,
+       fl1             = NULL,
+       fl2             = NULL,
+       error           = NULL,
+       sig.level       = .05,
+       round           = 2,
+       adjusted.pvalue = 'none',
+       \dots)
+ 
 }
 
 \arguments{
-  \item{x,formula}{A \code{formula}, \code{lm}, \code{aov} and \code{aovlist} object. Objects of the \code{formula} class follow ``response variable ~ predicted variable.}
+  \item{x,formula}{A \code{formula}, \code{lm}, \code{aov}, \code{aovlist} and \code{lmerMod} class object. Objects of the \code{formula} class follow ``response variable ~ predicted variable.}
   \item{data}{A object of the \code{data.frame} class. Use only objects of \code{formula} class.}
   \item{which}{The name of the treatment to be used in the comparison.
     The name must be inside quoting marks.}
@@ -104,11 +115,11 @@ TukeyC(x,...)
 
 \examples{
 ##
-## Examples: Completely Randomized Design (CRD)
+## Examples:Randomized Complete Block Design (RCBD)
 ## More details: demo(package='TukeyC')
 ##
 
-## The parameters can be: formula, aov, lm and aovlist.
+## The parameters can be: formula, aov, lm, aovlist and lmerMod
 
 data(RCBD)
 
@@ -119,6 +130,17 @@ tk1 <- with(RCBD,
                    which='tra'))
 summary(tk1)
 
+## From: merMod
+## This class is specific of the lme4 package.
+if(require(lme4)){ 
+lmer1 <- with(RCBD,
+            lmer(y ~ (1|blk) + tra,
+                 data = dfm))
+
+tk2 <-  TukeyC(lmer1,
+               which='tra')
+summary(tk2)
+} 
 ##
 ## Example: Latin Squares Design (LSD)
 ## More details: demo(package='TukeyC')
@@ -127,29 +149,29 @@ summary(tk1)
 data(LSD)
 
 ## From: formula
-tk2 <- with(LSD,
+tk3 <- with(LSD,
             TukeyC(y ~ rows + cols + tra,
                    data=dfm,
                    which='tra'))
-summary(tk2)
+summary(tk3)
 
 ## From: aov
 av1 <- with(LSD,
             aov(y ~ rows + cols + tra,
                 data=dfm))
 
-tk3 <- TukeyC(av1,
+tk4 <- TukeyC(av1,
               which='tra')
-summary(tk3)
+summary(tk4)
 
 ## From: lm
 lm1 <- with(LSD,
             lm(y ~ rows + cols + tra,
                data=dfm))
 
-tk4 <- TukeyC(lm1,
+tk5 <- TukeyC(lm1,
               which='tra')
-summary(tk4)
+summary(tk5)
 
 ##
 ## Example: Factorial Experiment (FE)
@@ -159,11 +181,11 @@ summary(tk4)
 data(FE)
 ## From: formula
 ## Main factor: N
-tk5 <- with(FE,
+tk6 <- with(FE,
             TukeyC(y ~ blk + N*P*K,
                    data=dfm,
                    which='N'))
-summary(tk5)
+summary(tk6)
 
 ## Nested: p1/N
 # From: formula
@@ -198,18 +220,32 @@ ntk3 <- with(FE,
                     fl1=1))
 summary(ntk3) 
 
+# From: merMod
+if(require(lme4)){
+lmer2 <- with(FE,
+              lmer(y ~ (1|blk) + N*P*K,
+                  dfm))
+
+ntk3 <- with(FE,
+             TukeyC(lmer2,
+                    which='N:P',
+                    fl1=1))
+summary(ntk3) 
+}            
+
 ##
 ## Example: Split-plot Experiment (SPET)
 ## More details: demo(package='TukeyC')
 ##
 data(SPET)
 
-lm2 <- with(SPET,
+## From lm
+lm3 <- with(SPET,
             lm(y ~ blk*tra + tra*year,
                dfm))
 
 # crotgrantiana/year
-sptk1 <- TukeyC(lm2,
+sptk1 <- TukeyC(lm3,
                 which='tra:year',
                 fl1=1)
 summary(sptk1) 
@@ -217,13 +253,32 @@ summary(sptk1)
 # year1/tra
 # It is necessary to set year error with trat error in the order of the "which" argument.
 # It is necessary to inform how to combinate the errors
-tk6 <- with(FE,
-            TukeyC(lm2,
-                   which='year:tra',
-                   error='Residuals/blk:tra',
-                   fl1=1))
-summary(tk6)
+sptk2 <-  TukeyC(lm3,
+               which='year:tra',
+               error='Residuals/blk:tra',
+               fl1=1)
+summary(sptk2)
 
+# From merMod
+# Onty tra
+if(require(lme4)){ 
+lmer3 <- with(SPET,
+              lmer(y ~ blk + (1|blk:tra) + tra*year,
+                 dfm))
+
+# comparison only tra
+sptk3 <- TukeyC(lmer3,
+                which = 'tra',
+                error = 'blk:tra')
+summary(sptk3)  
+
+# year1/tra
+sptk4 <- TukeyC(lmer3,
+                which='year:tra',
+                error='Residual/blk:tra',
+                fl1=1)
+summary(sptk4)
+} 
 
 ## Example: Split-split-plot Experiment (SSPE)
 ## More details: demo(package='TukeyC')
@@ -233,92 +288,92 @@ data(SSPE)
 ## From: formula
 ## Main factor: P
 ## It is necessary to inform the appropriate error for the test
-tk7 <- with(SSPE,
+ssptk1 <- with(SSPE,
             TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                    data=dfm,
                    which='P',
                    error='blk:P'))
-summary(tk7)
+summary(ssptk1)
 
 ## Main factor: SP
 ## It is necessary to inform the appropriate error for the test
-tk8 <- with(SSPE,
+ssptk2 <- with(SSPE,
             TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                    data=dfm,
                    which='SP',
                    error='blk:P:SP'))
-summary(tk8)
+summary(ssptk2)
 
 ## Main factor: SSP
-tk9 <- with(SSPE,
+ssptk3 <- with(SSPE,
             TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                    data=dfm,
                    which='SSP'))
-summary(tk9)
+summary(ssptk3)
 
 ## From: aov
 ## Main factor: SSP
-av1 <- with(SSPE,
+av3 <- with(SSPE,
             aov(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                 data=dfm))
 
-tk10 <- TukeyC(av1,
+ssptk4 <- TukeyC(av3,
                which='SSP')
-summary(tk10)
+summary(ssptk4)
 
 ## Nested: p1/SP
 ## It is necessary to inform the appropriate error for the test
-tk11 <- TukeyC(av1,
+ssptk5 <- TukeyC(av3,
                which='P:SP',
                error='blk:P:SP',
                fl1=1)
-summary(tk11)
+summary(ssptk5)
 
 ## Nested: p1/SSP
-tk12 <- TukeyC(av1,
+ssptk6 <- TukeyC(av3,
                which='P:SSP',
                fl1=1)
-summary(tk12)
+summary(ssptk6)
 
 ## Nested: p1/sp1/SSP
 ## Testing SSP inside of level one of P and level one of SP
-tk13 <- TukeyC(av1,
-               which='P:SP:SSP',
-               fl1=1,
-               fl2=1)
-summary(tk13)
+ssptk7 <- TukeyC(av3,
+                 which='P:SP:SSP',
+                 fl1=1,
+                 fl2=1)
+summary(ssptk7)
 
 ## Nested: p2/sp1/SSP
-tk14 <- TukeyC(av1,
+ssptk8 <- TukeyC(av3,
                which='P:SP:SSP',
                fl1=2,
                fl2=1)
-summary(tk14)
+summary(ssptk8)
 
 ## Nested: sp1/P
 ## It is necessary to inform the appropriate error for the test
-tk15 <- TukeyC(av1,
+ssptk9 <- TukeyC(av3,
                which='SP:P',
                error='blk:P:SP/blk:P',
                fl1=1)
 
-summary(tk15)
+summary(ssptk9)
 
 ## Nested: ssp1/SP
-tk16 <- TukeyC(av1,
+ssptk10 <- TukeyC(av3,
                which='SSP:SP',
                error='Within/blk:P:SP',
                fl1=1)
-summary(tk16)
+summary(ssptk10)
 
 ## Nested: ssp1/sp1/P
 ## It is necessary to inform the appropriate error for the test
-tk17 <- TukeyC(av1,
+ssptk11 <- TukeyC(av3,
                 which='SSP:SP:P',
                 error='Within/blk:P:SP/blk:P',
                 fl1=1,
                 fl2=1)
-summary(tk17)
+summary(ssptk11)
 
 ## UNBALANCED DATA
 ## The average are adjusted by "Least-Square-Means" methodology.

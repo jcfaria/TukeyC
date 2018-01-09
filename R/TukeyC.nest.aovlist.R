@@ -16,9 +16,7 @@ TukeyC.nest.aovlist <- function(x,
   m1 <- gsub('\\:',
              '\\+', 
              which)
-  #   m2 <- unlist(strsplit(which,
-  #                         '[[:punct:]]'))  
-  # 
+ 
   forminter <- as.formula(paste(my, '~', m1))
 
   dat <- model.frame(x)
@@ -35,27 +33,6 @@ TukeyC.nest.aovlist <- function(x,
                         means = aux_mt2[[my]][,1],
                         reps = aux_mt2[[my]][,2])
 
-  #row.names(mt) <- aux_mt1[,1]
-
-  #names(aux_mt2) <- gsub(my,'x',names(aux_mt2))
-  # 
-  #   aux_r <- aggregate(forminter, 
-  #                      data = x$model,
-  #                      function(x) r = length(x))
-  #   reps <- aux_r[[my]]
-  # 
-  #   aux_mt <- LSmeans(x,
-  #                     effect = m2)
-  # 
-  #   aux_mt1 <- aux_mt$coef[,1]
-  # 
-  #   aux_mt2 <- data.frame(aux_r[1:length(names(aux_r))-1],
-  #                         means = aux_mt1,
-  #                         reps = reps)
-  # 
-  #   aux_mt3 <- aux_mt2[order(aux_mt2[['means']],
-  #                            decreasing = TRUE),]
-  # 
   nf1 <- unlist(strsplit(which,
                          split = ':'))[1] # nome do primeiro fator do which
 
@@ -67,15 +44,16 @@ TukeyC.nest.aovlist <- function(x,
 
   if(is.null(fl2)){
     # Interesse apenas na interação dupla
-    f1 <- levels(model.frame(x)[,nf2]) # correspondem aos fatores que se quer comparar!
+    f1 <- levels(model.frame(x)[,nf2]) # correspondem aos fatores que se quer comparar!
+
 
     f2 <- levels(model.frame(x)[,nf1])[fl1] # corresponde ao fator onde se está fazendo o desdobramento!
 
     mt <- subset(aux_mt3, 
                  eval(parse(text = nf1)) == f2) # pegando as médias de interesse
 
-    row.names(mt) <- paste(f2,
-                           f1,
+    row.names(mt) <- paste(mt[,1],
+                           mt[,2],
                            sep='/')  
   } # Interesse na interação tripla 
   else {
@@ -89,10 +67,10 @@ TukeyC.nest.aovlist <- function(x,
     mt <- subset(aux_mt3, 
                  eval(parse(text = nf1)) == f3 & eval(parse(text=nf2)) == f2) # pegando as médias de interesse
 
-    row.names(mt) <- paste(f3,
-                           f2,
-                           f1,
-                           sep='/')   
+    row.names(mt) <- paste(mt[,1],
+                           mt[,2],
+                           mt[,3],
+                           sep='/')
 
   } 
 

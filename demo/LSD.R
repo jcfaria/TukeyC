@@ -2,8 +2,7 @@
 ## Example: Latin Squares Design (LSD)
 ##
 
-## The parameters can be: vectors, design matrix and the response variable,
-## data.frame, aov or lm.
+## The parameters can be: formula, aov, lm or lmer.
 
 library(TukeyC)
 data(LSD)

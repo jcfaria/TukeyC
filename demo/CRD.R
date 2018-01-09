@@ -2,8 +2,7 @@
 ## Examples: Completely Randomized Design (CRD)
 ##
 
-## The parameters can be: vectors, design matrix and the response variable,
-## data.frame, aov or lm.
+## The parameters can be: formula, aov, lm or lmer.
 
 ## Example 1: an small experiment
 library(TukeyC)
