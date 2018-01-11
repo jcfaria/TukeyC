@@ -14,10 +14,10 @@ make.TukeyC.test <- function(obj,
   means <- obj[['means']]
   #names(means) <- obj[[vari]][,2] # necessary to vece object
   names(means) <- obj[['reps']]
-
+  
   vece <- outer(X = means,
                 Y = means,  # (v)ariance (e)stimation of (c)ontrast (e)stimation
-                function(X, Y) MSE * (1/as.numeric(names(X)) + 1/(as.numeric(names(Y)))))
+                function(X, Y) as.vector(MSE) * (1/as.numeric(names(X)) + 1/as.numeric(names(Y))))
 
   qTukey <- qtukey(p = sig.level,
                    nmeans = dim(obj)[1],
