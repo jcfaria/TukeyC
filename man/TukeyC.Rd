@@ -261,6 +261,7 @@ summary(sptk2)
 
 # From merMod
 # Onty tra
+\dontrun{
 if(require(lme4)){ 
 lmer3 <- with(SPET,
               lmer(y ~ blk + (1|blk:tra) + tra*year,
@@ -279,7 +280,7 @@ sptk4 <- TukeyC(lmer3,
                 fl1=1)
 summary(sptk4)
 } 
-
+}
 ## Example: Split-split-plot Experiment (SSPE)
 ## More details: demo(package='TukeyC')
 ##
