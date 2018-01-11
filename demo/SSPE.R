@@ -129,3 +129,28 @@ tk15 <- TukeyC(av1,
                fl1=2,
                fl2=3)
 summary(tk15)
+
+## Nested: sp1/P
+## It is necessary to inform the appropriate error for the test
+tk16 <- TukeyC(av1,
+               which='SP:P',
+               error='blk:P:SP/blk:P',
+               fl1=1)
+
+summary(tk16)
+
+## Nested: ssp1/SP
+tk17 <- TukeyC(av1,
+               which='SSP:SP',
+               error='Within/blk:P:SP',
+               fl1=1)
+summary(tk17)
+
+## Nested: ssp1/sp1/P
+## It is necessary to inform the appropriate error for the test
+tk18 <- TukeyC(av1,
+                which='SSP:SP:P',
+                error='Within/blk:P:SP/blk:P',
+                fl1=1,
+                fl2=1)
+summary(tk18)
