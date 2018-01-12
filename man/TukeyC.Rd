@@ -221,6 +221,7 @@ ntk3 <- with(FE,
 summary(ntk3) 
 
 # From: merMod
+\dontrun{
 if(require(lme4)){
 lmer2 <- with(FE,
               lmer(y ~ (1|blk) + N*P*K,
@@ -232,7 +233,7 @@ ntk3 <- with(FE,
                     fl1=1))
 summary(ntk3) 
 }            
-
+}
 ##
 ## Example: Split-plot Experiment (SPET)
 ## More details: demo(package='TukeyC')

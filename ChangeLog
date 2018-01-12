@@ -1,5 +1,6 @@
-2018-01-11 vs. 1.3-0 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+2018-01-12 vs. 1.3-0 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Warning fixed in make.TukeyC.test. Change vece object with MSE to as.vector(MSE).
+  * Add lme4 and pbkrtest packages in field suggests.
 
 2018-01-09 vs. 1.2-8 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Bug fixed in TukeyC.nest.aovlist.
