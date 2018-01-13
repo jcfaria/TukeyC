@@ -14,7 +14,7 @@ TukeyC.lm <- function(x,
 
   }
 
-  # Interações com erro experimental
+  # Interacoes com erro experimental
   if(!is.null(fl1) & is.null(error)){
 
     SSE <- deviance(x) # sum square error
@@ -40,7 +40,7 @@ TukeyC.lm <- function(x,
     return(res)                          
   }
 
-  # Interações com outros erros
+  # Interacoes com outros erros
   if(!is.null(fl1) & !is.null(error)){ 
 
     many_errors <- unlist(strsplit(error,
@@ -54,7 +54,7 @@ TukeyC.lm <- function(x,
 
     n_errors <- length(many_errors)
 
-    if(n_errors > 1){# combinação de erros!!!
+    if(n_errors > 1){# combinacoes de erros!!!
 
       aux_MSE <- NULL
       aux_dfr <- NULL
@@ -101,7 +101,7 @@ TukeyC.lm <- function(x,
 
       }
 
-    } else {# não há combinação de erros!!!
+    } else {# nao ha combinacao de erros!!!
 
       anov <- anova(x)
       SSE <- anov[rownames(anov) == error,][1,2] # sum square error
@@ -130,8 +130,8 @@ TukeyC.lm <- function(x,
 
   }
 
-  # Aqui não há interesse em interações!!!!
-  if(is.null(fl1) & !is.null(error)){#Um erro de interesse do usuário
+  # Aqui n�o ha interesse em interacoes!!!!
+  if(is.null(fl1) & !is.null(error)){#Um erro de interesse do usuario
 
     anov <- anova(x)
     SSE <- anov[rownames(anov) == error,][1,2] # sum square error

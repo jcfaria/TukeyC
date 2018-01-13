@@ -14,7 +14,7 @@ TukeyC.lmerMod <- function(x,
 
   }
 
-  # Interações com erro experimental
+  # Interacoes com erro experimental
   if(!is.null(fl1) & is.null(error)){
 
     SSE <- deviance(x,REML=FALSE) # sum square error
@@ -38,7 +38,7 @@ TukeyC.lmerMod <- function(x,
     return(res)                          
   }
 
-  # Interações com outros erros
+  # Interacoes com outros erros
   if(!is.null(fl1) & !is.null(error)){ 
 
     many_errors <- unlist(strsplit(error,
@@ -46,7 +46,7 @@ TukeyC.lmerMod <- function(x,
 
     n_errors <- length(many_errors)
 
-    if(n_errors > 1){# combinação de erros!!!
+    if(n_errors > 1){# combinacao de erros!!!
 
       aux_MSE1 <- lme4::VarCorr(x)
       aux_MSE <- c(sigma(x)^2,
@@ -83,7 +83,7 @@ TukeyC.lmerMod <- function(x,
       names(aux_levels) <- names(aux_df1)
 
       levelss <- unlist(aux_levels[factors])
-      #PAREI AQUI! ACHO QUE É SÓ TESTAR AGORA!
+
       if(length(levelss) == 2){
 
         cp <- c(levelss[1]-1,
@@ -109,7 +109,7 @@ TukeyC.lmerMod <- function(x,
 
       }
 
-    } else {# não há combinação de erros!!!
+    } else {# nao ha combinacao de erros!!!
 
       anov <- anova(x)
       SSE <- anov[rownames(anov) == error,][1,2] # sum square error
@@ -117,8 +117,6 @@ TukeyC.lmerMod <- function(x,
       MSE <- SSE/dfr   
 
     }
-
-    #class(x) <- 'nest.lmerMod'
 
     res <- TukeyC.nest.lmerMod(x               = x,
                                which           = which,
@@ -138,8 +136,8 @@ TukeyC.lmerMod <- function(x,
 
   }
 
-  # Aqui não há interesse em interações!!!!
-  if(is.null(fl1) & !is.null(error)){#Um erro de interesse do usuário
+  # Aqui nao ha interesse em interacoes!!!!
+  if(is.null(fl1) & !is.null(error)){#Um erro de interesse do usuario
 
     aux_MSE <- lme4::VarCorr(x)
     MSE <- attr(aux_MSE[[error]],'stddev')^2

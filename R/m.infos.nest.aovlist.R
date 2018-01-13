@@ -43,10 +43,10 @@ m.infos.nest.aovlist <- function(x,
   if(is.null(fl2)){
 
 
-    f2 <- levels(model.frame(x)[,nf1])[fl1] # corresponde ao fator onde se está fazendo o desdobramento!
+    f2 <- levels(model.frame(x)[,nf1])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
     aux_m.inf21 <- subset(aux_m.inf2, 
-                          eval(parse(text = nf1)) == f2) # pegando as médias de interesse
+                          eval(parse(text = nf1)) == f2) # pegando as medias de interesse
 
     m.inf <- list(Means = aux_m.inf21[,c(1:3)],
                   mm = aux_m.inf21[,c(1:2,4:5)],
@@ -61,7 +61,7 @@ m.infos.nest.aovlist <- function(x,
     f3 <- levels(model.frame(x)[,nf1])[fl1]
 
     aux_m.inf21 <- subset(aux_m.inf2, 
-                          eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2) # pegando as médias de interesse
+                          eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2) # pegando as medias de interesse
 
     m.inf <- list(Means = aux_m.inf21[,c(1:4)],
                   mm = aux_m.inf21[,c(1:3,5:6)],

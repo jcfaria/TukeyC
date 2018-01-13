@@ -36,7 +36,7 @@ make.TukeyC.groups <- function(x)
                  1,
                  function(x) sum(ga*x) == sum(ga*ga))
 
-      i <- length(gr[!ga]) + 1                    # O próximo tratamento usado para marcar o grupo "b"
+      i <- length(gr[!ga]) + 1                    # O proximo tratamento usado para marcar o grupo "b"
 
       j <- j + 1
     }
@@ -44,7 +44,7 @@ make.TukeyC.groups <- function(x)
     g  <- x[i,]                                   # Linha do primeiro tratamento significativo com o grupo anterior
 
     gr <- rep(letters[j],
-              length(x[i, ]))                     # Vetor com a letra do próximo tratamento
+              length(x[i, ]))                     # Vetor com a letra do proximo tratamento
 
     g[(sum(b*b) + 1) : length(g)] <- FALSE
 
@@ -54,7 +54,7 @@ make.TukeyC.groups <- function(x)
                1,
                function(x) sum(g*x) == sum(g*g))  # Marcador do tratamento onde
 
-    # Termina o grupo a ser marcado seguindo a lógica citada
+    # Termina o grupo a ser marcado seguindo a logica citada
     b <- !b
 
     g[length(g[g])] <- FALSE
