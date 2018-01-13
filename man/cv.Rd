@@ -78,4 +78,3 @@ res[2:3]
 \keyword{univar}
 \keyword{aov}
 \keyword{coefficient of variation}
-

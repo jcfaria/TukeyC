@@ -54,21 +54,21 @@ TukeyC.nest.lm <- function(x,
                          split = ':'))[3] # nome do terceiro fator do which
 
   if(is.null(fl2)){
-    # Interesse apenas na interação dupla
+    # Interesse apenas na interacao dupla
 
     f1 <- levels(x$model[,nf2]) # correspondem aos fatores que se quer comparar!
 
-    f2 <- levels(x$model[,nf1])[fl1] # corresponde ao fator onde se está fazendo o desdobramento!
+    f2 <- levels(x$model[,nf1])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
     #     mt <- subset(aux_mt2, 
-    #                  eval(parse(text = nf1)) == f2) # pegando as médias de interesse
+    #                  eval(parse(text = nf1)) == f2) # pegando as medias de interesse
     mt <- subset(aux_mt3, 
-                 eval(parse(text = nf1)) == f2) # pegando as médias de interesse
+                 eval(parse(text = nf1)) == f2) # pegando as medias de interesse
 
     row.names(mt) <- paste(mt[,1],
                            mt[,2],
                            sep='/')  
-  } # Interesse na interação tripla 
+  } # Interesse na interacao tripla 
   else {
 
     f1 <- levels(x$model[,nf3])
@@ -78,7 +78,7 @@ TukeyC.nest.lm <- function(x,
     f3 <- levels(x$model[,nf1])[fl1]
 
     mt <- subset(aux_mt3, 
-                 eval(parse(text = nf1)) == f3 & eval(parse(text=nf2)) == f2) # pegando as médias de interesse
+                 eval(parse(text = nf1)) == f3 & eval(parse(text=nf2)) == f2) # pegando as medias de interesse
 
     row.names(mt) <- paste(mt[,1],
                            mt[,2],

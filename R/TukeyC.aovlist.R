@@ -12,7 +12,7 @@ TukeyC.aovlist <- function(x,
                            adjusted.pvalue = 'none', ...)
 {
 
-  # Interações com erro experimental
+  # Interacoes com erro experimental
   if(!is.null(fl1) & is.null(error)){
 
     pos_error <- length(names(x))
@@ -40,7 +40,7 @@ TukeyC.aovlist <- function(x,
 
   }
 
-  # Interações com outros erros
+  # Interacoes com outros erros
   if(!is.null(fl1) & !is.null(error)){ 
 
     many_errors <- unlist(strsplit(error,
@@ -48,7 +48,7 @@ TukeyC.aovlist <- function(x,
 
     n_errors <- length(many_errors)
 
-    if(n_errors > 1){# combinação de erros!!!
+    if(n_errors > 1){# combinacao de erros!!!
 
       aux_SSE <- NULL
       aux_dfr <- NULL
@@ -95,7 +95,7 @@ TukeyC.aovlist <- function(x,
         dfr <- numer/denom       
 
       } 
-    }else{# não há combinação de erros!!!   
+    }else{# nao ha combinacao de erros!!!   
 
       SSE <- deviance(x[[error]]) # experimental error
       dfr <- df.residual(x[[error]])# experimental error
@@ -122,7 +122,7 @@ TukeyC.aovlist <- function(x,
 
   }
 
-  # Aqui não há interesse em interações!!!
+  # Aqui nao ha interesse em interacoes!!!
   if(is.null(fl1) & !is.null(error)){ 
 
     SSE <- deviance(x[[error]]) # experimental error
@@ -205,4 +205,3 @@ TukeyC.aovlist <- function(x,
 
   return(res)                    
 }
-

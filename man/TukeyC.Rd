@@ -427,4 +427,3 @@ summary(utk4)
 }
 
 \keyword{package}
-

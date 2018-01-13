@@ -10,7 +10,7 @@
 2017-09-13 vs. 1.2-7 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Added the ci (confidence interval) and cip (pooled confidence interval) in plot function.
   * Added the match.call() function internally in the TukeyC.lm function to recuperate arguments.
- 
+
 2016-11-21 vs. 1.2-6 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Added the adjusted.pvalue argument in the TukeyC function.
   * Removed dispersion argument of the TukeyC function and added in the plot function.
@@ -79,4 +79,3 @@
 
 2010-05-27  vs. 1.0-0 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * Restrict to testers.
-GVIM 168 43 0 27

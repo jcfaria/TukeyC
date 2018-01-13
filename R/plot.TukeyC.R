@@ -201,4 +201,3 @@ plot.TukeyC <- function(x,
   if(ngroups > 3)
     par(mar=op)  # Restoring the original par('mar')
 }
-
