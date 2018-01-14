@@ -1,3 +1,7 @@
+2017-01-13 vs. 1.3.1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+  * Overall improvements in the demos, examples and documentation.
+  * Adequation of version number.
+
 2018-01-12 vs. 1.3-0 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Warning fixed in make.TukeyC.test. Change vece object with MSE to as.vector(MSE).
   * Add lme4 and pbkrtest packages in field suggests.

@@ -149,8 +149,8 @@ summary(tk17)
 ## Nested: ssp1/sp1/P
 ## It is necessary to inform the appropriate error for the test
 tk18 <- TukeyC(av1,
-                which='SSP:SP:P',
-                error='Within/blk:P:SP/blk:P',
-                fl1=1,
-                fl2=1)
+               which='SSP:SP:P',
+               error='Within/blk:P:SP/blk:P',
+               fl1=1,
+               fl2=1)
 summary(tk18)
