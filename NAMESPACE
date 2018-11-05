@@ -5,6 +5,7 @@ import(
  doBy,
  utils,
  stats,
+ parallel,
  graphics
 )
 

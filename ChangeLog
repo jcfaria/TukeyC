@@ -1,4 +1,9 @@
-2018-01-13 vs. 1.3.1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
+2018-11-05 vs. 1.3-2 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+  * Fixed bug in the make.TukeyC.groups. Reason: Infinite loop with serious unbalanced data.
+  * The algorithm of the make.TukeyC.groups was substituted.
+  * Add parallel package as import.
+
+2018-01-13 vs. 1.3-1 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
   * Overall improvements in the demos, examples and documentation.
   * Adequation of version number.
 
