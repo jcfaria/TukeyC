@@ -21,6 +21,7 @@ TukeyC.lm <- function(x,
     dfr <- df.residual(x)  # residual degrees of freedom                   
     MSE <- SSE/dfr  
 
+    cl <- match.call()
     class(x) <- c('nest.lm',class(x))
 
     res <- TukeyC(x               = x,
@@ -34,7 +35,9 @@ TukeyC.lm <- function(x,
                   adjusted.pvalue = adjusted.pvalue,
                   ...)
 
-    class(res) <- c('TukeyC',
+    res$call <- cl
+    class(res) <- c('TukeyC.lm',
+                    'TukeyC',
                     'list')
 
     return(res)                          
@@ -110,6 +113,7 @@ TukeyC.lm <- function(x,
 
     }
 
+    cl <- match.call()
     class(x) <- c('nest.lm',class(x)) 
 
     res <- TukeyC(x               = x,
@@ -123,7 +127,9 @@ TukeyC.lm <- function(x,
                   adjusted.pvalue = adjusted.pvalue,
                   ...)
 
-    class(res) <- c('TukeyC',
+    res$call <- cl
+    class(res) <- c('TukeyC.lm',
+                    'TukeyC',
                     'list')
 
     return(res)                         
@@ -147,9 +153,7 @@ TukeyC.lm <- function(x,
   }
 
   my <- as.character(formula(x)[[2]])
-  #m1 <- gsub('\\:','\\+', which)
 
-  #forminter <- as.formula(paste(my, '~', m1))
   forminter <- as.formula(paste(my, 
                                 '~', 
                                 which)) 
@@ -173,6 +177,7 @@ TukeyC.lm <- function(x,
   mt <- aux_mt2[order(aux_mt2[,1],
                       decreasing = TRUE),]
 
+  cl <- match.call()  
   out <- make.TukeyC.test(obj             = mt,
                           MSE             = MSE,
                           sig.level       = sig.level,
@@ -190,13 +195,10 @@ TukeyC.lm <- function(x,
   res <- list(out  = out,
               info = m.inf)
 
-  cl <- match.call() 
-
   res$call  <- cl
 
-  class(res) <- c('TukeyC',
+  class(res) <- c('TukeyC.lm',
+                  'TukeyC',
                   'list')
-
   return(res)                        
-
 }

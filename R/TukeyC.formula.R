@@ -19,11 +19,13 @@ TukeyC.formula <- function(formula,
   aux_err <- regmatches(as.character(formula), 
                         aux)
 
+  cl <- match.call()  
   if(length(aux_err) == 0){
 
     model <- lm(formula,
                 data = data)
 
+   
     res <- TukeyC(x               = model,
                   which           = which,
                   fl1             = fl1,
@@ -33,8 +35,6 @@ TukeyC.formula <- function(formula,
                   round           = round,
                   adjusted.pvalue = adjusted.pvalue,
                   ...) 
-
-    invisible(res) 
 
   } else {
 
@@ -66,8 +66,8 @@ TukeyC.formula <- function(formula,
                   round           = round,
                   adjusted.pvalue = adjusted.pvalue,
                   ...) 
-
-    invisible(res)  
-
   }
+  res$call <- cl
+  class(res) <- c('TukeyC.formula',class(res))
+  return(res)
 }

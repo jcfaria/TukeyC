@@ -21,6 +21,7 @@ TukeyC.lmerMod <- function(x,
     dfr <- df.residual(x)  # residual degrees of freedom                   
     MSE <- SSE/dfr  
 
+    cl <- match.call()
     res <- TukeyC.nest.lmerMod(x               = x,
                                which           = which,
                                fl1             = fl1,
@@ -32,6 +33,7 @@ TukeyC.lmerMod <- function(x,
                                adjusted.pvalue = adjusted.pvalue,
                                ...)
 
+    res$call <- cl
     class(res) <- c('TukeyC',
                     'list')
 
@@ -118,6 +120,7 @@ TukeyC.lmerMod <- function(x,
 
     }
 
+    cl <- match.call()
     res <- TukeyC.nest.lmerMod(x               = x,
                                which           = which,
                                fl1             = fl1,
@@ -129,6 +132,7 @@ TukeyC.lmerMod <- function(x,
                                adjusted.pvalue = adjusted.pvalue,
                                ...)
 
+    res$call <- cl
     class(res) <- c('TukeyC',
                     'list')
 
@@ -193,6 +197,7 @@ TukeyC.lmerMod <- function(x,
   mt <- aux_mt2[order(aux_mt2[,1],
                       decreasing = TRUE),]
 
+  cl <- match.call()
   out <- make.TukeyC.test(obj             = mt,
                           MSE             = MSE,
                           sig.level       = sig.level,
@@ -210,9 +215,8 @@ TukeyC.lmerMod <- function(x,
   res <- list(out  = out,
               info = m.inf)
 
+  res$call <- cl
   class(res) <- c('TukeyC',
                   'list')
-
   return(res)                        
-
 }

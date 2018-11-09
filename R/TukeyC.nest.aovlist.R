@@ -73,7 +73,6 @@ TukeyC.nest.aovlist <- function(x,
                            sep='/')
 
   } 
-
   out <- make.TukeyC.test(obj             = mt,
                           MSE             = MSE,
                           sig.level       = sig.level,

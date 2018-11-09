@@ -9,24 +9,12 @@ TukeyC.nest.lm <- function(x,
                            adjusted.pvalue, ...)
 {
   my <- as.character(formula(x)[[2]])
-  #my <- as.character(attr(x,'terms')[[2]]) 
   m1 <- gsub('\\:','\\+', which)
   m2 <- unlist(strsplit(which,
                         '[[:punct:]]'))  
 
   forminter <- as.formula(paste(my, '~', m1))
-
-  #   aux_mt1 <- aggregate(forminter, 
-  #                        data = x$model,
-  #                        function(x) c(means = mean(x),
-  #                                      r = length(x)))
-  # 
-  #   aux_mt2 <- aux_mt1[order(aux_mt1[[my]][,1], 
-  #                            decreasing = TRUE),]
-  # 
-  #   names(aux_mt2) <- gsub(my,'x',names(aux_mt2))
-  # 
-
+  
   aux_r <- aggregate(forminter, 
                      data = x$model,
                      function(x) r = length(x))
@@ -60,8 +48,6 @@ TukeyC.nest.lm <- function(x,
 
     f2 <- levels(x$model[,nf1])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
-    #     mt <- subset(aux_mt2, 
-    #                  eval(parse(text = nf1)) == f2) # pegando as medias de interesse
     mt <- subset(aux_mt3, 
                  eval(parse(text = nf1)) == f2) # pegando as medias de interesse
 

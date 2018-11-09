@@ -1,7 +1,6 @@
 ##
 ## S3 method to 'aovlist' object
 ##
-
 TukeyC.aovlist <- function(x,
                            which           = NULL,
                            fl1             = NULL, 
@@ -20,6 +19,7 @@ TukeyC.aovlist <- function(x,
     dfr <- df.residual(x[[pos_error]])# experimental error
     MSE  <- SSE/dfr
 
+    cl <- match.call()
     class(x) <- c('nest.aovlist',class(x)) 
 
     res <- TukeyC(x               = x,
@@ -33,9 +33,10 @@ TukeyC.aovlist <- function(x,
                   adjusted.pvalue = adjusted.pvalue,
                   ...)
 
-    class(res) <- c('TukeyC',
+    res$call <- cl
+    class(res) <- c('TukeyC.aovlist',
+                    'TukeyC',
                     'list')
-
     return(res)                           
 
   }
@@ -102,6 +103,9 @@ TukeyC.aovlist <- function(x,
       MSE  <- SSE/dfr
 
     }
+
+    cl <- match.call()
+
     class(x) <- c('nest.aovlist',class(x))  
 
     res <- TukeyC(x               = x,
@@ -115,9 +119,10 @@ TukeyC.aovlist <- function(x,
                   adjusted.pvalue = adjusted.pvalue,
                   ...)
 
-    class(res) <- c('TukeyC',
+    res$call <- cl
+    class(res) <- c('TukeyC.aovlist',
+                    'TukeyC',
                     'list')
-
     return(res)                            
 
   }
@@ -140,39 +145,16 @@ TukeyC.aovlist <- function(x,
 
   my <- as.character(attr(x,'terms')[[2]]) 
 
-  #m1 <- gsub('\\:','\\+', which)
-
-  #forminter <- as.formula(paste(my, '~', m1))
   forminter <- as.formula(paste(my, 
                                 '~', 
                                 which)) 
 
   dat <- model.frame(x)
-
   aux_mt <- aggregate(forminter, 
                       data = dat,
                       function(x) c(means = mean(x),
                                     r = length(x)))
-  # 
-  #   aux_r <- aggregate(forminter, 
-  #                       data = dat,
-  #                       function(x) r = length(x))
-  # 
-  #   reps <- aux_r[[my]]
-  # 
-  #   aux_mt <- LSmeans(x,
-  #                     effect = which)
-  # 
-  #   aux_mt1 <- aux_mt$coef[,1]
-  # 
-  #   aux_mt2 <- data.frame(means = aux_mt1,
-  #                         reps = reps)
-  # 
-  #   row.names(aux_mt2) <- aux_r[,1]
-  # 
-  #   mt <- aux_mt2[order(aux_mt2[,1],
-  #                       decreasing = TRUE),]
-  # 
+  
   aux_mt1 <- aux_mt[order(aux_mt[[my]][,1], 
                           decreasing = TRUE),]
 
@@ -197,10 +179,13 @@ TukeyC.aovlist <- function(x,
                            aux_mt    = aux_mt,
                            MSE       = MSE)
 
+  cl <- match.call()
   res <- list(out  = out,
               info = m.inf)
+  res$call <- cl
 
-  class(res) <- c('TukeyC',
+  class(res) <- c('TukeyC.aovlist',
+                  'TukeyC',
                   'list')
 
   return(res)                    
