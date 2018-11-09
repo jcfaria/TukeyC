@@ -25,18 +25,18 @@ boxplot.TukeyC <- function(x,
   if(inherits(x,'TukeyC.formula')){
     aux2 <- eval(getCall(x)$formula)
     aux3 <- eval(getCall(x)$data)
-    response <- as.character(formula(aux2)[[2]])   
+    response <- as.character(formula(aux2)[[2]])    
   } else if(inherits(x,'TukeyC.aovlist')){
     aux <- eval(getCall(x)$x)
     aux3 <- model.frame(aux)
     response <- as.character(attr(aux,
-                                  'terms')[[2]])  
+                                  'terms')[[2]]) 
   } else{ 
     aux <- eval(getCall(x)$x)
     aux2 <- eval(getCall(aux)$formula)
     aux3 <- eval(getCall(aux)$data)
-    response <- as.character(formula(aux2)[[2]])    
-  }
+    response <- as.character(formula(aux2)[[2]]) 
+   } 
 
   ltreat <- rownames(x$out$Result)
   means <- x$info$Means[['means']] 
@@ -44,17 +44,17 @@ boxplot.TukeyC <- function(x,
   auxinter <- unlist(strsplit(treat,':'))#objeto criado para auxliar nos casos que envolve interações.
 
   if(length(auxinter)>1){
-    aux3$groups <- with(aux3,
+    aux3$treat <- with(aux3,
                         interaction(eval(parse(text=treat))))
-    aux3$groups <- gsub(':','/',aux3$groups)
-    aux3 <- subset(aux3, groups%in%ltreat) 
-    treat <- 'groups'
+    aux3$treat <- gsub(':','/',aux3$treat)
+    aux3 <- subset(aux3, treat%in%ltreat) 
+   
   }
 
-  aux3[[treat]] <- factor(aux3[[treat]],
-                          levels = ltreat)
+ aux3[[treat]] <- factor(aux3[[treat]],
+                          levels = ltreat)   
 
-  m.res <- t(x$out$Result[, 2:ncol(x$out$Result)])
+ m.res <- t(x$out$Result[, 2:ncol(x$out$Result)])
 
   if(dim(m.res)[1] != 1) {
     m.res <- apply(m.res, 2, fun)

@@ -57,7 +57,7 @@
 ##
 
 library(TukeyC)
-data(CRD2)
+data(CRD1)
 
 ## From: formula
 # Simple!
