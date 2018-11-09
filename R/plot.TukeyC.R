@@ -54,10 +54,10 @@ plot.TukeyC <- function(x,
                          paste,
                          collapse=''))
   }
-  else
+  else{
     id.groups <- m.res 
+  }
 
-  #minmax <- x$Means[, 2:3]
   minmax1 <- x$info$mm[['min']]
   minmax2 <- x$info$mm[['max']]
   minmax <- data.frame(minmax1,
@@ -121,13 +121,6 @@ plot.TukeyC <- function(x,
              lty = rl.lty,
              col = rl.col, ...) 
 
-  #   if(mm == TRUE)
-  #     segments(groups,
-  #              minmax[, 2],
-  #              groups,
-  #              minmax[, 1],
-  #              lty=mm.lty,
-  #              col=col, ...)
   switch(match.arg(dispersion),
          mm = {
            segments(groups,
@@ -198,6 +191,7 @@ plot.TukeyC <- function(x,
   title(title, ...)
 
   # By J.C.Faria
-  if(ngroups > 3)
+  if(ngroups > 3){
     par(mar=op)  # Restoring the original par('mar')
+  }
 }
