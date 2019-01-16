@@ -21,11 +21,12 @@
      ylim           = NULL,
      id.lab         = NULL,
      id.las         = 1,
-     rl             = TRUE,
-     rl.lty         = 3,
-     rl.col         = 'gray',
+     yl             = TRUE,
+     yl.lty         = 3,
+     yl.col         = 'gray',
      dispersion     = c('none','mm','sd','ci','cip'),
-     dispersion.lty = 1,
+     d.lty          = 1,
+     d.col          = 'black',
      title          = '', \dots)
 }
 
@@ -41,11 +42,12 @@
   \item{ylim}{The \samp{y} limits of the plot.}
   \item{id.lab}{Factor level names at \samp{x} axis.}
   \item{id.las}{Factor level names written either horizontally or vertically.}
-  \item{rl}{Horizontal line connecting the circle to the \samp{y} axis.}
-  \item{rl.lty}{Line type of \samp{rl}.}
-  \item{rl.col}{Line color of \samp{rl}.}
+  \item{yl}{Horizontal (reference) line connecting the circle to the \samp{y} axis.}
+  \item{yl.lty}{Line type of \samp{yl}.}
+  \item{yl.col}{Line color of \samp{yl}.}
   \item{dispersion}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value. Other options are: sd (standard deviation), ci (confidence interval), cip (pooled confidence interval) and none.}
-  \item{dispersion.lty}{Line type of dispersion.}
+  \item{d.lty}{Line type of dispersion.}
+  \item{d.col}{A vector of colors for the line type of dispersion.}
   \item{title}{A title for the plot.}
   \item{\dots}{Optional plotting parameters.}
 }
@@ -94,7 +96,7 @@ plot(tk1,
      dispersion='sd',
      mm.lty=3,
      id.las=2,
-     rl=FALSE)
+     yl=FALSE)
 
 ## From: aov
 av <- with(CRD2,
@@ -105,7 +107,7 @@ summary(av)
 tk2 <- TukeyC(x=av,
               which='x')
 plot(tk2,
-     rl=FALSE,
+     yl=FALSE,
      id.las=2)
 
 # From: lm
@@ -118,12 +120,12 @@ tk3 <- TukeyC(x=av_lm,
 plot(tk3,
      dispersion='ci',
      id.las=2,
-     rl=FALSE)
+     yl=FALSE)
 
 plot(tk3,
      dispersion='cip',
      id.las=2,
-     rl=FALSE)
+     yl=FALSE)
 
 
 par(old.par)

@@ -13,15 +13,20 @@ tk1 <- with(RCBD,
                    dfm,
                    which='tra'))
 summary(tk1)
-plot(tk1)
+plot(tk1,
+     di='sd',
+     d.col='red',
+     d.lty=3)
 
 ## From: formula, which='blk' implicit (due to be the first arg of the model)
 tk2 <- with(RCBD,
             TukeyC(y ~ blk + tra,
                    dfm))
 summary(tk2)
-plot(tk2)
-
+plot(tk2,,
+     di='sd',
+     d.col='red',
+     d.lty=3)
 
 av1 <- with(RCBD,
             aov(y ~ blk + tra,

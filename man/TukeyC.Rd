@@ -141,6 +141,7 @@ if(require(lme4)){
                  which='tra')
   summary(tk2)
 } 
+
 ##
 ## Example: Latin Squares Design (LSD)
 ## More details: demo(package='TukeyC')
@@ -232,7 +233,8 @@ if(require(lme4)){
                        which='N:P',
                        fl1=1))
   summary(n_tk4) 
-}}
+}
+}
 
 ##
 ## Example: Split-plot Experiment (SPET)

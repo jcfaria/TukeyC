@@ -24,7 +24,10 @@ tk2 <- with(SPE,
                    which='P:SP',
                    fl1=1 ))
 summary(tk2)
-plot(tk2)
+plot(tk2,
+     di='sd',
+     d.col='red',
+     d.lty=3)
 
 ## Nested: sp1/P - it is necessary to inform how to combinate the errors
 tk3 <- with(SPE,

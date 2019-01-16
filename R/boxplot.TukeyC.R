@@ -1,17 +1,22 @@
 boxplot.TukeyC <- function(x,
-                           type.mean = c('line','point','none'),
+                           mean.type = c('line',
+                                         'point',
+                                         'none'),
                            xlab = NULL,
-                           col.mean = 'gray',
-                           pch.mean = 1,
-                           lwd.mean = 1,
-                           lty.mean = 1,
+                           mean.col = 'gray',
+                           mean.pch = 1,
+                           mean.lwd = 1,
+                           mean.lty = 1,
                            args.legend = NULL,
                            ...){
   # x is a object of Tukeyc class
   fun <- function(m) {
-    a <- rep('\n', length(m))
+    a <- rep('\n',
+             length(m))
     a[which(m != '')[1]] <- ''
-    return(paste(a, m, sep=''))
+    return(paste(a,
+                 m,
+                 sep=''))
   }
 
   if(!inherits(x,
@@ -41,13 +46,17 @@ boxplot.TukeyC <- function(x,
   ltreat <- rownames(x$out$Result)
   means <- x$info$Means[['means']] 
 
-  auxinter <- unlist(strsplit(treat,':'))#objeto criado para auxliar nos casos que envolve interações.
+  auxinter <- unlist(strsplit(treat,
+                              ':')) # objeto criado para auxliar nos casos que envolve interações.
 
   if(length(auxinter)>1){
     aux3$treat <- with(aux3,
                         interaction(eval(parse(text=treat))))
-    aux3$treat <- gsub(':','/',aux3$treat)
-    aux3 <- subset(aux3, treat%in%ltreat) 
+    aux3$treat <- gsub(':',
+                       '/',
+                       aux3$treat)
+    aux3 <- subset(aux3,
+                   treat%in%ltreat)
    
   }
 
@@ -57,7 +66,9 @@ boxplot.TukeyC <- function(x,
  m.res <- t(x$out$Result[, 2:ncol(x$out$Result)])
 
   if(dim(m.res)[1] != 1) {
-    m.res <- apply(m.res, 2, fun)
+    m.res <- apply(m.res,
+                   2,
+                   fun)
     id.groups <- c(apply(m.res,
                          2,
                          paste,
@@ -67,7 +78,9 @@ boxplot.TukeyC <- function(x,
     id.groups <- m.res 
   }
 
-  aux22 <- as.formula(paste(response,'~',treat))
+  aux22 <- as.formula(paste(response,
+                            '~',
+                            treat))
 
   ngroups <- dim(x$out$Result)[2] - 1
   if(ngroups > 3){
@@ -91,14 +104,14 @@ boxplot.TukeyC <- function(x,
   #                                 function(x) mean(x,na.rm=TRUE)))) 
   gr$stats[3,] <- means
 
-  switch(match.arg(type.mean),
+  switch(match.arg(mean.type),
          line = {
            bxp(gr,
                add = TRUE,
                frame.plot = FALSE,
-               medcol = col.mean,
-               lty = lty.mean,
-               lwd = lwd.mean,
+               medcol = mean.col,
+               lty = mean.lty,
+               lwd = mean.lwd,
                boxlty = 'blank',
                whisklty="blank",
                outlty="blank",
@@ -107,45 +120,52 @@ boxplot.TukeyC <- function(x,
                show.names=FALSE,
                ...)
 
-           auxlty <- c(1,lty.mean)
+           auxlty <- c(1,
+                       mean.lty)
            auxpch <- NULL
          },
          point = {
            points(means,
-                  col = col.mean,
-                  lwd = lwd.mean,
-                  pch = pch.mean,
+                  col = mean.col,
+                  lwd = mean.lwd,
+                  pch = mean.pch,
                   ...)
 
-           auxlty <- c(1,NA)
-           auxpch <- c(NA,pch.mean)
+           auxlty <- c(1, NA)
+           auxpch <- c(NA, mean.pch)
          },
          none = invisible(NULL))
 
   if(is.null(args.legend)){
 
-    args.2Kl <- list(x        = 'topleft',
-                     legend   = c('Median','Mean'),
-                     col = c('black',col.mean),
-                     lwd = c(1,lwd.mean),
-                     bty = 'n',
-                     cex = 0.8,
-                     lty = auxlty,
-                     pch = auxpch)
+    args.2Kl <- list(x      = 'topleft',
+                     legend = c('Median',
+                                'Mean'),
+                     col    = c('black',
+                                mean.col),
+                     lwd    = c(1,
+                                mean.lwd),
+                     bty    = 'n',
+                     cex    = 0.8,
+                     lty    = auxlty,
+                     pch    = auxpch)
 
     do.call('legend',
             args.2Kl)
 
   } else {
 
-    args.2Kl <- list(x        = 'topleft',
-                     legend   = c('Median','Mean'),
-                     col = c('black',col.mean),
-                     lwd = c(1,lwd.mean),
-                     bty = 'n',
-                     cex = 0.8,
-                     lty = auxlty,
-                     pch = auxpch) 
+    args.2Kl <- list(x      = 'topleft',
+                     legend = c('Median',
+                                'Mean'),
+                     col    = c('black',
+                                 mean.col),
+                     lwd    = c(1,
+                                mean.lwd),
+                     bty    = 'n',
+                     cex    = 0.8,
+                     lty    = auxlty,
+                     pch    = auxpch)
 
     args.2Kl[names(args.legend)] <- args.legend     
 

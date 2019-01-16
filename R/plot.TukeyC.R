@@ -13,15 +13,16 @@ plot.TukeyC <- function(x,
                         ylim       = NULL,
                         id.lab     = NULL,
                         id.las     = 1,
-                        rl         = TRUE,
-                        rl.lty     = 3,
-                        rl.col     = 'gray',
+                        yl         = TRUE,
+                        yl.lty     = 3,
+                        yl.col     = 'gray',
                         dispersion = c('none',
                                        'mm',
                                        'sd',
                                        'ci',
                                        'cip'),
-                        dispersion.lty = 1,
+                        d.lty      = 1,
+                        d.col      = 'black',
                         title      = '', ...)
 {
   fun <- function(m) {
@@ -112,14 +113,14 @@ plot.TukeyC <- function(x,
        ylim = ylim,
        axes = FALSE, ...)
 
-  if(rl == TRUE)       
+  if(yl == TRUE)
     segments(rep(-0.5,
                  length(means)),
              means,
              groups,
              means,
-             lty = rl.lty,
-             col = rl.col, ...) 
+             lty = yl.lty,
+             col = yl.col, ...)
 
   switch(match.arg(dispersion),
          mm = {
@@ -127,32 +128,32 @@ plot.TukeyC <- function(x,
                     minmax[,1],
                     groups,
                     minmax[,2],
-                    lty = dispersion.lty,
-                    col = col, ...)         
+                    lty = d.lty,
+                    col = d.col, ...)
          },
          sd = {
            segments(groups,
                     sdd[,1],
                     groups,
                     sdd[,2],
-                    lty = dispersion.lty,
-                    col = col, ...)          
+                    lty = d.lty,
+                    col = d.col, ...)
          },
          ci = {
            segments(groups,
                     ic[,1],
                     groups,
                     ic[,2],
-                    lty = dispersion.lty,
-                    col = col, ...)           
+                    lty = d.lty,
+                    col = d.col, ...)
          },
          cip = {
            segments(groups,
                     icp[,1],
                     groups,
                     icp[,2],
-                    lty = dispersion.lty,
-                    col = col, ...)            
+                    lty = d.lty,
+                    col = d.col, ...)
          },
          none = NULL)
 

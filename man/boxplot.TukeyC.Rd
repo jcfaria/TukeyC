@@ -11,23 +11,23 @@
 
 \usage{
 \method{boxplot}{TukeyC}(x,
-          type.mean   = c('line','point','none'),
+          mean.type   = c('line', 'point', 'none'),
           xlab        = NULL,
-          col.mean    = 'gray',
-          pch.mean    = 1,
-          lwd.mean    = 1,
-          lty.mean    = 1, 
-          args.legend = NULL,\dots)
+          mean.col    = 'gray',
+          mean.pch    = 1,
+          mean.lwd    = 1,
+          mean.lty    = 1,
+          args.legend = NULL, \dots)
 }
 
 \arguments{
   \item{x}{A \code{TukeyC} object.}
-  \item{type.mean}{The type of mean must be ploted. O default is "line".}
+  \item{mean.type}{The type of mean must be ploted. O default is "line".}
   \item{xlab}{A label for the \samp{x} axis.} 
-  \item{col.mean}{A vector of colors for the means representation.} 
-  \item{pch.mean}{A vector of plotting symbols or characters. Only if type are "point".}
-  \item{lwd.mean}{Line width of mean.} 
-  \item{lty.mean}{Line type of mean. Only if type are "line".}
+  \item{mean.col}{A vector of colors for the means representation.}
+  \item{mean.pch}{A vector of plotting symbols or characters. Only if type are "point".}
+  \item{mean.lwd}{Line width of mean.}
+  \item{mean.lty}{Line type of mean. Only if type are "line".}
   \item{args.legend}{List of additional arguments to be passed to \code{legend}; The default is \code{NULL}.}
   \item{\dots}{Optional plotting parameters.}
 }
@@ -68,26 +68,26 @@ boxplot(tk1)
 
 # A little more elaborate!
 boxplot(tk1,
-        lwd.mean = 1.3,
-        col.mean = 'red')
+        mean.lwd=1.3,
+        mean.col='red')
 
 # A little more! 
 boxplot(tk1,
-        lwd.mean = 1.3,
-        lty.mean = 2,
-        col.mean = 'red',
-        args.legend = list(x='bottomleft'))
+        mean.lwd=1.3,
+        mean.lty=2,
+        mean.col='red',
+        args.legend=list(x='bottomleft'))
 
 # With point type!
 boxplot(tk1,
-        type = 'point')
+        type='point')
 
 # With other point
 boxplot(tk1,
-        type = 'point',
-        pch.mean = 3,
-        col.mean = 'blue',
-        args.legend = list(x='bottomleft')) 
+        type='point',
+        mean.pch=3,
+        mean.col='blue',
+        args.legend=list(x='bottomleft'))
 
 }
 

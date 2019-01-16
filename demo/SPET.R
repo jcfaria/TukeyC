@@ -108,7 +108,10 @@ summary(tk11,
 op <- par(mar=c(6, 3, 3, 2))
 plot(tk10,
      id.las=2,
-     xlab='')
+     xlab='',
+     di='sd',
+     d.col='red',
+     d.lty=3)
 
 ## Nested: year_2/tra - it is necessary to inform how to combinate the errors
 tk12 <- TukeyC(av1,
@@ -119,5 +122,8 @@ summary(tk12)
 op <- par(mar=c(7, 3, 3, 2))
 plot(tk12,
      id.las=2,
-     xlab='')
+     xlab='',
+     di='sd',
+     d.col='red',
+     d.lty=3)
 par(op)

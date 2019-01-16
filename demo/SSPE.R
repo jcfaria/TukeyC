@@ -36,7 +36,10 @@ tk3 <- with(SSPE,
                    which='P:SSP',
                    fl1=2))
 summary(tk3)
-plot(tk3)
+plot(tk3,
+     di='sd',
+     d.col='red',
+     d.lty=3)
 
 
 ## From: lm
