@@ -76,7 +76,7 @@
   * Overall improvements were made in the demos, examples and documentation.
 
 2012-05-25  vs. 1.0-4 - José Cláudio Faria  <joseclaudio.faria@gmail.com>
-  * The slot 'Differences' of the returned list was renamed to 'Diff_Prob".
+  * The slot 'Differences' of the returned list was renamed to 'Diff_Prob'.
     The upper tri of the matrix stores the differences between means and
     the lower tri the probability of this value be significative.
 
