@@ -10,7 +10,7 @@
 }
 
 \usage{
-\method{boxplot}{TukeyC}(x,
+\method{boxplot}{TukeyC, ...}(x,
           mean.type   = c('line', 'point', 'none'),
           xlab        = NULL,
           mean.col    = 'gray',
@@ -80,15 +80,21 @@ boxplot(tk1,
 
 # With point type!
 boxplot(tk1,
-        type='point')
+        mean.type='point')
+
+boxplot(tk1,
+        mean.type='point',
+        mean.pch=19,
+        cex=1.5,
+        mean.col='red')
 
 # With other point
 boxplot(tk1,
-        type='point',
-        mean.pch=3,
+        mean.type='point',
+        mean.pch='+',
+        cex=2,
         mean.col='blue',
         args.legend=list(x='bottomleft'))
-
 }
 
 \keyword{package}

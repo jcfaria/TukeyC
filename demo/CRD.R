@@ -82,7 +82,7 @@ plot(u_tk3,
 
 ## From: aov - balanced
 av2 <- with(CRD2,
-            aov(y ~ x ,
+            aov(y ~ x,
                 data=dfm))
 summary(av2)
 
