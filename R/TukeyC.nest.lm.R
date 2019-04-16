@@ -20,8 +20,8 @@ TukeyC.nest.lm <- function(x,
                      function(x) r = length(x))
   reps <- aux_r[[my]]
 
-  aux_mt <- suppressWarnings(LSmeans(x,
-                                     effect = m2))
+  aux_mt <- suppressWarnings(doBy::LSmeans(x,
+                                           effect = m2))
 
   aux_mt1 <- aux_mt$coef[,1]
 
