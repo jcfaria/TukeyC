@@ -54,8 +54,7 @@ plot.TukeyC <- function(x,
                          2,
                          paste,
                          collapse=''))
-  }
-  else{
+  } else {
     id.groups <- m.res 
   }
 
