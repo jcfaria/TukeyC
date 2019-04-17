@@ -10,7 +10,7 @@
 }
 
 \usage{
-\method{boxplot}{TukeyC, ...}(x,
+\method{boxplot}{TukeyC}(x,
           mean.type   = c('line', 'point', 'none'),
           xlab        = NULL,
           mean.col    = 'gray',

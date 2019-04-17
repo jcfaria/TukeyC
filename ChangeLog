@@ -1,5 +1,9 @@
 2019-04-10 vs. 1.3-4 - José Cláudio Faria <ivanalaman@gmail.com>
-  * Improvements in boxplot.TukeyC.Rd.
+  * Fixed warnig on boxplot.TukeyC.Rd.
+  * Improvements in the documentation:
+    - TukeyC.Rd.
+    - plot.TukeyC.Rd.
+    - boxplot.TukeyC.Rd.
   * NAMESPACE adequation
 
 2019-01-15 vs. 1.3-3 - Ivan Bezerra Allaman <ivanalaman@gmail.com>

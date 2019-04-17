@@ -93,10 +93,9 @@ plot(tk1,
      id.las=2)
 
 plot(tk1,
-     dispersion='sd',
-     mm.lty=3,
-     id.las=2,
-     yl=FALSE)
+     yl=FALSE,
+     disp='sd',
+     id.las=2)
 
 ## From: aov
 av <- with(CRD2,
@@ -107,6 +106,7 @@ summary(av)
 tk2 <- TukeyC(x=av,
               which='x')
 plot(tk2,
+     disp='sd',
      yl=FALSE,
      id.las=2)
 
@@ -117,17 +117,19 @@ av_lm <- with(CRD2,
 
 tk3 <- TukeyC(x=av_lm,
               which='x')
+
+par(mfrow=c(2, 1))
 plot(tk3,
-     dispersion='ci',
+     disp='ci',
      id.las=2,
      yl=FALSE)
 
 plot(tk3,
-     dispersion='cip',
+     disp='cip',
      id.las=2,
      yl=FALSE)
 
-
+par(mfrow=c(1, 1))
 par(old.par)
 }
 

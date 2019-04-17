@@ -7,8 +7,8 @@ export(boxplot.TukeyC)
 export(cv)
 
 # Import all packages listed as Imports or Depends
+importFrom(doBy, LSmeans)
 import(
- doBy,
  utils,
  stats,
  graphics

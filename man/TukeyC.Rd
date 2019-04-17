@@ -132,16 +132,17 @@ summary(tk1)
 
 ## From: merMod
 ## This class is specific of the lme4 package.
-if(require(lme4)){ 
-  lmer1 <- with(RCBD,
-                lmer(y ~ (1|blk) + tra,
-                     data=dfm))
+\dontrun{
+  if(require(lme4)){
+    lmer1 <- with(RCBD,
+                  lmer(y ~ (1|blk) + tra,
+                       data=dfm))
 
-  tk2 <-  TukeyC(lmer1,
-                 which='tra')
-  summary(tk2)
-} 
-
+    tk2 <-  TukeyC(lmer1,
+                   which='tra')
+    summary(tk2)
+  }
+}
 ##
 ## Example: Latin Squares Design (LSD)
 ## More details: demo(package='TukeyC')
@@ -223,17 +224,17 @@ summary(n_tk3)
 
 # From: merMod
 \dontrun{
-if(require(lme4)){
-  lmer2 <- with(FE,
-                lmer(y ~ (1|blk) + N*P*K,
-                     dfm))
+  if(require(lme4)){
+    lmer2 <- with(FE,
+                  lmer(y ~ (1|blk) + N*P*K,
+                       dfm))
 
-  n_tk4 <- with(FE,
-                TukeyC(lmer2,
-                       which='N:P',
-                       fl1=1))
-  summary(n_tk4) 
-}
+    n_tk4 <- with(FE,
+                  TukeyC(lmer2,
+                         which='N:P',
+                         fl1=1))
+    summary(n_tk4)
+  }
 }
 
 ##
@@ -265,24 +266,24 @@ summary(sp_tk2)
 # From merMod
 # Onty tra
 \dontrun{
-if(require(lme4)){ 
-  lmer3 <- with(SPET,
-                lmer(y ~ blk + (1|blk:tra) + tra*year,
-                     dfm))
+  if(require(lme4)){
+    lmer3 <- with(SPET,
+                  lmer(y ~ blk + (1|blk:tra) + tra*year,
+                       dfm))
 
-  # comparison only tra
-  sp_tk3 <- TukeyC(lmer3,
-                   which = 'tra',
-                   error = 'blk:tra')
-  summary(sp_tk3)  
+    # comparison only tra
+    sp_tk3 <- TukeyC(lmer3,
+                     which = 'tra',
+                     error = 'blk:tra')
+    summary(sp_tk3)
 
-  # year1/tra
-  sp_tk4 <- TukeyC(lmer3,
-                   which='year:tra',
-                   error='Residual/blk:tra',
-                   fl1=1)
-  summary(sp_tk4)
-} 
+    # year1/tra
+    sp_tk4 <- TukeyC(lmer3,
+                     which='year:tra',
+                     error='Residual/blk:tra',
+                     fl1=1)
+    summary(sp_tk4)
+  }
 }
 
 ## Example: Split-split-plot Experiment (SSPE)
