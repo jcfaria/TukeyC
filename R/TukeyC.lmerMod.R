@@ -17,10 +17,9 @@ TukeyC.lmerMod <- function(x,
   # Interacoes com erro experimental
   if(!is.null(fl1) & is.null(error)){
 
-    SSE <- deviance(x,REML=FALSE) # sum square error
-    dfr <- df.residual(x)  # residual degrees of freedom                   
-    MSE <- SSE/dfr  
-
+    MSE <- sigma(x)^2 # possível solução
+    dfr <- anova(x)$DenDF[1]
+ 
     cl <- match.call()
     res <- TukeyC.nest.lmerMod(x               = x,
                                which           = which,
