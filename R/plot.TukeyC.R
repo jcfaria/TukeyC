@@ -95,13 +95,13 @@ plot.TukeyC <- function(x,
 
   # By J.C.Faria
   ngroups <- dim(x$out$Result)[2] - 1
-  #   if(ngroups > 3){
-  #     op <- par('mar')       # Original par('mar')
-  #     np <- op               # A copy
-  #     np[3] <- ngroups + 1   # Changing top to show all letters
-  #     par(mar=np)            # Setting new par('mar')
-  #   }
-
+  if(ngroups > 3){
+    op <- par('mar')       # Original par('mar')
+    np <- op               # A copy
+    np[3] <- ngroups + 1   # Changing top to show all letters
+    par(mar=np)            # Setting new par('mar')
+  }
+ 
   plot(groups,
        means,
        pch  = pch,
