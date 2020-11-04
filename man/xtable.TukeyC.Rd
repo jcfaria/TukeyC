@@ -17,11 +17,11 @@
 
 \arguments{
   \item{x}{A given object of the class \code{TukeyC}.}
-  \item{\dots }{Further arguments (require by xtable::xtable).}
+  \item{\dots}{Further arguments (require by xtable::xtable).}
 }
 
 \author{
-  Jos√© Cl√°udio Faria (\email{joseclaudio.faria@gmail.com})\cr  
+  JosÈ Cl·udio Faria (\email{joseclaudio.faria@gmail.com})\cr  
   Enio G. Jelihovschi (\email{eniojelihovs@gmail.com})\cr
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
 }

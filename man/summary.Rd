@@ -27,8 +27,8 @@
 }
 
 \references{
-  Chambers, J.M. & Hastie, T.J. (1992) \emph{Statistical Models in S}.
-  Wadsworth & Brooks/Cole.
+  Chambers, J.M. and Hastie, T.J. (1992) \emph{Statistical Models in S}.
+  Wadsworth and Brooks/Cole.
 }
 
 \seealso{

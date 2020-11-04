@@ -10,7 +10,7 @@
 
 \usage{
   data(SPET)
-  SPET}
+}
 
 \source{
   Gomes, F.P. (1990).

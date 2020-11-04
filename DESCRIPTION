@@ -2,7 +2,7 @@ Package: TukeyC
 Type: Package
 Title: Conventional Tukey Test
 Version: 1.3-4
-Date: 2019-11-06
+Date: 2020-06-10
 Author: José Cláudio Faria <joseclaudio.faria@gmail.com>,
         Enio G. Jelihovschi <eniojelihovs@gmail.com>,
         Ivan Bezerra Allaman <ivanalaman@gmail.com>

@@ -163,7 +163,8 @@ plot.TukeyC <- function(x,
                   1))
 
   if(is.null(id.lab))
-    id.lab <- names(x$out$Result[,1])
+    #id.lab <- names(x$out$Result[,1])
+    id.lab <- row.names(x$out$Result)
 
   axis(1,
        at       = 1:length(means),

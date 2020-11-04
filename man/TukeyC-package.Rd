@@ -47,10 +47,10 @@
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F & Oliveira A.C. (2000) \emph{Experimentação em Genética
+  Ramalho M.A.P, Ferreira D.F and Oliveira A.C. (2000) \emph{Experimentação em Genética
   e Melhoramento de Plantas}. Editora UFLA.
 
-  Steel, R.G., Torrie, J.H & Dickey D.A. (1997) \emph{Principles and procedures of statistics:
+  Steel, R.G., Torrie, J.H and Dickey D.A. (1997) \emph{Principles and procedures of statistics:
   a biometrical approach}. Third Edition.
   
   Yandell, B.S. (1997) \emph{Practical Data Analysis for Designed Experiments}. 
