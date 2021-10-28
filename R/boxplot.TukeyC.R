@@ -57,6 +57,8 @@ boxplot.TukeyC <- function(x,
                        aux3$treat)
     aux3 <- subset(aux3,
                    treat%in%ltreat)
+
+    treat <- 'treat'
    
   }
 

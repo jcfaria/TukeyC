@@ -2,11 +2,11 @@
 \alias{print.TukeyC}
 
 \title{
-  Print Method for \code{TukeyC} objects.
+	Print Method for \code{TukeyC} objects.
 }
 
 \description{
-  Returns (and prints) a list for objects of class \code{TukeyC}.
+	Returns (and prints) a list for objects of class \code{TukeyC}.
 }
 
 \usage{
@@ -16,13 +16,14 @@
 }
 
 \arguments{
-  \item{x}{A given object of the class \code{TukeyC}.}
-  \item{\dots }{Further arguments (require by generic).}
+	\item{x}{A given object of the class \code{TukeyC}.}
+	\item{\dots }{Further arguments (require by generic).}
 }
 
 \author{
-  Enio G. Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
+	José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+	Enio G. Jelihovschi (\email{eniojelihovs@gmail.com})\cr
+	Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
 }
 
 \seealso{\code{\link{TukeyC}}
@@ -32,11 +33,11 @@
 data(RCBD) 
 
 tk <- with(RCBD,
-           TukeyC(y ~ blk + tra,
-                  data=dfm,
-                  which='tra'))
+	   TukeyC(y ~ blk + tra,
+		  data=dfm,
+		  which='tra'))
 tk
- 
+
 }
 
 \keyword{package}

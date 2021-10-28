@@ -101,7 +101,7 @@ plot.TukeyC <- function(x,
     np[3] <- ngroups + 1   # Changing top to show all letters
     par(mar=np)            # Setting new par('mar')
   }
-
+ 
   plot(groups,
        means,
        pch  = pch,
@@ -163,7 +163,8 @@ plot.TukeyC <- function(x,
                   1))
 
   if(is.null(id.lab))
-    id.lab <- names(x$out$Result[,1])
+    #id.lab <- names(x$out$Result[,1])
+    id.lab <- row.names(x$out$Result)
 
   axis(1,
        at       = 1:length(means),

@@ -79,7 +79,7 @@ TukeyC.lm <- function(x,
 
       levelss <- unlist(aux_levels1[factors])
 
-      if(length(levelss) == 2){
+      if(length(aux_MSE) == 2){
 
         cp <- c(levelss[1]-1,
                 1) 

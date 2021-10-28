@@ -66,7 +66,7 @@
 }
 
 \references{
-  Murrell, P. (2005) \emph{R Graphics}. Chapman & Hall/CRC Press.
+  Murrell, P. (2005) \emph{R Graphics}. Chapman and Hall/CRC Press.
 }
 
 \seealso{

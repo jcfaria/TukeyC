@@ -17,9 +17,8 @@ TukeyC.lmerMod <- function(x,
   # Interacoes com erro experimental
   if(!is.null(fl1) & is.null(error)){
 
-    SSE <- deviance(x,REML=FALSE) # sum square error
-    dfr <- df.residual(x)  # residual degrees of freedom                   
-    MSE <- SSE/dfr  
+    MSE <- sigma(x)^2 # possível solução
+    dfr <- df.residual(x)
 
     cl <- match.call()
     res <- TukeyC.nest.lmerMod(x               = x,
@@ -86,7 +85,7 @@ TukeyC.lmerMod <- function(x,
 
       levelss <- unlist(aux_levels[factors])
 
-      if(length(levelss) == 2){
+      if(length(aux_MSE) == 2){
 
         cp <- c(levelss[1]-1,
                 1) 
@@ -166,10 +165,8 @@ TukeyC.lmerMod <- function(x,
 
   } else { #Erro experimental
 
-    SSE <- sum(residuals(x)^2) # sum square error
-    dfr <- df.residual(x)  # residual degrees of freedom                   
-    MSE <- SSE/dfr  
-
+    MSE <- sigma(x)^2
+    dfr <- df.residual(x) 
   }
 
   my <- as.character(formula(x)[[2]])

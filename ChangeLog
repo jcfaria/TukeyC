@@ -1,10 +1,23 @@
-2019-04-10 vs. 1.3-4 - José Cláudio Faria <ivanalaman@gmail.com>
-  * Fixed warnig on boxplot.TukeyC.Rd.
-  * Improvements in the documentation:
+2020-11-04 vs. 1.3-4 - Ivan Bezerra Allaman <ivanalaman@gmail.com> 
+  * José Cláudio
+   * Fixed warnig on boxplot.TukeyC.Rd.
+   * Improvements in the documentation:
     - TukeyC.Rd.
     - plot.TukeyC.Rd.
     - boxplot.TukeyC.Rd.
-  * NAMESPACE adequation
+   * NAMESPACE adequation
+  * Ivan Bezerra
+   * Fixed bug in the TukeyC.lmerMod function. Calculus of the QME and dfr in the rows 20, 21, 169 and 170 corrected.
+   * Add xtable method to TukeyC. This function is xtable.TukeyC.
+   * Add xtable.TukeyC in man folder.
+   * Fixed bug in TukeyC.lmerMod, TukeyC.lm and TukeyC.aovlist. Substitute
+   levelss by aux_MSE object in the row 88, 82 and 75. If split-plot or
+   split-split-plot, the man object to condition is aux_MSE and not levelss.
+   * Fixed bug in plot.TukeyC and boxplot.TukeyC function.In the plot.TukeyC
+   function, change command names(x$out$Result[,1]) by row.names(x$out$Result)
+   (row 166). In the boxplot.TukeyC function, add command treat <- 'treat'
+   (row 61). 
+   * Fixed bug in m.infos.lmerMod.R function. Change aux_mt$coef[,3] (degree of free incorrect) by aux_mt$coef[,4] in the lines 22 to 25. 
 
 2019-01-15 vs. 1.3-3 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
   * Add new method plot. Is boxplot.TukeyC.
