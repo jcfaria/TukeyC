@@ -47,7 +47,7 @@
 \references{
   Miller, R.G. (1981) \emph{Simultaneous Statistical Inference}. Springer.
 
-  Ramalho M.A.P, Ferreira D.F and Oliveira A.C. (2000) \emph{Experimentação em Genética
+  Ramalho M.A.P, Ferreira D.F and Oliveira A.C. (2000) \emph{Experimentacao em Genetica
   e Melhoramento de Plantas}. Editora UFLA.
 
   Steel, R.G., Torrie, J.H and Dickey D.A. (1997) \emph{Principles and procedures of statistics:
@@ -58,7 +58,7 @@
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
 }

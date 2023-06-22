@@ -18,6 +18,7 @@ import(
 )
 
 # S3 methods
+S3method(TukeyC, default)
 S3method(TukeyC, formula)
 S3method(TukeyC, lm)
 S3method(TukeyC, aovlist)

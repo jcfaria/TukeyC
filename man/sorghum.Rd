@@ -32,7 +32,7 @@
 
 \source{
   Ramalho, M.A.P. and Ferreira and D.F. and Oliveira, A.C. (2000)
-  \emph{Experimentação em Genética e Melhoramento de Plantas}. Editora UFLA, Lavras, 
+  \emph{Experimentacao em Genetica e Melhoramento de Plantas}. Editora UFLA, Lavras, 
   Brazil, page 167.
 }
 

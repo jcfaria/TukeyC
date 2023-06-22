@@ -14,7 +14,7 @@
 
 \source{
   Gomes, F.P. (1990).
-  Curso de Estatística Experimental. 13 ed. Editora NOBEL, Piracicaba,
+  Curso de Estatistica Experimental. 13 ed. Editora NOBEL, Piracicaba,
   Brazil, page 157.}
 
 \keyword{datasets}
