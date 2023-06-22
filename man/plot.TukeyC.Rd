@@ -19,6 +19,8 @@
      ylab           = NULL,
      xlim           = NULL,
      ylim           = NULL,
+     axisx          = TRUE,
+     axisy          = TRUE,
      id.lab         = NULL,
      id.las         = 1,
      yl             = TRUE,
@@ -40,6 +42,8 @@
   \item{ylab}{A label for the \samp{y} axis.}
   \item{xlim}{The \samp{x} limits of the plot.}
   \item{ylim}{The \samp{y} limits of the plot.}
+  \item{axisx}{Axis x? If \samp{TRUE} you must accept the default, otherwise, you must customize.}
+  \item{axisy}{Axis y? If \samp{TRUE} you must accept the default, otherwise, you must customize.}
   \item{id.lab}{Factor level names at \samp{x} axis.}
   \item{id.las}{Factor level names written either horizontally or vertically.}
   \item{yl}{Horizontal (reference) line connecting the circle to the \samp{y} axis.}
@@ -60,7 +64,7 @@
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
   Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
 }

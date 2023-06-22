@@ -21,7 +21,7 @@
 }
 
 \author{
-  José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr  
+  Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr  
   Enio G. Jelihovschi (\email{eniojelihovs@gmail.com})\cr
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
 }

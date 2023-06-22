@@ -41,7 +41,7 @@ make.TukeyC.test(obj,
 }
 
 \author{
-	José Cláudio Faria (\email{joseclaudio.faria@gmail.com})\cr
+	Jose Claudio Faria (\email{joseclaudio.faria@gmail.com})\cr
 	Enio Jelihovschi (\email{eniojelihovs@gmail.com})\cr
 	Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})
 }
