@@ -88,7 +88,7 @@ R CMD INSTALL TukeyC_X.X-X.tar.gz
 
 ## Roadmap
 
-- Add automated tests (`testthat`) for all experimental designs.
+- Expand automated tests (`testthat`) for all experimental designs.
 - Expand vignettes covering balanced and unbalanced use cases.
 - Keep documentation aligned with current S3 behaviour.
 

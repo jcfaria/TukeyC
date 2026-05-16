@@ -61,17 +61,17 @@ TukeyC(x,...)
 }
 
 \arguments{
-  \item{x,formula}{A \code{formula}, \code{lm}, \code{aov}, \code{aovlist} and \code{lmerMod} class object. Objects of the \code{formula} class follow ``response variable ~ predicted variable.}
-  \item{data}{A object of the \code{data.frame} class. Use only objects of \code{formula} class.}
+  \item{x,formula}{A \code{formula}, \code{lm}, \code{aov}, \code{aovlist}, or \code{lmerMod} object. For the \code{formula} method, use \code{response ~ predictors}.}
+  \item{data}{An object of class \code{data.frame} class. Use only objects of \code{formula} class.}
   \item{which}{The name of the treatment to be used in the comparison.
     The name must be inside quoting marks.}
   \item{fl1}{A vector of length 1 giving the level of the first factor in nesting order tested.}
   \item{fl2}{A vector of length 1 giving the level of the second factor in nesting order tested.} 
-  \item{error}{The error to be considered. If from experiment at split plot or split-split plot pay attention! See details!}
+  \item{error}{The error to be considered. For split-plot or split-split-plot designs, see Details.}
   \item{sig.level}{Level of Significance used in the TukeyC algorithm to create
     the groups of means. The default value is 0.05.}
   \item{round}{Integer indicating the number of decimal places.}
-  \item{adjusted.pvalue}{Method for adjusting p values (see \code{p.adjust} to more details). The possible values are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"} and \code{"none"}. The default is \code{"none"}. }
+  \item{adjusted.pvalue}{Method for adjusting p values (see \code{p.adjust} for details). The possible values are: \code{"holm"}, \code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"} and \code{"none"}. The default is \code{"none"}. }
   \item{\dots}{Potential further arguments (required by generic).}
 }
 
@@ -83,7 +83,7 @@ TukeyC(x,...)
   The generic functions \code{summary} and \code{plot} are used to obtain and
   print a summary and a plot of the results.
 
-  The error arguments may be used whenever the user want a specific error other than the experimental error. At the split plot and split-split plot experiment, combination of error may be specified with "/" in the sequence of the \code{which} argument. For example, a object of \code{aovlist} class, a possible combination would be \code{error = 'Within/blk:plot'} at case block split plot experiment with \code{which = 'subplot:plot'} argument.
+  The error arguments may be used when the user wants a specific error other than the experimental error. In split-plot and split-split-plot designs, error terms may be combined with "/" in the sequence of the \code{which} argument. For example, an \code{aovlist} object, a possible combination would be \code{error = 'Within/blk:plot'} in a blocked split-plot design with \code{which = 'subplot:plot'} argument.
 }
 
 \value{
@@ -91,7 +91,7 @@ TukeyC(x,...)
   \item{Result}{A \code{data.frame} storing the result of Tukey test.}
   \item{Sig.level}{A scalar giving the level of significance of the test.} 
   \item{Diff_Prob}{A \code{matrix} at the lower diagonal with p-values and upper diagonal with means differences.}
-  \item{MSD}{A \code{matrix} with minimum significance differences by Tukey methodology. If balanced data, then all values are equal.}
+  \item{MSD}{A \code{matrix} with minimum significant differences by Tukey methodology. If balanced data, then all values are equal.}
 }
 
 \author{
@@ -115,7 +115,7 @@ TukeyC(x,...)
 
 \examples{
 ##
-## Examples:Randomized Complete Block Design (RCBD)
+## Examples: Randomized Complete Block Design (RCBD)
 ## More details: demo(package='TukeyC')
 ##
 
@@ -130,7 +130,7 @@ tk1 <- with(RCBD,
                    which='tra'))
 summary(tk1)
 
-## From: merMod
+## From: lmerMod
 ## This class is specific of the lme4 package.
 \donttest{
   if(require(lme4)){
@@ -222,7 +222,7 @@ n_tk3 <- with(FE,
                      fl1=1))
 summary(n_tk3) 
 
-# From: merMod
+# From: lmerMod
 \donttest{
   if(require(lme4)){
     lmer2 <- with(FE,
@@ -248,23 +248,22 @@ lm3 <- with(SPET,
             lm(y ~ blk*tra + tra*year,
                dfm))
 
-# crotgrantiana/year
+# crotjuncea/year
 sp_tk1 <- TukeyC(lm3,
                  which='tra:year',
                  fl1=1)
 summary(sp_tk1) 
 
 # year1/tra
-# It is necessary to set year error with trat error in the order of the "which" argument.
-# It is necessary to inform how to combinate the errors
+# Specify the year error combined with the treatment error in the order of the which argument.
 sp_tk2 <-  TukeyC(lm3,
                   which='year:tra',
                   error='Residuals/blk:tra',
                   fl1=1)
 summary(sp_tk2)
 
-# From merMod
-# Onty tra
+# From: lmerMod
+# Only tra
 \donttest{
   if(require(lme4)){
     lmer3 <- with(SPET,
@@ -293,7 +292,7 @@ summary(sp_tk2)
 data(SSPE)
 ## From: formula
 ## Main factor: P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 ssp_tk1 <- with(SSPE,
                 TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                        data=dfm,
@@ -302,7 +301,7 @@ ssp_tk1 <- with(SSPE,
 summary(ssp_tk1)
 
 ## Main factor: SP
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 ssp_tk2 <- with(SSPE,
                 TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                        data=dfm,
@@ -328,7 +327,7 @@ ssp_tk4 <- TukeyC(av3,
 summary(ssp_tk4)
 
 ## Nested: p1/SP
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 ssp_tk5 <- TukeyC(av3,
                   which='P:SP',
                   error='blk:P:SP',
@@ -357,7 +356,7 @@ ssp_tk8 <- TukeyC(av3,
 summary(ssp_tk8)
 
 ## Nested: sp1/P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 ssp_tk9 <- TukeyC(av3,
                   which='SP:P',
                   error='blk:P:SP/blk:P',
@@ -373,7 +372,7 @@ ssp_tk10 <- TukeyC(av3,
 summary(ssp_tk10)
 
 ## Nested: ssp1/sp1/P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 ssp_tk11 <- TukeyC(av3,
                    which='SSP:SP:P',
                    error='Within/blk:P:SP/blk:P',
@@ -382,7 +381,7 @@ ssp_tk11 <- TukeyC(av3,
 summary(ssp_tk11)
 
 ## UNBALANCED DATA
-## The average are adjusted by "Least-Square-Means" methodology.
+## Means are adjusted using least-squares means.
 ## From: formula
 data(CRD2)
 

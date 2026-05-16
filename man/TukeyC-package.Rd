@@ -18,29 +18,29 @@
   The most usual schemes are:
   Factorial Experiment (\samp{FE}),
   Split-Plot Experiment (\samp{SPE}) and
-  Split-Split-Plot Experiment (\samp{SPE}).
+  Split-Split-Plot Experiment (\samp{SSPE}).
   
-  The package can be used for both balanced or unbalanced (when possible), experiments.
+  The package can be used for balanced and unbalanced experiments (when possible).
 
   \R has some functions
   (\code{\link[stats]{TukeyHSD}} provided by \code{stats},
   \code{\link[multcomp]{glht}} provided by \code{multcomp},
   \code{\link[agricolae]{HSD.test}} provided by \code{agricolae} and
-  \code{\link[multcomp]{cld}} provided by \code{multcomp}) which also performs
+  \code{\link[multcomp]{cld}} provided by \code{multcomp}) that also perform
   the Tukey test. The \code{TukeyHSD} returns intervals based on the range of the
   sample means rather than the individual differences. Those intervals are based 
   on Studentized range statistics and are, in essence, confidence intervals.
-  This approach has two advantages: the p-value is showed allowing the user to
-  flexibilize the inferencial decision and also make it possible to plot the 
+  This approach has two advantages: p-values are shown, allowing the user to
+  allow flexible inferential decisions and make it possible to plot the 
   result of the test. However, it has one disadvantage, since the final result is 
   more difficult to understand and summarize. Others (\code{glht}, \code{cld}) 
   are also useful but difficult to manage.
-  Additionally, most of users of other statistical softwares are very used with 
-  letters grouping the means of the factor tested, making unattractive or 
-  difficult to adapt to the current aproach of \R.
+  Additionally, many users of other statistical software are accustomed to 
+  letters that group the means of the factor tested, which makes it unattractive or
+  difficult to adapt to common \R workflows.
 
-  So, the main aim of this package is make available in \R environment the
-  conventional aproach of Tukey test with a set of flexible funtions and
+  So, the main aim of this package is to make available in the \R environment the
+  conventional approach to the Tukey test with a set of flexible functions and
   S3 methods.
 }
   

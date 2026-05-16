@@ -10,7 +10,7 @@ TukeyC.lm <- function(x,
     which <- names(x$model)[2]
   }
 
-  # Interacoes com erro experimental
+  # Interactions with experimental error
   if (!is.null(fl1) & is.null(error)) {
     SSE <- deviance(x) # sum square error
     dfr <- df.residual(x) # residual degrees of freedom
@@ -42,7 +42,7 @@ TukeyC.lm <- function(x,
     return(res)
   }
 
-  # Interacoes com outros erros
+  # Interactions with other error strata
   if (!is.null(fl1) & !is.null(error)) {
     many_errors <- unlist(strsplit(
       error,
@@ -53,7 +53,7 @@ TukeyC.lm <- function(x,
 
     n_errors <- length(many_errors)
 
-    if (n_errors > 1) { # combinacoes de erros!!!
+    if (n_errors > 1) { # Combined error terms
 
       aux_MSE <- NULL
       aux_dfr <- NULL
@@ -102,7 +102,7 @@ TukeyC.lm <- function(x,
         denom <- (cp[1] * aux_MSE[1])^2 / aux_dfr[1] + (cp[2] * aux_MSE[2])^2 / aux_dfr[2] + aux_MSE[3]^2 / aux_dfr[3]
         dfr <- numer / denom
       }
-    } else { # nao ha combinacao de erros!!!
+    } else { # No combined error terms
 
       anov <- anova(x)
       SSE <- anov[rownames(anov) == error, ][1, 2] # sum square error
@@ -136,14 +136,14 @@ TukeyC.lm <- function(x,
     return(res)
   }
 
-  # Aqui nao ha interesse em interacoes!!!!
-  if (is.null(fl1) & !is.null(error)) { # Um erro de interesse do usuario
+  # No interaction terms of interest here
+  if (is.null(fl1) & !is.null(error)) { # User-specified error term
 
     anov <- anova(x)
     SSE <- anov[rownames(anov) == error, ][1, 2] # sum square error
     dfr <- anov[rownames(anov) == error, ][1, 1] # residual degrees of freedom
     MSE <- SSE / dfr
-  } else { # Erro experimental
+  } else { # Experimental error
 
     SSE <- deviance(x) # sum square error
     dfr <- df.residual(x) # residual degrees of freedom

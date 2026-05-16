@@ -23,7 +23,7 @@ make.TukeyC.test <- function(obj,
     lower.tail = FALSE
   )
 
-  msd <- qTukey * sqrt(1 / 2 * vece) # minimum significative difference
+  msd <- qTukey * sqrt(1 / 2 * vece) # minimum significant difference
 
   diag(msd) <- 0
 
@@ -40,7 +40,7 @@ make.TukeyC.test <- function(obj,
     "-"
   )) # means difference
 
-  # The below estimates the probability of observed difference betweeen means be significative
+  # The below estimates the probability of observed difference between means is significant
   # Matrix of the difference of means above diagonal and respective p-values of the Tukey test
   # below diagonal
   pval_tukey <- ptukey(

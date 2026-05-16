@@ -61,10 +61,10 @@
 }
 
 \details{
-  The \code{plot.TukeyC} function is a S3 method to plot \samp{Tukey} and
-  \code{TukeyC.nest} objects. It generates a serie of points (the means) and a 
+  The \code{plot.TukeyC} function is an S3 method to plot \code{TukeyC} and
+  \code{TukeyC.nest} objects. It generates a series of points (the means) and a 
   vertical line showing the dispersion of the values corresponding to
-  each group mean. The ci options is calculed utilizing each treatment variance as estimating of population variance. The cip options is calculed utilizing the means square error (MSE) as estimating of population variance.
+  each group mean. With \code{dispersion = "ci"}, intervals use each treatment variance as an estimate of the population variance. With \code{dispersion = "cip"}, intervals use the mean square error (MSE).
 }
 
 \author{

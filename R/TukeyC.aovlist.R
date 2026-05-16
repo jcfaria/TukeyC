@@ -9,7 +9,7 @@ TukeyC.aovlist <- function(x,
                            sig.level = .05,
                            round = 2,
                            adjusted.pvalue = "none", ...) {
-  # Interacoes com erro experimental
+  # Interactions with experimental error
   if (!is.null(fl1) & is.null(error)) {
     pos_error <- length(names(x))
     SSE <- deviance(x[[pos_error]]) # experimental error
@@ -41,7 +41,7 @@ TukeyC.aovlist <- function(x,
     return(res)
   }
 
-  # Interacoes com outros erros
+  # Interactions with other error strata
   if (!is.null(fl1) & !is.null(error)) {
     many_errors <- unlist(strsplit(
       error,
@@ -50,7 +50,7 @@ TukeyC.aovlist <- function(x,
 
     n_errors <- length(many_errors)
 
-    if (n_errors > 1) { # combinacao de erros!!!
+    if (n_errors > 1) { # Combined error terms
 
       aux_SSE <- NULL
       aux_dfr <- NULL
@@ -100,7 +100,7 @@ TukeyC.aovlist <- function(x,
         denom <- (cp[1] * aux_MSE[1])^2 / aux_dfr[1] + (cp[2] * aux_MSE[2])^2 / aux_dfr[2] + aux_MSE[3]^2 / aux_dfr[3]
         dfr <- numer / denom
       }
-    } else { # nao ha combinacao de erros!!!
+    } else { # No combined error terms
 
       SSE <- deviance(x[[error]]) # experimental error
       dfr <- df.residual(x[[error]]) # experimental error
@@ -133,12 +133,12 @@ TukeyC.aovlist <- function(x,
     return(res)
   }
 
-  # Aqui nao ha interesse em interacoes!!!
+  # No interaction terms of interest here
   if (is.null(fl1) & !is.null(error)) {
     SSE <- deviance(x[[error]]) # experimental error
     dfr <- df.residual(x[[error]]) # experimental error
     MSE <- SSE / dfr
-  } else { # Erro experimental
+  } else { # Experimental error
 
     pos_error <- length(names(x))
     SSE <- deviance(x[[pos_error]]) # experimental error

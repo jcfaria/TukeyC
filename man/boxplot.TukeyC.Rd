@@ -22,12 +22,12 @@
 
 \arguments{
   \item{x}{A \code{TukeyC} object.}
-  \item{mean.type}{The type of mean must be ploted. O default is "line".}
+  \item{mean.type}{The type of mean must be plotted. The default is "line".}
   \item{xlab}{A label for the \samp{x} axis.} 
   \item{mean.col}{A vector of colors for the means representation.}
-  \item{mean.pch}{A vector of plotting symbols or characters. Only if type are "point".}
+  \item{mean.pch}{A vector of plotting symbols or characters. Only when \code{mean.type} is \code{"point"}.}
   \item{mean.lwd}{Line width of mean.}
-  \item{mean.lty}{Line type of mean. Only if type are "line".}
+  \item{mean.lty}{Line type of mean. Only when \code{mean.type} is \code{"line"}.}
   \item{args.legend}{List of additional arguments to be passed to \code{legend}; The default is \code{NULL}.}
   \item{\dots}{Optional plotting parameters.}
 }
@@ -37,7 +37,7 @@
 }
 
 \details{
-  The \code{boxplot.TukeyC} function is a S3 method to plot \samp{TukeyC} objects. The difference to generic function is the Tukey inference under frame and the plot of means within box.
+  The \code{boxplot.TukeyC} function is an S3 method to plot \code{TukeyC} objects. Unlike the generic \code{boxplot}, it displays Tukey group letters and overlays treatment means on the boxes.
 }
 
 \author{

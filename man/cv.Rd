@@ -2,11 +2,11 @@
 \alias{cv}
 
 \title{
-  Coefficient of the experiment variation
+  Coefficient of variation
 }
 
 \description{
-  It obtains the coefficient of variation of the experiment obtained by 
+  Returns the coefficient of variation from 
   models \code{lm}, \code{aov} and \code{aovlist}.
 }
 
@@ -16,7 +16,7 @@ cv(x,
 }
 
 \arguments{
-  \item{x}{A object of the class \code{lm}, \code{aov} or \code{aovlist}.}
+  \item{x}{An object of class \code{lm}, \code{aov}, or \code{aovlist}.}
   \item{round}{An integer value indicating the number of decimal places to be used.
     The default value is 2.}
 }

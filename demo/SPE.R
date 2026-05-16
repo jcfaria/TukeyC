@@ -29,7 +29,7 @@ plot(tk2,
      d.col='red',
      d.lty=3)
 
-## Nested: sp1/P - it is necessary to inform how to combinate the errors
+## Nested: sp1/P - specify how to combine error terms
 tk3 <- with(SPE,
             TukeyC(y ~ blk + P*SP + Error(blk/P),
                    data=dfm,
@@ -69,7 +69,7 @@ tk6 <- TukeyC(av1,
 summary(tk6)
 
 ## Main factor: P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk7 <- TukeyC(av1,
               which='P',
               error='blk:P')
@@ -95,7 +95,7 @@ tk10 <- TukeyC(av1,
                fl1=3)
 summary(tk10)
 
-## Nested: sp1/P - it is necessary to inform how to combinate the errors
+## Nested: sp1/P - specify how to combine error terms
 tk11 <- TukeyC(av1,
                which='SP:P',
                error='Within/blk:P',

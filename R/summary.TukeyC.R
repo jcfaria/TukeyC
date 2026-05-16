@@ -1,5 +1,5 @@
 ##
-## S3 method to sumarize 'TukeyC' object
+## S3 method to summarize 'TukeyC' object
 ##
 
 summary.TukeyC <- function(object,

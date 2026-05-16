@@ -10,9 +10,9 @@ TukeyC.lmerMod <- function(x,
     which <- names(x$model)[2]
   }
 
-  # Interacoes com erro experimental
+  # Interactions with experimental error
   if (!is.null(fl1) & is.null(error)) {
-    MSE <- sigma(x)^2 # possivel solucao
+    MSE <- sigma(x)^2 # Possible approach
     dfr <- df.residual(x)
 
     cl <- match.call()
@@ -38,7 +38,7 @@ TukeyC.lmerMod <- function(x,
     return(res)
   }
 
-  # Interacoes com outros erros
+  # Interactions with other error strata
   if (!is.null(fl1) & !is.null(error)) {
     many_errors <- unlist(strsplit(
       error,
@@ -47,7 +47,7 @@ TukeyC.lmerMod <- function(x,
 
     n_errors <- length(many_errors)
 
-    if (n_errors > 1) { # combinacao de erros!!!
+    if (n_errors > 1) { # Combined error terms
 
       aux_MSE1 <- lme4::VarCorr(x)
       aux_MSE <- c(
@@ -119,7 +119,7 @@ TukeyC.lmerMod <- function(x,
         denom <- (cp[1] * aux_MSE[1])^2 / aux_dfr[1] + (cp[2] * aux_MSE[2])^2 / aux_dfr[2] + aux_MSE[3]^2 / aux_dfr[3]
         dfr <- numer / denom
       }
-    } else { # nao ha combinacao de erros!!!
+    } else { # No combined error terms
 
       anov <- anova(x)
       SSE <- anov[rownames(anov) == error, ][1, 2] # sum square error
@@ -150,8 +150,8 @@ TukeyC.lmerMod <- function(x,
     return(res)
   }
 
-  # Aqui nao ha interesse em interacoes!!!!
-  if (is.null(fl1) & !is.null(error)) { # Um erro de interesse do usuario
+  # No interaction terms of interest here
+  if (is.null(fl1) & !is.null(error)) { # User-specified error term
 
     aux_MSE <- lme4::VarCorr(x)
     MSE <- attr(aux_MSE[[error]], "stddev")^2
@@ -177,7 +177,7 @@ TukeyC.lmerMod <- function(x,
     aux_df8 <- aux_df2[aux_df7] - 1
 
     dfr <- prod(aux_df2) - (sum(aux_df8) + 1)
-  } else { # Erro experimental
+  } else { # Experimental error
 
     MSE <- sigma(x)^2
     dfr <- df.residual(x)

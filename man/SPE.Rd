@@ -6,7 +6,7 @@
 }
 
 \description{
-  A \code{list} to ilustrate the resources of \code{TukeyC} package
+  A \code{list} to illustrate the resources of \code{TukeyC} package
   related to Split-plot Experiment (\samp{SPE}).
 }
 

@@ -51,7 +51,9 @@
 - Removed obsolete commented code (`doBy`, `parallel`).
 - Expanded `testthat` coverage (`test-tukeyc-extra.R`: groups, boxplot, FE
   nest, xtable export).
-- Documentation typos corrected in selected `.Rd` files.
+- English language review across the package: Portuguese comments in `R/`
+  translated to English; grammar and spelling corrected in `man/`, `demo/`,
+  and `README.md` (user-facing text and examples).
 
 ---
 

@@ -11,7 +11,7 @@ boxplot.TukeyC <- function(x,
                            mean.lty = 1,
                            args.legend = NULL,
                            ...) {
-  # x is a object of Tukeyc class
+  # x is a TukeyC object
   fun <- function(m) {
     a <- rep(
       "\n",
@@ -59,7 +59,7 @@ boxplot.TukeyC <- function(x,
   auxinter <- unlist(strsplit(
     treat,
     ":"
-  )) # objeto criado para auxliar nos casos que envolve interações.
+  )) # Helper object for interaction cases
 
   if (length(auxinter) > 1) {
     aux3$treat <- .tukeyc_interaction_label(aux3, treat)

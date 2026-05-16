@@ -3,10 +3,10 @@
 ##
 make.TukeyC.groups <- function(x) {
   ## ++++++++
-  # O procedimento abaixo é para eliminar colunas iguais, pois não há sentido termos:
+  # Remove duplicate columns (no point keeping identical grouping columns):
   # t1  a  b
   # t2  a  b
-  # é tudo a
+  # (example: all rows labeled "a")
   x[upper.tri(x)] <- FALSE
   auxx <- t(x)
   auxy <- unique(auxx)
@@ -17,13 +17,13 @@ make.TukeyC.groups <- function(x) {
   nrownew <- nrow(newmat)
 
   ## +++++++++
-  # Este procedimento é para marcar a partir de qual linha deve ser colocado as letras
+  # Mark the first row from which each letter column should be filled
   mat24 <- sapply(colnames(newmat), function(x) x == rownames(newmat))
   mat25 <- which(mat24 == TRUE, arr.ind = TRUE)
   ## +++++++++
 
   ## +++++++++
-  # Criando a matrix indicadora das letras
+  # Build the indicator matrix for letter assignment
   matzero <- matrix(NA, nrow = nrownew, ncol = ncolnew)
   for (i in 1:dim(mat25)[1]) {
     matzero[seq(mat25[i, 1], nrownew), i] <- newmat[seq(mat25[i, 1], nrownew), i]
@@ -31,13 +31,13 @@ make.TukeyC.groups <- function(x) {
   ## +++++++++
 
   ## +++++++++
-  # Este procedimento é para obter as colunas que de fato serão colocado as letras
+  # Keep only the columns that will actually receive letters
   aux <- apply(matzero, 2, function(x) all(x == FALSE, na.rm = TRUE))
   aux3 <- matzero[, 1:(length(aux[aux == FALSE]) + 1)]
   ## +++++++++
 
   ## +++++++++
-  # Quando o pesquisador usa diretamento o teste de Tukey (sem ANOVA prévia), pode acontecer dos tratamentos serem iguais. O procedimento abaixo é uma proteção da função caso isso ocorra.
+  # When Tukey is run without a prior ANOVA, treatments may be equal; guard below
   if (!is.vector(aux3)) {
     matreal <- apply(aux3, 2, function(x) gsub(TRUE, "", x))
   } else {
@@ -47,7 +47,7 @@ make.TukeyC.groups <- function(x) {
   matreal[is.na(matreal)] <- ""
 
   ## +++++++++
-  # Criando um vetor de letras. Com as letras atuais do R, só é possível termos 52 letras entre minúsculas e maiúsculas. Ou seja, se todos os tratamentos fossem diferentes entre si, só seria possível  diferenciamos 52 tratamentos. Colocando caracteres como acentos entre outros, conseguiremos expandir o número de comparações.
+  # Letter pool: R letters plus suffixes extend beyond 52 pairwise groups
   letras <- c(letters, paste(letters, rep(0:9, rep(26, 10)), sep = ""))
   ## +++++++++
 

@@ -1,5 +1,5 @@
 ##
-## S3 method to plot 'TukeyC' object
+## S3 method to plot TukeyC objects
 ##
 
 plot.TukeyC <- function(x,

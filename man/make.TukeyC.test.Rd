@@ -19,20 +19,20 @@ make.TukeyC.test(obj,
 }
 
 \arguments{
-	\item{obj}{A data.frame with the means and replicate of the factors.}
+	\item{obj}{A data.frame with the means and replicates per factor level.}
 	\item{MSE}{A vector of length 1 giving the mean squared error.}
 	\item{sig.level}{A vector of length 1 giving the level of significance of the test.} 
 	\item{dfr}{A vector of length 1 giving the degrees of freedom of \samp{MSE}.}
 	\item{round}{Integer indicating the number of decimal places.}
-	\item{adjusted.pvalue}{A vector of pvalues obtained of the ptukey function.}
+	\item{adjusted.pvalue}{A vector of pvalues from \code{ptukey} function.}
 }
 
 \value{
 	A list with 5 slots containing the most important results of the test performed:
 	\item{Result}{The result of the Tukey test}
-	\item{Sig.Level}{The significance of the test}
-	\item{Diff_Prob}{A \code{matrix} with the observed means differences (\code{upper.tri}) and respective probalities (\code{lower.tri})}
-	\item{MSD}{The minimum significative difference}
+	\item{Sig.Level}{Significance level}
+	\item{Diff_Prob}{A \code{matrix} with the observed means differences (\code{upper.tri}) and respective probabilities (\code{lower.tri})}
+	\item{MSD}{The minimum significant difference}
 	\item{Replicates}{The replicate number for each factor}
 }
 

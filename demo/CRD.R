@@ -4,7 +4,7 @@
 
 ## The parameters can be: formula, aov, lm or lmer.
 
-## Example 1: an small experiment
+## Example 1: a small experiment
 library(TukeyC)
 data(CRD1)
 
@@ -26,6 +26,10 @@ plot(tk1,
 
 plot(tk1,
      dispersion='ci',
+     d.col='red')
+
+plot(tk1,
+     dispersion='cip',
      d.col='red')
 
 ## From: formula - unbalanced

@@ -14,10 +14,10 @@
 }
 
 \arguments{
-  \item{x}{A square matrix where the lines and colums are all levels of the
-    factor being test sorted in decresing order. The matrix content are
-    \code{TRUE} or \code{FALSE}, i.e, indicating whether or not equality
-    between the levels of factor.}
+  \item{x}{A square matrix whose rows and columns are all levels of the
+    factor being tested, sorted in decreasing order. Matrix entries are
+    \code{TRUE} or \code{FALSE}, indicating whether the corresponding pair
+    of means is not significantly different.}
 }
 
 \details{
@@ -27,7 +27,7 @@
 
 \value{
   The object returned by this function is a character matrix and the
-  rownames are the levels of the factor being tested sorted in decreasing
+  rownames are the levels of the factor being tested, sorted in decreasing
   order. The matrix has the same number of columns as the number of groups
   generated.
 }

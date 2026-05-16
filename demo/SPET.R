@@ -26,7 +26,7 @@ tk2 <- with(SPET,
 summary(tk2)
 
 ## Nested: year_1/tra
-## It is necessary to inform how to combinate the errors
+## It is necessary to specify how to combine error terms
 tk3 <- with(SPET,
             TukeyC(y ~ blk + tra*year + Error(blk/tra),
                    dfm,
@@ -49,7 +49,7 @@ tk4 <- TukeyC(lm1,
 summary(tk4)
 
 ## Nested: year1/tra
-## It is necessary to inform how to combinate the errors
+## It is necessary to specify how to combine error terms
 tk5 <- TukeyC(lm1,
               which='year:tra',
               error='Within/blk:tra',
@@ -58,7 +58,7 @@ summary(tk5,
         complete=FALSE)
 
 ## Nested: year2/tra
-## It is necessary to inform how to combinate the errors
+## It is necessary to specify how to combine error terms
 tk6 <- TukeyC(lm1,
               which='year:tra',
               error='Within/blk:tra',
@@ -78,7 +78,7 @@ tk7 <- TukeyC(av1,
 summary(tk7)
 
 ## Main factor: tra
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk8 <- TukeyC(av1,
               which='tra',
               error='blk:tra')
@@ -97,7 +97,7 @@ tk10 <- TukeyC(av1,
                fl1=4)
 summary(tk10)
 
-## Nested: year_1/tra - it is necessary to inform how to combinate the errors
+## Nested: year_1/tra - specify how to combine error terms
 tk11 <- TukeyC(av1,
                which='year:tra',
                error='Within/blk:tra',
@@ -113,7 +113,7 @@ plot(tk10,
      d.col='red',
      d.lty=3)
 
-## Nested: year_2/tra - it is necessary to inform how to combinate the errors
+## Nested: year_2/tra - specify how to combine error terms
 tk12 <- TukeyC(av1,
                which='year:tra',
                error='Within/blk:tra',

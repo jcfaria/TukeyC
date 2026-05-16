@@ -4,7 +4,7 @@
 #                  Walmes Marques Zeviani UFPR/DE
 # Date           : 2014/08/16 - 09:24:11
 # Version        : v7
-# Aim            : Calculate coefficient variation from lm, aov and
+# Aim            : Calculate the coefficient of variation from lm, aov and
 #                  aovlist objects
 # ===============================================================================
 
@@ -15,7 +15,7 @@
 cv <- function(x,
                round = 2) {
   if (is.null(x)) {
-    stop("An object of class lm, aov or aovlist must be informed!")
+    stop("An object of class lm, aov or aovlist must be supplied.")
   }
 
   if (inherits(

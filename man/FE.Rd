@@ -6,7 +6,7 @@
 }
 
 \description{
-  A \code{list} illustrating  the resources of \code{TukeyC} package
+  A \code{list} illustrating the resources of \code{TukeyC} package
   related to Factorial Experiment (\samp{FE}).
 }
 

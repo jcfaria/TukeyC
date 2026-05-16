@@ -42,22 +42,22 @@ TukeyC.nest.aovlist <- function(x,
 
   nf1 <- unlist(strsplit(which,
     split = ":"
-  ))[1] # nome do primeiro fator do which
+  ))[1] # First factor in which
 
   nf2 <- unlist(strsplit(which,
     split = ":"
-  ))[2] # nome do segundo fator do which
+  ))[2] # Second factor in which
 
   nf3 <- unlist(strsplit(which,
     split = ":"
-  ))[3] # nome do terceiro fator do which
+  ))[3] # Third factor in which
 
   if (is.null(fl2)) {
-    # Interesse apenas na interacao dupla
-    f1 <- levels(model.frame(x)[, nf2]) # correspondem aos fatores que se quer comparar!
+    # Only the two-way interaction is of interest
+    f1 <- levels(model.frame(x)[, nf2]) # Factor levels to compare
 
 
-    f2 <- levels(model.frame(x)[, nf1])[fl1] # corresponde ao fator onde se estao fazendo o desdobramento!
+    f2 <- levels(model.frame(x)[, nf1])[fl1] # Level of the factor used for the split comparison
 
     mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, model.frame(x))
 
@@ -65,7 +65,7 @@ TukeyC.nest.aovlist <- function(x,
       mt[, 2],
       sep = "/"
     )
-  } # Interesse na interacao tripla
+  } # Three-way interaction of interest
   else {
     f1 <- levels(model.frame(x)[, nf3])
 

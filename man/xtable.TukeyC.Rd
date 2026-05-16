@@ -7,7 +7,7 @@
 }
 
 \description{
-  Convert an \code{TukeyC} object to an \code{xtable.TukeyC} object, which can then be printed as a LaTeX or HTML table. This function provides an additional method for the \code{xtable} function from the \pkg{xtable} package.
+  Convert a \code{TukeyC} object to an \code{xtable.TukeyC} object, which can then be printed as a LaTeX or HTML table. This function provides an additional method for the \code{xtable} function from the \pkg{xtable} package.
 }
 
 \usage{

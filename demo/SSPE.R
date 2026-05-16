@@ -11,7 +11,7 @@ data(SSPE)
 
 ## From: formula
 ## Main factor: P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk1 <- with(SSPE,
             TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                    dfm,
@@ -20,7 +20,7 @@ tk1 <- with(SSPE,
 summary(tk1)
 
 ## Nested: p2/SP
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk2 <- with(SSPE,
             TukeyC(y ~ blk + P*SP*SSP + Error(blk/P/SP),
                    dfm,
@@ -49,7 +49,7 @@ lm1 <- with(SSPE,
 summary(lm1)
 
 ## Main factor: P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk4 <- TukeyC(lm1,
               which='P',
               error='blk:P')
@@ -67,7 +67,7 @@ tk6 <- TukeyC(lm1,
 summary(tk6)
 
 ## Nested: p1/SP
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk7 <- TukeyC(lm1,
               which='P:SP',
               error='blk:P:SP',
@@ -82,7 +82,7 @@ av1 <- with(SSPE,
 summary(av1)
 
 ## Main factor: P 
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk8 <- TukeyC(av1,
               which='P',
               error='blk:P')
@@ -94,7 +94,7 @@ tk9 <- TukeyC(av1,
 summary(tk9)
 
 ## Nested: p1/SP
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk10 <- TukeyC(av1,
                which='P:SP',
                error='blk:P:SP',
@@ -134,7 +134,7 @@ tk15 <- TukeyC(av1,
 summary(tk15)
 
 ## Nested: sp1/P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk16 <- TukeyC(av1,
                which='SP:P',
                error='blk:P:SP/blk:P',
@@ -150,7 +150,7 @@ tk17 <- TukeyC(av1,
 summary(tk17)
 
 ## Nested: ssp1/sp1/P
-## It is necessary to inform the appropriate error for the test
+## Specify the appropriate error term
 tk18 <- TukeyC(av1,
                which='SSP:SP:P',
                error='Within/blk:P:SP/blk:P',
