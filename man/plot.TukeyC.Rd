@@ -68,9 +68,9 @@
 }
 
 \author{
-  José C. Faria (\email{joseclaudio.faria@gmail.com})\cr
-  Enio G. Jelihovschi (\email{eniojelihovs@gmail.com})\cr
-  Ivan B. Allaman (\email{ivanalaman@gmail.com})
+  Faria, J. C. (\email{joseclaudio.faria@gmail.com})\cr
+  Jelihovschi, E. G. (\email{eniojelihovs@gmail.com})\cr
+  Allaman, I. B. (\email{ivanalaman@gmail.com})
 }
 
 \references{
