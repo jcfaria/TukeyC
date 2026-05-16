@@ -17,7 +17,9 @@ Author: Faria, J. C. [aut],
 Maintainer: Allaman, I. B.
 Depends: R (>= 4.0.0)
 Imports: emmeans, xtable
-Suggests: pbkrtest (>= 0.4-6), lme4
+Suggests: pbkrtest (>= 0.4-6), lme4, knitr, rmarkdown, testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
 Description: Performs multiple comparison analyses using Tukey's
     Honestly Significant Difference (HSD) test, with intuitive letter
     grouping of means for balanced and unbalanced designs. Accepts

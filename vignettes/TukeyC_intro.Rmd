@@ -1,0 +1,350 @@
+---
+title: "Introduction to the TukeyC Package"
+author: "Faria, J. C., Jelihovschi, E. G., Allaman, I. B."
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the TukeyC Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = '#>',
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = 'center'
+)
+```
+
+## Overview
+
+The **TukeyC** package implements Tukey's Honestly Significant Difference
+(HSD) test as a multiple comparison method in the context of Analysis of
+Variance (ANOVA). The package follows the conventional approach widely used in
+experimental statistics: treatment means are compared using the Studentized
+range, then labelled with letters that may overlap when means are not
+significantly different.
+
+The result is an easy-to-read table and plot showing mean estimates, minimum
+significant differences (MSD), and optional matrices of pairwise differences
+and adjusted p-values.
+
+```{r library}
+library(TukeyC)
+```
+
+---
+
+## 1. Quick Start - Completely Randomized Design (CRD)
+
+`CRD1` contains simulated data for a balanced CRD with **4 treatment levels**
+and **6 replicates** per treatment. The main function `TukeyC()` accepts a model
+formula, an `aov` object, or an `lm` object. The `which` argument names the
+factor to be compared.
+
+```{r crd-quick}
+data(CRD1)
+
+tk1 <- with(CRD1,
+            TukeyC(y ~ x,
+               data = dfm,
+               which = 'x'))
+summary(tk1)
+```
+
+The summary shows, for each level, the mean and the group letter assigned by the
+algorithm. Levels sharing the same letter do not differ significantly at the
+default 5 % level.
+
+A single call to `plot()` produces the canonical dot plot with group letters
+displayed above each point:
+
+```{r crd-plot, fig.cap="CRD1: treatment means with min-max dispersion bars and TukeyC groups."}
+plot(tk1,
+     dispersion = 'mm',
+     d.col = 'steelblue')
+```
+
+---
+
+## 2. Accepted Input Classes
+
+`TukeyC()` dispatches on the class of its first argument. The same grouping can be
+obtained from a `formula`, an `aov` object, or an `lm` object.
+
+```{r input-classes}
+## From: aov
+av1 <- with(CRD1, aov(y ~ x, data = dfm))
+tk2 <- TukeyC(av1, which = 'x')
+summary(tk2)
+
+## From: lm
+lm1 <- with(CRD1, lm(y ~ x, data = dfm))
+tk3 <- TukeyC(lm1, which = 'x')
+summary(tk3)
+```
+
+---
+
+## 3. Unbalanced Data
+
+When observations are missing, `TukeyC()` automatically adjusts the means using the
+Least-Squares Means methodology (via the **emmeans** package). The analysis
+proceeds identically to the balanced case.
+
+```{r crd-unbalanced}
+## Remove the first observation to create an unbalanced dataset
+u_tk1 <- with(CRD1,
+              TukeyC(y ~ x,
+                 data = dfm[-1, ],
+                 which = 'x'))
+summary(u_tk1)
+```
+
+The number of replicates shown at the bottom of the plot reflects the actual
+(unequal) sample sizes:
+
+```{r plot-unbal, fig.cap="CRD1 (unbalanced): adjusted means with SD bars."}
+plot(u_tk1, dispersion = 'sd', d.col = 'tomato')
+```
+
+---
+
+## 4. Randomized Complete Block Design (RCBD)
+
+`RCBD` contains simulated data for a design with **5 treatment levels** and **4
+blocks**. The blocking factor `blk` is included in the formula; `which` selects
+the factor of interest for the comparison.
+
+```{r rcbd}
+data(RCBD)
+
+tk4 <- with(RCBD,
+            TukeyC(y ~ blk + tra,
+               data = dfm,
+               which = 'tra'))
+summary(tk4)
+```
+
+```{r rcbd-plot, fig.cap="RCBD: treatment means with CI bars."}
+plot(tk4,
+     dispersion = 'ci',
+     d.col = 'darkgreen',
+     d.lty = 2)
+```
+
+---
+
+## 5. Significance Level
+
+The default significance level is `sig.level = 0.05`. Stricter or looser levels
+lead to fewer or more groups, respectively.
+
+```{r sig-level}
+## alpha = 0.01 (stricter)
+tk_01 <- with(RCBD,
+              TukeyC(y ~ blk + tra,
+                 data = dfm,
+                 which = 'tra',
+                 sig.level = 0.01))
+
+## alpha = 0.10 (looser)
+tk_10 <- with(RCBD,
+              TukeyC(y ~ blk + tra,
+                 data = dfm,
+                 which = 'tra',
+                 sig.level = 0.10))
+
+cat('--- sig.level = 0.01 ---\n')
+summary(tk_01)
+
+cat('--- sig.level = 0.10 ---\n')
+summary(tk_10)
+```
+
+---
+
+## 6. Factorial Experiment (FE)
+
+`FE` contains simulated data for a **3-factor factorial** design (N, P, K),
+each at 2 levels, in 4 blocks. `TukeyC()` supports both main-effect and nested
+comparisons using colon notation in `which` and the `fl1` / `fl2` arguments to
+select the level of the nesting factor.
+
+```{r fe-main}
+data(FE)
+
+## Main effect: factor N
+tk5 <- with(FE,
+            TukeyC(y ~ blk + N*P*K,
+               data = dfm,
+               which = 'N'))
+summary(tk5)
+```
+
+```{r fe-nested}
+## Nested: levels of N within level 1 of P
+tk6 <- with(FE,
+            TukeyC(y ~ blk + N*P*K,
+               data = dfm,
+               which = 'P:N',
+               fl1 = 1))
+summary(tk6)
+
+## Nested: levels of N within level 2 of P
+tk7 <- with(FE,
+            TukeyC(y ~ blk + N*P*K,
+               data = dfm,
+               which = 'P:N',
+               fl1 = 2))
+summary(tk7)
+```
+
+---
+
+## 7. Split-Plot Experiment (SPE)
+
+`SPE` contains simulated data for a design with **3 whole plots** (factor P) and
+**4 sub-plot treatments** (factor SP). When testing the whole-plot factor, the
+appropriate error term must be specified via the `error` argument.
+
+```{r spe}
+data(SPE)
+
+## Sub-plot factor SP (residual error, default)
+tk8 <- with(SPE,
+            TukeyC(y ~ blk + P*SP + Error(blk/P),
+               data = dfm,
+               which = 'SP'))
+summary(tk8)
+
+## Whole-plot factor P (must specify the blk:P error term)
+tk9 <- with(SPE,
+            TukeyC(y ~ blk + P*SP + Error(blk/P),
+               data = dfm,
+               which = 'P',
+               error = 'blk:P'))
+summary(tk9)
+```
+
+---
+
+## 8. Visualisation Options
+
+### 8.1 Dispersion bars
+
+Four dispersion options are available for `plot.TukeyC()`:
+
+| Option  | Description                                |
+|---------|--------------------------------------------|
+| `'mm'`  | Min-max range (default)                    |
+| `'sd'`  | ± 1 standard deviation                    |
+| `'ci'`  | Individual 95 % confidence interval        |
+| `'cip'` | Pooled 95 % confidence interval (uses MSE) |
+
+`CRD2` provides a more visually rich example with **45 treatment levels**:
+
+```{r plot-crd2, fig.width=8, fig.height=5, fig.cap="CRD2: 45 treatment means with pooled CI bars."}
+data(CRD2)
+
+tk10 <- with(CRD2,
+             TukeyC(y ~ x,
+                data = dfm,
+                which = 'x'))
+
+plot(tk10,
+     id.las = 2,
+     yl = FALSE,
+     dispersion = 'cip',
+     d.col = 'steelblue')
+```
+
+### 8.2 Comparing all four options
+
+```{r plot-four, fig.width=8, fig.height=7, fig.cap="The four dispersion options applied to CRD1. (A) mm: min-max range; (B) sd: standard deviation; (C) ci: individual confidence interval; (D) cip: pooled confidence interval."}
+op <- par(mfrow = c(2, 2), mar = c(4, 3, 4, 1))
+
+plot(tk1, dispersion = 'mm',  d.col = 'steelblue')
+mtext('(A)', side = 3, adj = 0, line = 2, font = 2)
+
+plot(tk1, dispersion = 'sd',  d.col = 'tomato')
+mtext('(B)', side = 3, adj = 0, line = 2, font = 2)
+
+plot(tk1, dispersion = 'ci',  d.col = 'darkgreen')
+mtext('(C)', side = 3, adj = 0, line = 2, font = 2)
+
+plot(tk1, dispersion = 'cip', d.col = 'purple')
+mtext('(D)', side = 3, adj = 0, line = 2, font = 2)
+
+par(op)
+```
+
+### 8.3 Boxplot
+
+`boxplot.TukeyC()` extends the standard boxplot by overlaying the TukeyC group letters
+above the frame and drawing the treatment mean inside each box.
+
+```{r boxplot, fig.cap="CRD1: boxplot with TukeyC group labels and means (red line)."}
+## boxplot.TukeyC re-evaluates the data argument from the original call;
+## pass CRD1$dfm directly so it is findable in any environment.
+tk1_bp <- TukeyC(y ~ x,
+             data = CRD1$dfm,
+             which = 'x')
+
+boxplot(tk1_bp,
+        mean.col = 'red',
+        mean.lwd = 2,
+        args.legend = list(x = 'topright'))
+```
+
+---
+
+## 9. Tabular Output
+
+`xtable()` converts a `TukeyC` result to an `xtable` object for inclusion in LaTeX
+or HTML documents.
+
+```{r xtable, results='asis'}
+library(xtable)
+
+tb <- xtable(tk4,
+             caption = 'RCBD: Tukey HSD grouping of treatment means.',
+             digits = 3)
+print(tb,
+      type = 'html',
+      html.table.attributes = 'border="1" style="border-collapse:collapse; padding:4px;"',
+      caption.placement = 'top',
+      include.rownames = FALSE)
+```
+
+---
+
+## 10. Mixed Models with lme4
+
+`TukeyC()` also accepts `lmerMod` objects from the **lme4** package, useful when
+random effects need to be modelled explicitly.
+
+```{r lmer, eval=requireNamespace('lme4', quietly=TRUE)}
+library(lme4)
+
+data(RCBD)
+
+lmer1 <- with(RCBD,
+              lmer(y ~ (1|blk) + tra,
+                   data = dfm))
+
+tk11 <- TukeyC(lmer1, which = 'tra')
+summary(tk11)
+```
+
+---
+
+## References
+
+Tukey, J. W. (1949). Comparing individual means in the analysis of variance.
+*Biometrics*, **5**(2), 99--114. doi:10.2307/3001913
+
+Miller, R. G. (1981). *Simultaneous Statistical Inference*. Springer.
