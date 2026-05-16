@@ -7,6 +7,8 @@ m.infos.nest.lm <- function(x,
                             sig.level,
                             aux_mt,
                             ...) {
+  ci <- .tukeyc_emmeans_ci_cols(aux_mt)
+
   aux_m.inf <- aggregate(forminter,
     data = x$model,
     function(x) {
@@ -26,8 +28,8 @@ m.infos.nest.lm <- function(x,
     "lsup_sd" = with(aux_mt, emmean) + aux_m.inf[[my]][, 3],
     "linf_se" = with(aux_mt, emmean) - abs(qt(sig.level, with(aux_mt, emmean / SE))) * aux_m.inf[[my]][, 4],
     "lsup_se" = with(aux_mt, emmean) + abs(qt(sig.level, with(aux_mt, emmean / SE))) * aux_m.inf[[my]][, 4],
-    "linf_sepool" = with(aux_mt, lower.CL),
-    "lsup_sepool" = with(aux_mt, upper.CL)
+    "linf_sepool" = aux_mt[[ci["lower"]]],
+    "lsup_sepool" = aux_mt[[ci["upper"]]]
   )
 
   aux_m.inf2 <- aux_m.inf1[order(aux_m.inf1[["means"]],
@@ -49,10 +51,7 @@ m.infos.nest.lm <- function(x,
   if (is.null(fl2)) {
     f2 <- levels(x$model[, nf1])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
-    aux_m.inf21 <- subset(
-      aux_m.inf2,
-      eval(parse(text = nf1)) == f2
-    ) # pegando as medias de interesse
+    aux_m.inf21 <- .tukeyc_filter_nest(aux_m.inf2, which, fl1, fl2, x$model)
 
     m.inf <- list(
       Means = aux_m.inf21[, c(1:3)],
@@ -66,10 +65,7 @@ m.infos.nest.lm <- function(x,
 
     f3 <- levels(x$model[, nf1])[fl1]
 
-    aux_m.inf21 <- subset(
-      aux_m.inf2,
-      eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2
-    ) # pegando as medias de interesse
+    aux_m.inf21 <- .tukeyc_filter_nest(aux_m.inf2, which, fl1, fl2, x$model)
 
     m.inf <- list(
       Means = aux_m.inf21[, c(1:4)],

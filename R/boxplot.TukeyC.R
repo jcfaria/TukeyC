@@ -62,10 +62,7 @@ boxplot.TukeyC <- function(x,
   )) # objeto criado para auxliar nos casos que envolve interações.
 
   if (length(auxinter) > 1) {
-    aux3$treat <- with(
-      aux3,
-      interaction(eval(parse(text = treat)))
-    )
+    aux3$treat <- .tukeyc_interaction_label(aux3, treat)
     aux3$treat <- gsub(
       ":",
       "/",

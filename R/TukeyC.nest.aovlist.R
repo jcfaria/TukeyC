@@ -59,10 +59,7 @@ TukeyC.nest.aovlist <- function(x,
 
     f2 <- levels(model.frame(x)[, nf1])[fl1] # corresponde ao fator onde se estao fazendo o desdobramento!
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, model.frame(x))
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],
@@ -76,10 +73,7 @@ TukeyC.nest.aovlist <- function(x,
 
     f3 <- levels(model.frame(x)[, nf1])[fl1]
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, model.frame(x))
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],

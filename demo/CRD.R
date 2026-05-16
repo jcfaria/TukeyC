@@ -18,14 +18,14 @@ summary(tk1)
 plot(tk1)
 
 plot(tk1,
-     di='mm',
+     dispersion='mm',
      d.lty=3)
 
 plot(tk1,
-     di='sd')
+     dispersion='sd')
 
 plot(tk1,
-     di='ci',
+     dispersion='ci',
      d.col='red')
 
 ## From: formula - unbalanced
@@ -65,7 +65,7 @@ tk3 <- with(CRD2,
 plot(tk3,
      id.las=2,
      yl=FALSE,
-     di='sd',
+     dispersion='sd',
      d.lty=3,
      d.col='red')
 
@@ -76,7 +76,7 @@ u_tk3 <- with(CRD2,
 plot(u_tk3,
      id.las=2,
      yl=FALSE,
-     di='sd',
+     dispersion='sd',
      d.lty=3,
      d.col='red')
 
@@ -90,7 +90,7 @@ tk4 <- TukeyC(av2)
 plot(tk4,
      id.las=2,
      yl=FALSE,
-     di='sd',
+     dispersion='sd',
      d.lty=4,
      d.col='darkgreen')
 

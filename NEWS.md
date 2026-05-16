@@ -10,6 +10,14 @@
   input classes, unbalanced data, RCBD, factorial and split-plot designs,
   visualisation options, tabular output, and mixed models.
 
+## Bug Fixes
+
+- `m.infos.lmerMod()` and `m.infos.nest.lmerMod()`: detect `emmeans` CI column
+  names dynamically (`lower.CL`/`upper.CL` or `asymp.LCL`/`asymp.UCL`).
+- `summary.TukeyC()`: corrected message typo (“Groups” vs “Goups”).
+- Demos and `plot.TukeyC` documentation: `di=` / `disp=` replaced with
+  `dispersion=`.
+
 ## Changes
 
 - `README.md` fully rewritten: badges (CRAN status, downloads, checks,
@@ -33,6 +41,17 @@
 - `man/`: author fields standardised to scientific name order (Faria, J. C.;
   Jelihovschi, E. G.; Allaman, I. B.), matching the ScottKnott package.
 - Removed `ChangeLog`; release history is maintained in `NEWS.md` only.
+- `DESCRIPTION`: `LazyData: true` (replacing `LazyLoad`).
+- Re-export `xtable()` from **xtable**; added `man/xtable.Rd`.
+- Internal helpers in `R/tukeyc-utils.R` for nested filters, `emmeans` CI
+  columns, error-term renaming, and interaction labels; removed
+  `eval(parse())` from nest/boxplot code paths.
+- `TukeyC.lm()` and `make.TukeyC.groups()`: `ifelse()` side effects replaced
+  with `if` blocks.
+- Removed obsolete commented code (`doBy`, `parallel`).
+- Expanded `testthat` coverage (`test-tukeyc-extra.R`: groups, boxplot, FE
+  nest, xtable export).
+- Documentation typos corrected in selected `.Rd` files.
 
 ---
 

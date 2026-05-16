@@ -25,7 +25,7 @@ tk2 <- with(SPE,
                    fl1=1 ))
 summary(tk2)
 plot(tk2,
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 

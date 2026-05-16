@@ -5,6 +5,8 @@ m.infos.lmerMod <- function(x,
                             sig.level,
                             aux_mt,
                             ...) {
+  ci <- .tukeyc_emmeans_ci_cols(aux_mt)
+
   aux_m.inf <- aggregate(forminter,
     data = x@frame,
     function(x) {
@@ -25,8 +27,8 @@ m.infos.lmerMod <- function(x,
     "lsup_sd" = with(aux_mt, emmean) + aux_m.inf[[my]][, 3],
     "linf_se" = with(aux_mt, emmean) - abs(qt(sig.level, with(aux_mt, emmean / SE))) * aux_m.inf[[my]][, 4],
     "lsup_se" = with(aux_mt, emmean) + abs(qt(sig.level, with(aux_mt, emmean / SE))) * aux_m.inf[[my]][, 4],
-    "linf_sepool" = with(aux_mt, lower.CL),
-    "lsup_sepool" = with(aux_mt, upper.CL)
+    "linf_sepool" = aux_mt[[ci["lower"]]],
+    "lsup_sepool" = aux_mt[[ci["upper"]]]
   )
 
   aux_m.inf2 <- aux_m.inf1[order(aux_m.inf1[["means"]],

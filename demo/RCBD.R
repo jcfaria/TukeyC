@@ -14,7 +14,7 @@ tk1 <- with(RCBD,
                    which='tra'))
 summary(tk1)
 plot(tk1,
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 
@@ -24,7 +24,7 @@ tk2 <- with(RCBD,
                    dfm))
 summary(tk2)
 plot(tk2,,
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 

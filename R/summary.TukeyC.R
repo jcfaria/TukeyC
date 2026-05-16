@@ -13,7 +13,7 @@ summary.TukeyC <- function(object,
 
   if (complete) {
     cat(
-      "Goups of means at sig.level =",
+      "Groups of means at sig.level =",
       object$out$Sig.level,
       "\n"
     )

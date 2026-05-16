@@ -37,7 +37,7 @@ tk3 <- with(SSPE,
                    fl1=2))
 summary(tk3)
 plot(tk3,
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 

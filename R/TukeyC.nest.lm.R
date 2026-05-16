@@ -22,9 +22,6 @@ TukeyC.nest.lm <- function(x,
   )
   reps <- aux_r[[my]]
 
-  # aux_mt <- suppressWarnings(doBy::LSmeans(x,
-  #                                           effect = m2))
-
   aux_mt <- suppressMessages(emmeans::emmeans(x,
     specs = m2,
     level = 1 - sig.level
@@ -62,10 +59,7 @@ TukeyC.nest.lm <- function(x,
 
     f2 <- levels(x$model[, nf1])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, x$model)
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],
@@ -79,10 +73,7 @@ TukeyC.nest.lm <- function(x,
 
     f3 <- levels(x$model[, nf1])[fl1]
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, x$model)
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],

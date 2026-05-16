@@ -38,10 +38,11 @@ make.TukeyC.groups <- function(x) {
 
   ## +++++++++
   # Quando o pesquisador usa diretamento o teste de Tukey (sem ANOVA prévia), pode acontecer dos tratamentos serem iguais. O procedimento abaixo é uma proteção da função caso isso ocorra.
-  ifelse(!is.vector(aux3),
-    matreal <- apply(aux3, 2, function(x) gsub(TRUE, "", x)),
+  if (!is.vector(aux3)) {
+    matreal <- apply(aux3, 2, function(x) gsub(TRUE, "", x))
+  } else {
     matreal <- matzero
-  )
+  }
 
   matreal[is.na(matreal)] <- ""
 
@@ -49,18 +50,6 @@ make.TukeyC.groups <- function(x) {
   # Criando um vetor de letras. Com as letras atuais do R, só é possível termos 52 letras entre minúsculas e maiúsculas. Ou seja, se todos os tratamentos fossem diferentes entre si, só seria possível  diferenciamos 52 tratamentos. Colocando caracteres como acentos entre outros, conseguiremos expandir o número de comparações.
   letras <- c(letters, paste(letters, rep(0:9, rep(26, 10)), sep = ""))
   ## +++++++++
-
-  ## ++++++++++
-  # Detecando o número de núcleos da máquina
-  # ifelse(Sys.info()['sysname']=='Windows', ncore <- 1,
-  # ncore <- parallel::detectCores())
-  # Devido a complicações na compilação do pacote devido as políticas do CRAN, resolvi retirar esta parte!
-  #++++++++++
-
-  ## +++++++++
-  # Começando a brincadeira de fato
-  # matnew <- parallel::mclapply(1:dim(matreal)[2],
-  #                 function(i)gsub(FALSE,letras[i],matreal[,i]),mc.cores=ncore)
 
   matnew <- lapply(
     1:dim(matreal)[2],

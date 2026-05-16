@@ -37,7 +37,7 @@
 }
 
 \details{
-  The \code{boxplot.TukeyC} function is a S3 method to plot \samp{TukeyC} objetcs. The difference to generic function is the Tukey inference under frame and the plot of means within box.
+  The \code{boxplot.TukeyC} function is a S3 method to plot \samp{TukeyC} objects. The difference to generic function is the Tukey inference under frame and the plot of means within box.
 }
 
 \author{

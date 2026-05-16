@@ -62,7 +62,7 @@
 
 \details{
   The \code{plot.TukeyC} function is a S3 method to plot \samp{Tukey} and
-  \code{TukeyC.nest} objetcs. It generates a serie of points (the means) and a 
+  \code{TukeyC.nest} objects. It generates a serie of points (the means) and a 
   vertical line showing the dispersion of the values corresponding to
   each group mean. The ci options is calculed utilizing each treatment variance as estimating of population variance. The cip options is calculed utilizing the means square error (MSE) as estimating of population variance.
 }
@@ -102,7 +102,7 @@ plot(tk1,
 
 plot(tk1,
      yl=FALSE,
-     disp='sd',
+     dispersion='sd',
      id.las=2)
 
 ## From: aov
@@ -114,7 +114,7 @@ summary(av)
 tk2 <- TukeyC(x=av,
               which='x')
 plot(tk2,
-     disp='sd',
+     dispersion='sd',
      yl=FALSE,
      id.las=2)
 
@@ -128,12 +128,12 @@ tk3 <- TukeyC(x=av_lm,
 
 par(mfrow=c(2, 1))
 plot(tk3,
-     disp='ci',
+     dispersion='ci',
      id.las=2,
      yl=FALSE)
 
 plot(tk3,
-     disp='cip',
+     dispersion='cip',
      id.las=2,
      yl=FALSE)
 

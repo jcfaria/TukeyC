@@ -49,14 +49,7 @@ TukeyC.lm <- function(x,
       "\\/"
     ))
 
-    ifelse(any(many_errors == "Within"),
-      many_errors <- gsub(
-        "Within",
-        "Residuals",
-        many_errors
-      ),
-      many_errors <- many_errors
-    )
+    many_errors <- .tukeyc_replace_within_errors(many_errors)
 
     n_errors <- length(many_errors)
 
@@ -170,10 +163,6 @@ TukeyC.lm <- function(x,
     function(x) r <- length(x)
   )
   reps <- aux_r[[my]]
-
-  #  aux_mt <- suppressWarnings(doBy::LSmeans(x,
-  #                                           effect = which,
-  #                                           level = 1 - sig.level))
 
   aux_mt <- suppressMessages(emmeans::emmeans(x,
     specs = which,

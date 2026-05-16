@@ -58,10 +58,7 @@ TukeyC.nest.lmerMod <- function(x,
 
     f2 <- levels(x@frame[[nf1]])[fl1] # corresponde ao fator onde se esta fazendo o desdobramento!
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, x@frame)
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],
@@ -75,10 +72,7 @@ TukeyC.nest.lmerMod <- function(x,
 
     f3 <- levels(x@frame[[nf1]])[fl1]
 
-    mt <- subset(
-      aux_mt3,
-      eval(parse(text = nf1)) == f3 & eval(parse(text = nf2)) == f2
-    ) # pegando as medias de interesse
+    mt <- .tukeyc_filter_nest(aux_mt3, which, fl1, fl2, x@frame)
 
     row.names(mt) <- paste(mt[, 1],
       mt[, 2],

@@ -109,7 +109,7 @@ op <- par(mar=c(6, 3, 3, 2))
 plot(tk10,
      id.las=2,
      xlab='',
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 
@@ -123,7 +123,7 @@ op <- par(mar=c(7, 3, 3, 2))
 plot(tk12,
      id.las=2,
      xlab='',
-     di='sd',
+     dispersion='sd',
      d.col='red',
      d.lty=3)
 par(op)

@@ -197,10 +197,6 @@ TukeyC.lmerMod <- function(x,
   )
   reps <- aux_r[[my]]
 
-  # aux_mt <- suppressWarnings(doBy::LSmeans(x,
-  #                                           effect = which,
-  #                                           level = 1 - sig.level))
-  #  aux_mt1 <- with(aux_mt,estimate)
   aux_mt <- suppressMessages(emmeans::emmeans(x,
     specs = which,
     level = 1 - sig.level
