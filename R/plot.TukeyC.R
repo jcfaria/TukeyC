@@ -18,8 +18,7 @@ plot.TukeyC <- function(x,
                         yl         = TRUE,
                         yl.lty     = 3,
                         yl.col     = 'gray',
-                        dispersion = c('none',
-                                       'mm',
+                        dispersion = c('mm',
                                        'sd',
                                        'ci',
                                        'cip'),
@@ -155,8 +154,7 @@ plot.TukeyC <- function(x,
                     icp[,2],
                     lty = d.lty,
                     col = d.col, ...)
-         },
-         none = NULL)
+         })
 
   if(axisy){
     axis(2,

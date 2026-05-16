@@ -21,6 +21,8 @@
   LEC software page; added `knitr`, `rmarkdown`, and `testthat (>= 3.0.0)` to
   `Suggests`; set `VignetteBuilder: knitr` and `Config/testthat/edition: 3`.
 - Added `NEWS.md` (this file), migrated from the historical `ChangeLog`.
+- `plot.TukeyC()`: removed the `none` dispersion option; default is now `mm`
+  (min–max range), matching `plot.SK()`.
 - `man/`: author fields standardised to scientific name order (Faria, J. C.;
   Jelihovschi, E. G.; Allaman, I. B.), matching the ScottKnott package.
 - Removed `ChangeLog`; release history is maintained in `NEWS.md` only.

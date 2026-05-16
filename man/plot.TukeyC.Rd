@@ -26,7 +26,7 @@
      yl             = TRUE,
      yl.lty         = 3,
      yl.col         = 'gray',
-     dispersion     = c('none','mm','sd','ci','cip'),
+     dispersion     = c('mm','sd','ci','cip'),
      d.lty          = 1,
      d.col          = 'black',
      title          = '', \dots)
@@ -49,7 +49,7 @@
   \item{yl}{Horizontal (reference) line connecting the circle to the \samp{y} axis.}
   \item{yl.lty}{Line type of \samp{yl}.}
   \item{yl.col}{Line color of \samp{yl}.}
-  \item{dispersion}{Vertical line through the circle (mean value) linking the minimum to the maximum of the factor level values corresponding to that mean value. Other options are: sd (standard deviation), ci (confidence interval), cip (pooled confidence interval) and none.}
+  \item{dispersion}{Type of dispersion bar drawn through each mean point. Options: \samp{mm} (min-max range), \samp{sd} (standard deviation), \samp{ci} (individual confidence interval), \samp{cip} (pooled confidence interval). Default is \samp{mm}.}
   \item{d.lty}{Line type of dispersion.}
   \item{d.col}{A vector of colors for the line type of dispersion.}
   \item{title}{A title for the plot.}
