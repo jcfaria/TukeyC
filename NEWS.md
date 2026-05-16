@@ -23,6 +23,10 @@
 - Added `NEWS.md` (this file), migrated from the historical `ChangeLog`.
 - `plot.TukeyC()`: removed the `none` dispersion option; default is now `mm`
   (min–max range), matching `plot.SK()`.
+- `xtable.TukeyC()`: treatment names moved from row names to an explicit
+  `Treatment` column; added `print.xtable.TukeyC()` S3 method that strips the
+  inconsistent 2-space indentation inserted by `print.xtable` in compiled
+  LaTeX and HTML tables.
 - `man/`: author fields standardised to scientific name order (Faria, J. C.;
   Jelihovschi, E. G.; Allaman, I. B.), matching the ScottKnott package.
 - Removed `ChangeLog`; release history is maintained in `NEWS.md` only.

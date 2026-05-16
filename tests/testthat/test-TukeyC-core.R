@@ -137,4 +137,13 @@ test_that("xtable.TukeyC returns an object of class 'xtable'", {
   tk <- with(CRD1, TukeyC(y ~ x, data = dfm, which = "x"))
   xt <- xtable(tk)
   expect_s3_class(xt, "xtable")
+  expect_s3_class(xt, "xtable.TukeyC")
+  expect_true("Treatment" %in% colnames(xt))
+})
+
+test_that("print.xtable.TukeyC produces output without error", {
+  data(CRD1)
+  tk <- with(CRD1, TukeyC(y ~ x, data = dfm, which = "x"))
+  xt <- xtable(tk)
+  expect_no_error(print(xt))
 })
