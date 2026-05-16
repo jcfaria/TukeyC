@@ -3,21 +3,27 @@
 ##
 
 print.TukeyC <- function(x,
-                         ...)
-{
-  cat('Results\n')  
-  print(x$out$Result,
-        ...)
+                         ...) {
+  cat("Results\n")
+  print(
+    x$out$Result,
+    ...
+  )
 
-  cat('\nSig.level\n',
-      x$out$Sig.level)
+  cat(
+    "\nSig.level\n",
+    x$out$Sig.level
+  )
 
-  cat('\n\nDiff_Prob\n')
-  print(x$out$Diff_Prob,
-        ...)
+  cat("\n\nDiff_Prob\n")
+  print(
+    x$out$Diff_Prob,
+    ...
+  )
 
-  cat('\nMSD\n')
-  print(x$out$MSD,
-        ...)
-
-}                   
+  cat("\nMSD\n")
+  print(
+    x$out$MSD,
+    ...
+  )
+}

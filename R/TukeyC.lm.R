@@ -1,211 +1,231 @@
 TukeyC.lm <- function(x,
-                      which           = NULL,
-                      fl1             = NULL, 
-                      fl2             = NULL, 
-                      error           = NULL,
-                      sig.level       = .05,
-                      round           = 2,
-                      adjusted.pvalue = 'none', ...)   
-{
-
-  if(is.null(which)){
-
+                      which = NULL,
+                      fl1 = NULL,
+                      fl2 = NULL,
+                      error = NULL,
+                      sig.level = .05,
+                      round = 2,
+                      adjusted.pvalue = "none", ...) {
+  if (is.null(which)) {
     which <- names(x$model)[2]
-
   }
 
   # Interacoes com erro experimental
-  if(!is.null(fl1) & is.null(error)){
-
+  if (!is.null(fl1) & is.null(error)) {
     SSE <- deviance(x) # sum square error
-    dfr <- df.residual(x)  # residual degrees of freedom                   
-    MSE <- SSE/dfr  
+    dfr <- df.residual(x) # residual degrees of freedom
+    MSE <- SSE / dfr
 
     cl <- match.call()
-    class(x) <- c('nest.lm',class(x))
+    class(x) <- c("nest.lm", class(x))
 
-    res <- TukeyC(x               = x,
-                  which           = which,
-                  fl1             = fl1,
-                  fl2             = fl2,
-                  MSE             = MSE,
-                  dfr             = dfr,
-                  sig.level       = sig.level,
-                  round           = round,
-                  adjusted.pvalue = adjusted.pvalue,
-                  ...)
+    res <- TukeyC(
+      x = x,
+      which = which,
+      fl1 = fl1,
+      fl2 = fl2,
+      MSE = MSE,
+      dfr = dfr,
+      sig.level = sig.level,
+      round = round,
+      adjusted.pvalue = adjusted.pvalue,
+      ...
+    )
 
     res$call <- cl
-    class(res) <- c('TukeyC.lm',
-                    'TukeyC',
-                    'list')
+    class(res) <- c(
+      "TukeyC.lm",
+      "TukeyC",
+      "list"
+    )
 
-    return(res)                          
+    return(res)
   }
 
   # Interacoes com outros erros
-  if(!is.null(fl1) & !is.null(error)){ 
+  if (!is.null(fl1) & !is.null(error)) {
+    many_errors <- unlist(strsplit(
+      error,
+      "\\/"
+    ))
 
-    many_errors <- unlist(strsplit(error,
-                                   '\\/'))
-
-    ifelse(any(many_errors == 'Within'),
-           many_errors <- gsub('Within',
-                               'Residuals',
-                               many_errors),
-           many_errors <- many_errors)
+    ifelse(any(many_errors == "Within"),
+      many_errors <- gsub(
+        "Within",
+        "Residuals",
+        many_errors
+      ),
+      many_errors <- many_errors
+    )
 
     n_errors <- length(many_errors)
 
-    if(n_errors > 1){# combinacoes de erros!!!
+    if (n_errors > 1) { # combinacoes de erros!!!
 
       aux_MSE <- NULL
       aux_dfr <- NULL
-      anov <- anova(x) 
+      anov <- anova(x)
 
-      for(i in 1:n_errors){
-
-        aux_MSE[i] <- anov[rownames(anov) == many_errors[i],][1,3]
-        aux_dfr[i] <- anov[rownames(anov) == many_errors[i],][1,1] 
+      for (i in 1:n_errors) {
+        aux_MSE[i] <- anov[rownames(anov) == many_errors[i], ][1, 3]
+        aux_dfr[i] <- anov[rownames(anov) == many_errors[i], ][1, 1]
       }
 
-      factors <- unlist(strsplit(which,
-                                 '[[:punct:]]'))
+      factors <- unlist(strsplit(
+        which,
+        "[[:punct:]]"
+      ))
 
       aux_levels <- x$xlevel
 
-      aux_levels1 <- lapply(aux_levels,
-                            length)
+      aux_levels1 <- lapply(
+        aux_levels,
+        length
+      )
 
       levelss <- unlist(aux_levels1[factors])
 
-      if(length(aux_MSE) == 2){
+      if (length(aux_MSE) == 2) {
+        cp <- c(
+          levelss[1] - 1,
+          1
+        )
 
-        cp <- c(levelss[1]-1,
-                1) 
+        MSE <- (cp %*% aux_MSE) / levelss[1]
 
-        MSE <- (cp%*%aux_MSE)/levelss[1]
-
-        numer <- (cp%*%aux_MSE)^2
-        denom <- (cp[1]*aux_MSE[1])^2/aux_dfr[1] + aux_MSE[2]^2/aux_dfr[2]
-        dfr <- numer/denom 
-
+        numer <- (cp %*% aux_MSE)^2
+        denom <- (cp[1] * aux_MSE[1])^2 / aux_dfr[1] + aux_MSE[2]^2 / aux_dfr[2]
+        dfr <- numer / denom
       } else {
+        cp <- c(
+          levelss[2] * (levelss[1] - 1),
+          levelss[2] - 1,
+          1
+        )
 
-        cp <- c(levelss[2]*(levelss[1]-1),
-                levelss[2]-1,
-                1) 
+        MSE <- (cp %*% aux_MSE) / prod(levelss[1:2])
 
-        MSE <- (cp%*%aux_MSE)/prod(levelss[1:2])
-
-        numer <- (cp%*%aux_MSE)^2
-        denom <- (cp[1]*aux_MSE[1])^2/aux_dfr[1] + (cp[2]*aux_MSE[2])^2/aux_dfr[2] + aux_MSE[3]^2/aux_dfr[3]
-        dfr <- numer/denom       
-
+        numer <- (cp %*% aux_MSE)^2
+        denom <- (cp[1] * aux_MSE[1])^2 / aux_dfr[1] + (cp[2] * aux_MSE[2])^2 / aux_dfr[2] + aux_MSE[3]^2 / aux_dfr[3]
+        dfr <- numer / denom
       }
-
-    } else {# nao ha combinacao de erros!!!
+    } else { # nao ha combinacao de erros!!!
 
       anov <- anova(x)
-      SSE <- anov[rownames(anov) == error,][1,2] # sum square error
-      dfr <- anov[rownames(anov) == error,][1,1] # residual degrees of freedom                     
-      MSE <- SSE/dfr   
-
+      SSE <- anov[rownames(anov) == error, ][1, 2] # sum square error
+      dfr <- anov[rownames(anov) == error, ][1, 1] # residual degrees of freedom
+      MSE <- SSE / dfr
     }
 
     cl <- match.call()
-    class(x) <- c('nest.lm',class(x)) 
+    class(x) <- c("nest.lm", class(x))
 
-    res <- TukeyC(x               = x,
-                  which           = which,
-                  fl1             = fl1,
-                  fl2             = fl2,
-                  MSE             = MSE,
-                  dfr             = dfr,
-                  sig.level       = sig.level,
-                  round           = round,
-                  adjusted.pvalue = adjusted.pvalue,
-                  ...)
+    res <- TukeyC(
+      x = x,
+      which = which,
+      fl1 = fl1,
+      fl2 = fl2,
+      MSE = MSE,
+      dfr = dfr,
+      sig.level = sig.level,
+      round = round,
+      adjusted.pvalue = adjusted.pvalue,
+      ...
+    )
 
     res$call <- cl
-    class(res) <- c('TukeyC.lm',
-                    'TukeyC',
-                    'list')
+    class(res) <- c(
+      "TukeyC.lm",
+      "TukeyC",
+      "list"
+    )
 
-    return(res)                         
-
+    return(res)
   }
 
   # Aqui nao ha interesse em interacoes!!!!
-  if(is.null(fl1) & !is.null(error)){#Um erro de interesse do usuario
+  if (is.null(fl1) & !is.null(error)) { # Um erro de interesse do usuario
 
     anov <- anova(x)
-    SSE <- anov[rownames(anov) == error,][1,2] # sum square error
-    dfr <- anov[rownames(anov) == error,][1,1] # residual degrees of freedom                     
-    MSE <- SSE/dfr   
-
-  } else { #Erro experimental
+    SSE <- anov[rownames(anov) == error, ][1, 2] # sum square error
+    dfr <- anov[rownames(anov) == error, ][1, 1] # residual degrees of freedom
+    MSE <- SSE / dfr
+  } else { # Erro experimental
 
     SSE <- deviance(x) # sum square error
-    dfr <- df.residual(x)  # residual degrees of freedom                   
-    MSE <- SSE/dfr  
-
+    dfr <- df.residual(x) # residual degrees of freedom
+    MSE <- SSE / dfr
   }
 
   my <- as.character(formula(x)[[2]])
 
-  forminter <- as.formula(paste(my, 
-                                '~', 
-                                which)) 
+  forminter <- as.formula(paste(
+    my,
+    "~",
+    which
+  ))
 
-  aux_r <- aggregate(forminter, 
-                     data = x$model,
-                     function(x) r = length(x))
+  aux_r <- aggregate(forminter,
+    data = x$model,
+    function(x) r <- length(x)
+  )
   reps <- aux_r[[my]]
 
-#  aux_mt <- suppressWarnings(doBy::LSmeans(x,
-#                                           effect = which,
-#                                           level = 1 - sig.level))
-                                           
-  aux_mt <- suppressMessages(emmeans::emmeans(x, 
-                             specs = which, 
-                             level = 1 - sig.level))                                          
+  #  aux_mt <- suppressWarnings(doBy::LSmeans(x,
+  #                                           effect = which,
+  #                                           level = 1 - sig.level))
 
-  #aux_mt1 <- with(aux_mt,estimate)
+  aux_mt <- suppressMessages(emmeans::emmeans(x,
+    specs = which,
+    level = 1 - sig.level
+  ))
+
+  # aux_mt1 <- with(aux_mt,estimate)
   aux_mt_df <- as.data.frame(aux_mt)
-  
-  aux_mt1 <- with(aux_mt_df,emmean)
 
-  aux_mt2 <- data.frame(means = aux_mt1,
-                        reps = reps)
+  aux_mt1 <- with(aux_mt_df, emmean)
 
-  row.names(aux_mt2) <- aux_r[,1]
+  aux_mt2 <- data.frame(
+    means = aux_mt1,
+    reps = reps
+  )
 
-  mt <- aux_mt2[order(aux_mt2[,1],
-                      decreasing = TRUE),]
+  row.names(aux_mt2) <- aux_r[, 1]
 
-  cl <- match.call()  
-  out <- make.TukeyC.test(obj             = mt,
-                          MSE             = MSE,
-                          sig.level       = sig.level,
-                          dfr             = dfr,
-                          round           = round,
-                          adjusted.pvalue = adjusted.pvalue)
+  mt <- aux_mt2[order(aux_mt2[, 1],
+    decreasing = TRUE
+  ), ]
 
-  m.inf <- m.infos.lm(x         = x,
-                      my        = my,
-                      forminter = forminter,
-                      which     = which,
-                      sig.level = sig.level,
-                      aux_mt    = aux_mt_df)
+  cl <- match.call()
+  out <- make.TukeyC.test(
+    obj = mt,
+    MSE = MSE,
+    sig.level = sig.level,
+    dfr = dfr,
+    round = round,
+    adjusted.pvalue = adjusted.pvalue
+  )
 
-  res <- list(out  = out,
-              info = m.inf)
+  m.inf <- m.infos.lm(
+    x = x,
+    my = my,
+    forminter = forminter,
+    which = which,
+    sig.level = sig.level,
+    aux_mt = aux_mt_df
+  )
 
-  res$call  <- cl
+  res <- list(
+    out = out,
+    info = m.inf
+  )
 
-  class(res) <- c('TukeyC.lm',
-                  'TukeyC',
-                  'list')
-  return(res)                        
+  res$call <- cl
+
+  class(res) <- c(
+    "TukeyC.lm",
+    "TukeyC",
+    "list"
+  )
+  return(res)
 }

@@ -3,11 +3,10 @@
 ##
 
 TukeyC.default <- function(x,
-                           ...)
-{
-
-  stop(paste("class", 
-             class(x), 
-             "objects are not valid for TukeyC" ))
-
+                           ...) {
+  stop(paste(
+    "class",
+    class(x),
+    "objects are not valid for TukeyC"
+  ))
 }

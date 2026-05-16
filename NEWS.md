@@ -27,6 +27,9 @@
   `Treatment` column; added `print.xtable.TukeyC()` S3 method that strips the
   inconsistent 2-space indentation inserted by `print.xtable` in compiled
   LaTeX and HTML tables.
+- All `R/` source files reformatted for consistent 2-space indentation,
+  spacing around operators, and readable line breaks; mixed tabs and trailing
+  whitespace eliminated throughout.
 - `man/`: author fields standardised to scientific name order (Faria, J. C.;
   Jelihovschi, E. G.; Allaman, I. B.), matching the ScottKnott package.
 - Removed `ChangeLog`; release history is maintained in `NEWS.md` only.
