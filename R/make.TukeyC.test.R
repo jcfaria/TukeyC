@@ -68,22 +68,11 @@ make.TukeyC.test <- function(obj,
   out_groups <- make.TukeyC.groups(new_dif2)
 
   res <- cbind(
-    format(
-      round(
-        means,
-        round
-      ),
+    Means = format(
+      round(means, round),
       nsmall = 2
     ),
     out_groups
-  )
-
-  colnames(res) <- c(
-    "Means",
-    paste("G",
-      1:(ncol(res) - 1),
-      sep = ""
-    )
   )
 
   difm[lower.tri(difm)] <- adjusted_pvalue

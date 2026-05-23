@@ -2,42 +2,49 @@
 \alias{make.TukeyC.test}
 
 \title{
-	Make Tukey Test
+  Make Tukey Test
 }
 
 \description{
-	This function implements the Tukey test for balanced or unbalanced designs and schemes.
+  Performs all pairwise Tukey comparisons for balanced or unbalanced designs and
+  assembles the result table with letter groups.
 }
 
 \usage{
 make.TukeyC.test(obj,
-		 MSE,
-		 sig.level,
-		 dfr,
-		 round,
-		 adjusted.pvalue)
+                 MSE,
+                 sig.level,
+                 dfr,
+                 round,
+                 adjusted.pvalue)
 }
 
 \arguments{
-	\item{obj}{A data.frame with the means and replicates per factor level.}
-	\item{MSE}{A vector of length 1 giving the mean squared error.}
-	\item{sig.level}{A vector of length 1 giving the level of significance of the test.} 
-	\item{dfr}{A vector of length 1 giving the degrees of freedom of \samp{MSE}.}
-	\item{round}{Integer indicating the number of decimal places.}
-	\item{adjusted.pvalue}{A vector of pvalues from \code{ptukey} function.}
+  \item{obj}{A \code{data.frame} with columns \code{means} and \code{reps} and
+    row names giving the factor levels.}
+  \item{MSE}{Mean squared error (single numeric value).}
+  \item{sig.level}{Significance level for the test (e.g. \code{0.05}).}
+  \item{dfr}{Residual degrees of freedom associated with \code{MSE}.}
+  \item{round}{Number of decimal places for formatted means.}
+  \item{adjusted.pvalue}{Method passed to \code{\link{p.adjust}} for the
+    pairwise \code{p}-values (e.g. \code{"none"}).}
 }
 
 \value{
-	A list with 5 slots containing the most important results of the test performed:
-	\item{Result}{The result of the Tukey test}
-	\item{Sig.Level}{Significance level}
-	\item{Diff_Prob}{A \code{matrix} with the observed means differences (\code{upper.tri}) and respective probabilities (\code{lower.tri})}
-	\item{MSD}{The minimum significant difference}
-	\item{Replicates}{The replicate number for each factor}
+  A list with:
+  \describe{
+    \item{Result}{\code{data.frame} with column \code{Means} and letter columns
+      \code{G1}, \code{G2}, \ldots}
+    \item{Sig.level}{Significance level used.}
+    \item{Diff_Prob}{Matrix of mean differences (upper triangle) and adjusted
+      \code{p}-values (lower triangle).}
+    \item{MSD}{Minimum significant differences for each pair.}
+    \item{Replicates}{Replicate counts per level.}
+  }
 }
 
 \note{
-	This function is mainly for internal use in the \pkg{TukeyC} package.
+  This function is for internal use in the \pkg{TukeyC} package.
 }
 
 \author{
@@ -46,4 +53,4 @@ make.TukeyC.test(obj,
   Allaman, I. B. (\email{ivanalaman@gmail.com})
 }
 
-\keyword{package}
+\keyword{internal}

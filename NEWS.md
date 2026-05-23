@@ -12,6 +12,11 @@
 
 ## Bug Fixes
 
+- `make.TukeyC.groups()`: refactored letter-grouping with sequential scanning and
+  homogeneity checks for non-transitive pairwise patterns under unbalanced
+  designs; added `tests/testthat/test-make-TukeyC-groups.R`.
+- `make.TukeyC.test()`: `Result` table now uses a named `Means` column combined
+  with letter columns from `make.TukeyC.groups()`.
 - `m.infos.lmerMod()` and `m.infos.nest.lmerMod()`: detect `emmeans` CI column
   names dynamically (`lower.CL`/`upper.CL` or `asymp.LCL`/`asymp.UCL`).
 - `summary.TukeyC()`: corrected message typo (“Groups” vs “Goups”).
