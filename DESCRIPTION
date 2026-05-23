@@ -1,6 +1,6 @@
 Package: TukeyC
 Version: 1.4-0
-Date: 2026-05-16
+Date: 2026-05-23
 Title: Conventional Tukey Test
 Authors@R: c(person("J. C.", "Faria",
                     role = "aut",
