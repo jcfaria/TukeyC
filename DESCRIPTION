@@ -11,10 +11,6 @@ Authors@R: c(person("J. C.", "Faria",
              person("I. B.", "Allaman",
                     role = c("aut", "cre"),
                     email = "ivanalaman@gmail.com"))
-Author: Faria, J. C. [aut],
-        Jelihovschi, E. G. [aut],
-        Allaman, I. B. [aut, cre]
-Maintainer: Allaman, I. B. <ivanalaman@gmail.com>
 Depends: R (>= 4.0.0)
 Imports: emmeans, xtable
 Suggests: pbkrtest (>= 0.4-6), lme4, knitr, rmarkdown, testthat (>= 3.0.0)
@@ -23,7 +19,7 @@ VignetteBuilder: knitr
 Description: Performs multiple comparison analyses using Tukey's
     Honestly Significant Difference (HSD) test, with intuitive letter
     grouping of means for balanced and unbalanced designs. Accepts
-    input from formula, aov, lm, aovlist, and lmerMod objects,
+    input from 'formula', 'aov', 'lm', 'aovlist', and 'lmerMod' objects,
     including straightforward handling of interactions. For more
     details see Tukey (1949) <doi:10.2307/3001913>.
 License: GPL (>= 2)
